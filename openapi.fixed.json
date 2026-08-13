@@ -1,0 +1,3294 @@
+{
+  "openapi": "3.1.2",
+  "info": {
+    "title": "Clay Public API",
+    "description": "Programmatic access to Clay.",
+    "contact": {
+      "name": "Clay",
+      "url": "https://www.clay.com"
+    },
+    "version": "0"
+  },
+  "servers": [
+    {
+      "url": "https://api.clay.com/public/v0",
+      "description": "production"
+    }
+  ],
+  "paths": {
+    "/me": {
+      "get": {
+        "tags": [
+          "me"
+        ],
+        "summary": "Get the authenticated user",
+        "description": "Returns the Clay user and workspace associated with the API key.",
+        "operationId": "GetPublicApiMe",
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPublicApiMe200Response"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "429",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/routines/run-batch/{routineRunId}/results": {
+      "get": {
+        "tags": [
+          "routines"
+        ],
+        "summary": "Fetch progress and results for a batch run",
+        "description": "Returns current status and results for an asynchronous batch routine run.",
+        "operationId": "GetRoutineRunBatchResults",
+        "parameters": [
+          {
+            "name": "routineRunId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchResultsTerminal"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "202",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchResultsInProgress"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "429",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/routines/run/{routineRunId}/results": {
+      "get": {
+        "tags": [
+          "routines"
+        ],
+        "summary": "Fetch progress and results for a routine run",
+        "description": "Returns current status and paginated results for an asynchronous routine run.",
+        "operationId": "GetRunResults",
+        "parameters": [
+          {
+            "name": "routineRunId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunResultsComplete"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "202",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunResultsInProgress"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "429",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/routines/{routineId}/run": {
+      "post": {
+        "tags": [
+          "routines"
+        ],
+        "summary": "Execute a routine against 1-100 items",
+        "description": "Starts an asynchronous routine run for up to 100 input items.",
+        "operationId": "RunRoutine",
+        "parameters": [
+          {
+            "name": "routineId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RunRoutineRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "202",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunRoutineResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "429",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/routines/{routineId}/run-batch/start": {
+      "post": {
+        "tags": [
+          "routines"
+        ],
+        "summary": "Start an async routine run-batch over an uploaded JSONL file",
+        "description": "Starts an asynchronous batch routine run over a previously uploaded JSONL file.",
+        "operationId": "StartRoutineRunBatch",
+        "parameters": [
+          {
+            "name": "routineId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StartBatchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "202",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StartBatchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "429",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/routines/{routineId}/run-batch/upload-url": {
+      "post": {
+        "tags": [
+          "routines"
+        ],
+        "summary": "Issue a presigned PUT URL for uploading a batch input JSONL",
+        "description": "Creates a presigned URL for uploading a JSONL file used by a batch routine run.",
+        "operationId": "RunRoutineBatchUploadUrl",
+        "parameters": [
+          {
+            "name": "routineId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchUploadUrlResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "429",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search/filters-mode": {
+      "post": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Create a search from structured filters",
+        "description": "Starts a new Clay search from a source type and structured filter fields.",
+        "operationId": "CreateFilters",
+        "requestBody": {
+          "description": "Body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSearchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateSearchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "402",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "429",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search/filters-mode/fields": {
+      "get": {
+        "tags": [
+          "search"
+        ],
+        "summary": "List the filter fields available for a search source type",
+        "description": "Returns every filter field accepted by POST /search/filters-mode for the given source type, including each field\u0027s type, description, allowed values, and usage guidance. Call this before creating a search to build valid filters.",
+        "operationId": "Fields",
+        "parameters": [
+          {
+            "name": "source_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FieldsSourceTypeParameter"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchFieldsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "429",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search/filters-mode/{searchId}/run": {
+      "post": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Run the search iterator and return the next page of results",
+        "description": "Returns the next page of records for an existing filter-mode search.",
+        "operationId": "Run",
+        "parameters": [
+          {
+            "name": "searchId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NextSearchResultsBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NextSearchResultsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "402",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "413",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "429",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search/query-mode": {
+      "post": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Create a search from a Clay search query (beta)",
+        "description": "Starts a new Clay search from a Clay advanced search query. The source type is detected from the query and returned in the response. Count-mode and jobs queries are not supported.",
+        "operationId": "CreateQueryMode",
+        "requestBody": {
+          "description": "Body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateQueryModeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateQueryMode200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "402",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "429",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search/query-mode/reference": {
+      "get": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Get the Clay search query reference (beta)",
+        "description": "Returns the Clay search query reference document (markdown), covering the queryable fields and the query grammar. Use it to author a Clay advanced search query before creating a query-mode search.",
+        "operationId": "QueryModeReference",
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryModeReference200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "429",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search/query-mode/{searchId}/run": {
+      "post": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Run the query-mode iterator and return the next page of results (beta)",
+        "description": "Returns the next page of records for an existing query-mode search.",
+        "operationId": "RunQueryMode",
+        "parameters": [
+          {
+            "name": "searchId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NextSearchResultsBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NextQueryModeResultsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "402",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "429",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tables/query": {
+      "post": {
+        "tags": [
+          "tables"
+        ],
+        "summary": "Run a structured query across one or more tables",
+        "description": "\u0022Runs a structured query against Clay table data and returns records with field metadata. Results are paginated: pass the returned cursor back to fetch the next page. Scans return rows in least-recently-updated-first order and reflect writes that land while you paginate \u2014 a scan returns every record visible when it started and picks up records written while it runs, and a record updated mid-scan can be returned again with fresher data, so deduplicate by id if you need each record once.\u0022",
+        "operationId": "Query",
+        "requestBody": {
+          "description": "Body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StructuredQueryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "429",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AggregateSelect": {
+        "required": [
+          "fn",
+          "field",
+          "as"
+        ],
+        "type": "object",
+        "properties": {
+          "as": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "field": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "fn": {
+            "$ref": "#/components/schemas/AggregateSelectFn"
+          },
+          "path": {
+            "maxItems": 5,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "BatchResultsComplete": {
+        "required": [
+          "routine_run_id",
+          "total",
+          "finished",
+          "status",
+          "result_url"
+        ],
+        "type": "object",
+        "properties": {
+          "finished": {
+            "type": "number"
+          },
+          "result_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "routine_run_id": {
+            "type": "string"
+          },
+          "status": {
+            "const": "complete",
+            "type": "string"
+          },
+          "total": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BatchResultsInProgress": {
+        "required": [
+          "routine_run_id",
+          "total",
+          "finished",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "finished": {
+            "type": "number"
+          },
+          "routine_run_id": {
+            "type": "string"
+          },
+          "status": {
+            "const": "in_progress",
+            "type": "string"
+          },
+          "total": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BatchResultsProcessingFailed": {
+        "required": [
+          "routine_run_id",
+          "status",
+          "error"
+        ],
+        "type": "object",
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/BatchResultsProcessingFailedError"
+          },
+          "routine_run_id": {
+            "type": "string"
+          },
+          "status": {
+            "const": "processing_failed",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BatchResultsTerminal": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/BatchResultsValidationFailed"
+          },
+          {
+            "$ref": "#/components/schemas/BatchResultsProcessingFailed"
+          },
+          {
+            "$ref": "#/components/schemas/BatchResultsComplete"
+          }
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "BatchResultsValidationFailed": "#/components/schemas/BatchResultsValidationFailed",
+            "BatchResultsProcessingFailed": "#/components/schemas/BatchResultsProcessingFailed",
+            "BatchResultsComplete": "#/components/schemas/BatchResultsComplete"
+          }
+        }
+      },
+      "BatchResultsValidationFailed": {
+        "required": [
+          "routine_run_id",
+          "status",
+          "error"
+        ],
+        "type": "object",
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/BatchValidationError"
+          },
+          "routine_run_id": {
+            "type": "string"
+          },
+          "status": {
+            "const": "validation_failed",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BatchUploadUrlResponse": {
+        "required": [
+          "upload_url",
+          "file_id"
+        ],
+        "type": "object",
+        "properties": {
+          "file_id": {
+            "type": "string"
+          },
+          "upload_url": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BatchValidationError": {
+        "required": [
+          "message",
+          "total_invalid_rows",
+          "details"
+        ],
+        "type": "object",
+        "properties": {
+          "details": {
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BatchValidationErrorDetail"
+            }
+          },
+          "message": {
+            "type": "string"
+          },
+          "total_invalid_rows": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BatchValidationErrorDetail": {
+        "required": [
+          "line_number",
+          "field",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "line_number": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CellEmpty": {
+        "required": [
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "const": "empty",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CellError": {
+        "required": [
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "status": {
+            "const": "error",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CellPending": {
+        "required": [
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/CellPendingStatus"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CellResult": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/CellSuccess"
+          },
+          {
+            "$ref": "#/components/schemas/CellError"
+          },
+          {
+            "$ref": "#/components/schemas/CellPending"
+          },
+          {
+            "$ref": "#/components/schemas/CellEmpty"
+          }
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "CellSuccess": "#/components/schemas/CellSuccess",
+            "CellError": "#/components/schemas/CellError",
+            "CellPending": "#/components/schemas/CellPending",
+            "CellEmpty": "#/components/schemas/CellEmpty"
+          }
+        }
+      },
+      "CellSuccess": {
+        "required": [
+          "status",
+          "fields"
+        ],
+        "type": "object",
+        "properties": {
+          "fields": {
+            "$ref": "#/components/schemas/CellSuccessFields"
+          },
+          "is_stale": {
+            "const": "True",
+            "type": "boolean"
+          },
+          "status": {
+            "const": "success",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/CellSuccessValue"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateSearchRequest": {
+        "required": [
+          "source_type",
+          "filters"
+        ],
+        "type": "object",
+        "properties": {
+          "filters": {
+            "$ref": "#/components/schemas/CreateSearchRequestFiltersProperty"
+          },
+          "source_type": {
+            "$ref": "#/components/schemas/CreateSearchRequestSourceType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateSearchResponse": {
+        "required": [
+          "search_id"
+        ],
+        "type": "object",
+        "properties": {
+          "search_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ErrorResponse": {
+        "required": [
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FieldMeta": {
+        "required": [
+          "id",
+          "name",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FieldSelect": {
+        "required": [
+          "field"
+        ],
+        "type": "object",
+        "properties": {
+          "as": {
+            "type": "string"
+          },
+          "field": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "path": {
+            "maxItems": 5,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "table": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FilterAnd": {
+        "required": [
+          "and"
+        ],
+        "type": "object",
+        "properties": {
+          "and": {
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilterExpression"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "FilterExpression": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/FilterPredicate"
+          },
+          {
+            "$ref": "#/components/schemas/FilterAnd"
+          },
+          {
+            "$ref": "#/components/schemas/FilterOr"
+          },
+          {
+            "$ref": "#/components/schemas/FilterNot"
+          }
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "FilterPredicate": "#/components/schemas/FilterPredicate",
+            "FilterAnd": "#/components/schemas/FilterAnd",
+            "FilterOr": "#/components/schemas/FilterOr",
+            "FilterNot": "#/components/schemas/FilterNot"
+          }
+        }
+      },
+      "FilterNot": {
+        "required": [
+          "not"
+        ],
+        "type": "object",
+        "properties": {
+          "not": {
+            "$ref": "#/components/schemas/FilterExpression"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FilterOr": {
+        "required": [
+          "or"
+        ],
+        "type": "object",
+        "properties": {
+          "or": {
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilterExpression"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "FilterPredicate": {
+        "required": [
+          "field",
+          "op"
+        ],
+        "type": "object",
+        "properties": {
+          "field": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "op": {
+            "$ref": "#/components/schemas/FilterPredicateOp"
+          },
+          "path": {
+            "maxItems": 5,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "value": {
+            "$ref": "#/components/schemas/FilterPredicateValue"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NestedPath": {
+        "maxItems": 5,
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "NextQueryModeCompanyResultsResponse": {
+        "required": [
+          "data",
+          "has_more",
+          "source_type"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicApiCompanySearchResult"
+            }
+          },
+          "exhaustion_reason": {
+            "$ref": "#/components/schemas/NextQueryModeCompanyResultsResponseExhaustionReason"
+          },
+          "has_more": {
+            "type": "boolean"
+          },
+          "period_quota": {
+            "$ref": "#/components/schemas/NextQueryModeCompanyResultsResponsePeriodQuota"
+          },
+          "source_type": {
+            "const": "companies",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NextQueryModePeopleResultsResponse": {
+        "required": [
+          "data",
+          "has_more",
+          "source_type"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicApiPersonSearchResult"
+            }
+          },
+          "exhaustion_reason": {
+            "$ref": "#/components/schemas/NextQueryModePeopleResultsResponseExhaustionReason"
+          },
+          "has_more": {
+            "type": "boolean"
+          },
+          "period_quota": {
+            "$ref": "#/components/schemas/NextQueryModePeopleResultsResponsePeriodQuota"
+          },
+          "source_type": {
+            "const": "people",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NextQueryModeResultsResponse": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/NextQueryModePeopleResultsResponse"
+          },
+          {
+            "$ref": "#/components/schemas/NextQueryModeCompanyResultsResponse"
+          }
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "NextQueryModePeopleResultsResponse": "#/components/schemas/NextQueryModePeopleResultsResponse",
+            "NextQueryModeCompanyResultsResponse": "#/components/schemas/NextQueryModeCompanyResultsResponse"
+          }
+        }
+      },
+      "NextSearchResultsBody": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "maximum": 500,
+            "minimum": 1,
+            "type": "integer",
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      },
+      "NextSearchResultsResponse": {
+        "required": [
+          "data",
+          "has_more"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NextSearchResultsResponseDataItemProperty"
+            }
+          },
+          "has_more": {
+            "type": "boolean"
+          },
+          "period_quota": {
+            "$ref": "#/components/schemas/NextSearchResultsResponsePeriodQuota"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicApiCompanySearchResult": {
+        "required": [
+          "clay_company_id",
+          "name",
+          "size",
+          "type",
+          "domain",
+          "country",
+          "industry",
+          "location",
+          "description",
+          "linkedin_url",
+          "annual_revenue",
+          "total_funding_amount_range_usd"
+        ],
+        "type": "object",
+        "properties": {
+          "annual_revenue": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "clay_company_id": {
+            "type": "number"
+          },
+          "country": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "description": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "domain": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "industry": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "linkedin_url": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "location": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "size": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "total_funding_amount_range_usd": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "type": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicApiMatchedExperience": {
+        "required": [
+          "company",
+          "title",
+          "location",
+          "start_date",
+          "end_date"
+        ],
+        "type": "object",
+        "properties": {
+          "company": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "end_date": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "location": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "start_date": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "title": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicApiPersonSearchResult": {
+        "required": [
+          "clay_profile_id",
+          "name",
+          "first_name",
+          "last_name",
+          "location",
+          "matched_experiences"
+        ],
+        "type": "object",
+        "properties": {
+          "clay_profile_id": {
+            "type": "number"
+          },
+          "first_name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "last_name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "location": {
+            "$ref": "#/components/schemas/PublicApiPersonSearchResultLocation"
+          },
+          "matched_experiences": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicApiMatchedExperience"
+            }
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "QueryResponse": {
+        "required": [
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "cursor": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QueryResponseDataItemProperty"
+            }
+          },
+          "fields": {
+            "$ref": "#/components/schemas/QueryResponseFieldsProperty"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RunResultItem": {
+        "required": [
+          "id",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/RunResultItemError"
+          },
+          "id": {
+            "type": "string"
+          },
+          "result": {
+            "$ref": "#/components/schemas/RunResultItemResultProperty"
+          },
+          "status": {
+            "$ref": "#/components/schemas/RunResultItemStatus"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RunResultsComplete": {
+        "required": [
+          "routine_run_id",
+          "total",
+          "finished",
+          "status",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "cursor": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RunResultItem"
+            }
+          },
+          "finished": {
+            "type": "number"
+          },
+          "routine_run_id": {
+            "type": "string"
+          },
+          "status": {
+            "const": "complete",
+            "type": "string"
+          },
+          "total": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RunResultsInProgress": {
+        "required": [
+          "routine_run_id",
+          "total",
+          "finished",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "finished": {
+            "type": "number"
+          },
+          "routine_run_id": {
+            "type": "string"
+          },
+          "status": {
+            "const": "in_progress",
+            "type": "string"
+          },
+          "total": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RunRoutineRequest": {
+        "required": [
+          "items"
+        ],
+        "type": "object",
+        "properties": {
+          "items": {
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RunRoutineRequestItemsItem"
+            }
+          },
+          "webhook_id": {
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string",
+            "description": "ID of a registered Clay webhook to notify when the run finishes."
+          }
+        },
+        "additionalProperties": false
+      },
+      "RunRoutineResponse": {
+        "required": [
+          "routine_run_id",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "routine_run_id": {
+            "type": "string"
+          },
+          "status": {
+            "const": "in_progress",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchCreateExample": {
+        "required": [
+          "intent",
+          "request"
+        ],
+        "type": "object",
+        "properties": {
+          "intent": {
+            "type": "string"
+          },
+          "request": {
+            "$ref": "#/components/schemas/SearchCreateExampleRequest"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchFieldsGuidance": {
+        "required": [
+          "behavior",
+          "field_guidance"
+        ],
+        "type": "object",
+        "properties": {
+          "behavior": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "create_examples": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchCreateExample"
+            }
+          },
+          "field_guidance": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchGuidanceItem"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchFieldsResponse": {
+        "required": [
+          "source_type",
+          "fields",
+          "guidance"
+        ],
+        "type": "object",
+        "properties": {
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchFilterField"
+            }
+          },
+          "guidance": {
+            "$ref": "#/components/schemas/SearchFieldsGuidance"
+          },
+          "source_type": {
+            "$ref": "#/components/schemas/SearchFieldsResponseSourceType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchFilterField": {
+        "required": [
+          "name",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "allowed_values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchGuidanceItem": {
+        "required": [
+          "id",
+          "text"
+        ],
+        "type": "object",
+        "properties": {
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StartBatchRequest": {
+        "required": [
+          "file_id"
+        ],
+        "type": "object",
+        "properties": {
+          "file_id": {
+            "type": "string"
+          },
+          "webhook_id": {
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string",
+            "description": "ID of a registered Clay webhook to notify when the run finishes."
+          }
+        },
+        "additionalProperties": false
+      },
+      "StartBatchResponse": {
+        "required": [
+          "routine_run_id",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "routine_run_id": {
+            "type": "string"
+          },
+          "status": {
+            "const": "in_progress",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StructuredQuery": {
+        "required": [
+          "tables"
+        ],
+        "type": "object",
+        "properties": {
+          "field_mode": {
+            "$ref": "#/components/schemas/StructuredQueryFieldMode"
+          },
+          "filter": {
+            "$ref": "#/components/schemas/FilterExpression"
+          },
+          "group_by": {
+            "maxItems": 5,
+            "type": "array",
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "join": {
+            "maxItems": 4,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StructuredQueryJoinItem"
+            }
+          },
+          "order_by": {
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StructuredQueryOrderByItem"
+            },
+            "description": "Custom sort. Queries with a custom order_by do not support cursor pagination."
+          },
+          "select": {
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StructuredQuerySelectItem"
+            }
+          },
+          "tables": {
+            "maxItems": 5,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StructuredQueryTablesItem"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "StructuredQueryRequest": {
+        "required": [
+          "query"
+        ],
+        "type": "object",
+        "properties": {
+          "cursor": {
+            "type": "string",
+            "description": "\u0022Opaque cursor from the previous response. Scans page in least-recently-updated-first order and reflect concurrent writes: a record updated mid-scan can be returned again, so deduplicate by id.\u0022"
+          },
+          "limit": {
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer",
+            "default": 50
+          },
+          "query": {
+            "$ref": "#/components/schemas/StructuredQuery"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FilterPredicateValue": {
+        "type": "object",
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilterPredicateValueAnyOf4Item"
+            }
+          }
+        ]
+      },
+      "StructuredQuerySelectItem": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/AggregateSelect"
+          },
+          {
+            "$ref": "#/components/schemas/FieldSelect"
+          }
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "AggregateSelect": "#/components/schemas/AggregateSelect",
+            "FieldSelect": "#/components/schemas/FieldSelect"
+          }
+        }
+      },
+      "FilterPredicateValueAnyOf4Item": {
+        "type": "object",
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          }
+        ]
+      },
+      "BatchResultsProcessingFailedError": {
+        "required": [
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CellSuccessFields": {
+        "type": [
+          "null",
+          "object"
+        ],
+        "additionalProperties": {
+          "$ref": "#/components/schemas/CellSuccessFieldsAdditionalProperties"
+        }
+      },
+      "CreateSearchRequestFilters": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/CreateSearchRequestFiltersAdditionalProperties"
+        }
+      },
+      "NextQueryModeCompanyResultsResponsePeriodQuota": {
+        "required": [
+          "limit",
+          "used",
+          "remaining",
+          "resets_at"
+        ],
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number"
+          },
+          "remaining": {
+            "type": "number"
+          },
+          "resets_at": {
+            "type": "string"
+          },
+          "used": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NextQueryModePeopleResultsResponsePeriodQuota": {
+        "required": [
+          "limit",
+          "used",
+          "remaining",
+          "resets_at"
+        ],
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number"
+          },
+          "remaining": {
+            "type": "number"
+          },
+          "resets_at": {
+            "type": "string"
+          },
+          "used": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NextSearchResultsResponseDataItem": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/NextSearchResultsResponseDataItemAdditionalProperties"
+        }
+      },
+      "NextSearchResultsResponsePeriodQuota": {
+        "required": [
+          "limit",
+          "used",
+          "remaining",
+          "resets_at"
+        ],
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number"
+          },
+          "remaining": {
+            "type": "number"
+          },
+          "resets_at": {
+            "type": "string"
+          },
+          "used": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicApiPersonSearchResultLocation": {
+        "required": [
+          "name",
+          "city",
+          "state_or_province"
+        ],
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "state_or_province": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "QueryResponseDataItem": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/CellResult"
+        }
+      },
+      "QueryResponseFields": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/FieldMeta"
+        }
+      },
+      "RunResultItemError": {
+        "required": [
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RunResultItemResult": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/RunResultItemResultAdditionalProperties"
+        }
+      },
+      "RunRoutineRequestItemsItem": {
+        "required": [
+          "id",
+          "inputs"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          },
+          "inputs": {
+            "$ref": "#/components/schemas/RunRoutineRequestItemsItemInputsProperty"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchCreateExampleRequest": {
+        "required": [
+          "source_type",
+          "filters"
+        ],
+        "type": "object",
+        "properties": {
+          "filters": {
+            "$ref": "#/components/schemas/SearchCreateExampleRequestFiltersProperty"
+          },
+          "source_type": {
+            "$ref": "#/components/schemas/SearchCreateExampleRequestSourceType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StructuredQueryJoinItem": {
+        "required": [
+          "table",
+          "on"
+        ],
+        "type": "object",
+        "properties": {
+          "on": {
+            "$ref": "#/components/schemas/StructuredQueryJoinItemOn"
+          },
+          "table": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/StructuredQueryJoinItemType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StructuredQueryOrderByItem": {
+        "required": [
+          "field"
+        ],
+        "type": "object",
+        "properties": {
+          "direction": {
+            "$ref": "#/components/schemas/StructuredQueryOrderByItemDirection"
+          },
+          "field": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StructuredQueryTablesItem": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "alias": {
+            "type": "string"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RunRoutineRequestItemsItemInputs": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/RunRoutineRequestItemsItemInputsAdditionalProperties"
+        }
+      },
+      "SearchCreateExampleRequestFilters": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/SearchCreateExampleRequestFiltersAdditionalProperties"
+        }
+      },
+      "StructuredQueryJoinItemOn": {
+        "required": [
+          "left",
+          "right"
+        ],
+        "type": "object",
+        "properties": {
+          "left": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "right": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetPublicApiMe200Response": {
+        "required": [
+          "user",
+          "workspace"
+        ],
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/GetPublicApiMe200ResponseUser"
+          },
+          "workspace": {
+            "$ref": "#/components/schemas/GetPublicApiMe200ResponseWorkspace"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateQueryModeRequest": {
+        "required": [
+          "query"
+        ],
+        "type": "object",
+        "properties": {
+          "query": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateQueryMode200Response": {
+        "required": [
+          "search_id",
+          "source_type"
+        ],
+        "type": "object",
+        "properties": {
+          "search_id": {
+            "type": "string"
+          },
+          "source_type": {
+            "$ref": "#/components/schemas/CreateQueryMode200ResponseSourceType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "QueryModeReference200Response": {
+        "required": [
+          "reference"
+        ],
+        "type": "object",
+        "properties": {
+          "reference": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExamplePayload": {
+        "type": "object",
+        "description": "Placeholder schema for path example refs"
+      },
+      "CellSuccessValue": {
+        "type": "object"
+      },
+      "CreateSearchRequestFiltersProperty": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/CreateSearchRequestFiltersPropertyAdditionalProperties"
+        }
+      },
+      "NextSearchResultsResponseDataItemProperty": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/NextSearchResultsResponseDataItemPropertyAdditionalProperties"
+        }
+      },
+      "QueryResponseDataItemProperty": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/CellResult"
+        }
+      },
+      "QueryResponseFieldsProperty": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/FieldMeta"
+        }
+      },
+      "RunResultItemResultProperty": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/RunResultItemResultPropertyAdditionalProperties"
+        }
+      },
+      "CellSuccessFieldsAdditionalProperties": {
+        "type": "object"
+      },
+      "CreateSearchRequestFiltersAdditionalProperties": {
+        "type": "object"
+      },
+      "NextSearchResultsResponseDataItemAdditionalProperties": {
+        "type": "object"
+      },
+      "RunResultItemResultAdditionalProperties": {
+        "type": "object"
+      },
+      "RunRoutineRequestItemsItemInputsProperty": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/RunRoutineRequestItemsItemInputsPropertyAdditionalProperties"
+        }
+      },
+      "SearchCreateExampleRequestFiltersProperty": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/SearchCreateExampleRequestFiltersPropertyAdditionalProperties"
+        }
+      },
+      "RunRoutineRequestItemsItemInputsAdditionalProperties": {
+        "type": "object"
+      },
+      "SearchCreateExampleRequestFiltersAdditionalProperties": {
+        "type": "object"
+      },
+      "GetPublicApiMe200ResponseUser": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "cli_onboarded": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetPublicApiMe200ResponseWorkspace": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateSearchRequestFiltersPropertyAdditionalProperties": {
+        "type": "object"
+      },
+      "NextSearchResultsResponseDataItemPropertyAdditionalProperties": {
+        "type": "object"
+      },
+      "RunResultItemResultPropertyAdditionalProperties": {
+        "type": "object"
+      },
+      "RunRoutineRequestItemsItemInputsPropertyAdditionalProperties": {
+        "type": "object"
+      },
+      "SearchCreateExampleRequestFiltersPropertyAdditionalProperties": {
+        "type": "object"
+      },
+      "AggregateSelectFn": {
+        "enum": [
+          "count",
+          "sum",
+          "avg",
+          "max",
+          "min"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "AggregateSelectFn",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "count",
+              "name": "Count"
+            },
+            {
+              "value": "sum",
+              "name": "Sum"
+            },
+            {
+              "value": "avg",
+              "name": "Avg"
+            },
+            {
+              "value": "max",
+              "name": "Max"
+            },
+            {
+              "value": "min",
+              "name": "Min"
+            }
+          ]
+        }
+      },
+      "CellPendingStatus": {
+        "enum": [
+          "running",
+          "queued",
+          "retry",
+          "rate_limited",
+          "awaiting_callback"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "CellPendingStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "running",
+              "name": "Running"
+            },
+            {
+              "value": "queued",
+              "name": "Queued"
+            },
+            {
+              "value": "retry",
+              "name": "Retry"
+            },
+            {
+              "value": "rate_limited",
+              "name": "RateLimited"
+            },
+            {
+              "value": "awaiting_callback",
+              "name": "AwaitingCallback"
+            }
+          ]
+        }
+      },
+      "CreateSearchRequestSourceType": {
+        "enum": [
+          "people",
+          "companies"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "CreateSearchRequestSourceType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "people",
+              "name": "People"
+            },
+            {
+              "value": "companies",
+              "name": "Companies"
+            }
+          ]
+        }
+      },
+      "FilterPredicateOp": {
+        "enum": [
+          "=",
+          "!=",
+          "\u003E",
+          "\u003E=",
+          "\u003C",
+          "\u003C=",
+          "contains",
+          "not_contains",
+          "starts_with",
+          "ends_with",
+          "in",
+          "not_in",
+          "is_empty",
+          "is_not_empty"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "FilterPredicateOp",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "=",
+              "name": "Equal"
+            },
+            {
+              "value": "!=",
+              "name": "ExclamationEqual"
+            },
+            {
+              "value": "\u003E",
+              "name": "GreaterThan"
+            },
+            {
+              "value": "\u003E=",
+              "name": "GreaterThanOrEqual"
+            },
+            {
+              "value": "\u003C",
+              "name": "LessThan"
+            },
+            {
+              "value": "\u003C=",
+              "name": "LessThanOrEqual"
+            },
+            {
+              "value": "contains",
+              "name": "Contains"
+            },
+            {
+              "value": "not_contains",
+              "name": "NotContains"
+            },
+            {
+              "value": "starts_with",
+              "name": "StartsWith"
+            },
+            {
+              "value": "ends_with",
+              "name": "EndsWith"
+            },
+            {
+              "value": "in",
+              "name": "InValue"
+            },
+            {
+              "value": "not_in",
+              "name": "NotIn"
+            },
+            {
+              "value": "is_empty",
+              "name": "IsEmpty"
+            },
+            {
+              "value": "is_not_empty",
+              "name": "IsNotEmpty"
+            }
+          ]
+        }
+      },
+      "NextQueryModeCompanyResultsResponseExhaustionReason": {
+        "enum": [
+          "query_limit",
+          "no_more_results"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "NextQueryModeCompanyResultsResponseExhaustionReason",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "query_limit",
+              "name": "QueryLimit"
+            },
+            {
+              "value": "no_more_results",
+              "name": "NoMoreResults"
+            }
+          ]
+        }
+      },
+      "NextQueryModePeopleResultsResponseExhaustionReason": {
+        "enum": [
+          "query_limit",
+          "no_more_results"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "NextQueryModePeopleResultsResponseExhaustionReason",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "query_limit",
+              "name": "QueryLimit"
+            },
+            {
+              "value": "no_more_results",
+              "name": "NoMoreResults"
+            }
+          ]
+        }
+      },
+      "RunResultItemStatus": {
+        "enum": [
+          "complete",
+          "failed"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "RunResultItemStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "complete",
+              "name": "Complete"
+            },
+            {
+              "value": "failed",
+              "name": "Failed"
+            }
+          ]
+        }
+      },
+      "SearchFieldsResponseSourceType": {
+        "enum": [
+          "people",
+          "companies"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "SearchFieldsResponseSourceType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "people",
+              "name": "People"
+            },
+            {
+              "value": "companies",
+              "name": "Companies"
+            }
+          ]
+        }
+      },
+      "StructuredQueryFieldMode": {
+        "enum": [
+          "names",
+          "ids"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "StructuredQueryFieldMode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "names",
+              "name": "Names"
+            },
+            {
+              "value": "ids",
+              "name": "Ids"
+            }
+          ]
+        }
+      },
+      "SearchCreateExampleRequestSourceType": {
+        "enum": [
+          "people",
+          "companies"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "SearchCreateExampleRequestSourceType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "people",
+              "name": "People"
+            },
+            {
+              "value": "companies",
+              "name": "Companies"
+            }
+          ]
+        }
+      },
+      "StructuredQueryJoinItemType": {
+        "enum": [
+          "inner",
+          "left"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "StructuredQueryJoinItemType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "inner",
+              "name": "Inner"
+            },
+            {
+              "value": "left",
+              "name": "Left"
+            }
+          ]
+        }
+      },
+      "StructuredQueryOrderByItemDirection": {
+        "enum": [
+          "asc",
+          "desc"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "StructuredQueryOrderByItemDirection",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "asc",
+              "name": "Asc"
+            },
+            {
+              "value": "desc",
+              "name": "Desc"
+            }
+          ]
+        }
+      },
+      "CreateQueryMode200ResponseSourceType": {
+        "enum": [
+          "people",
+          "companies"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "CreateQueryMode200ResponseSourceType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "people",
+              "name": "People"
+            },
+            {
+              "value": "companies",
+              "name": "Companies"
+            }
+          ]
+        }
+      },
+      "FieldsSourceTypeParameter": {
+        "enum": [
+          "people",
+          "companies"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "FieldsSourceTypeParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "people",
+              "name": "People"
+            },
+            {
+              "value": "companies",
+              "name": "Companies"
+            }
+          ]
+        }
+      }
+    },
+    "securitySchemes": {
+      "ClayApiKey": {
+        "type": "apiKey",
+        "description": "Personal API key tied to your Clay user. Create one under Settings \u2192 Account in the Clay app.",
+        "name": "clay-api-key",
+        "in": "header"
+      },
+      "assets_jwt": {
+        "type": "http",
+        "description": "JWT used for assets upload",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "ClayApiKey": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "me",
+      "description": "Authenticated user and workspace endpoints."
+    },
+    {
+      "name": "search",
+      "description": "Search creation and pagination endpoints."
+    },
+    {
+      "name": "tables",
+      "description": "Structured table query endpoints."
+    },
+    {
+      "name": "routines",
+      "description": "Routine discovery and execution endpoints."
+    }
+  ]
+}
