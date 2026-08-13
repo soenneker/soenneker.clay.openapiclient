@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/.github/">
+    <File Path=".github/renovate.json" />
+  </Folder>
+  <Folder Name="/.github/workflows/">
+    <File Path=".github/workflows/build-and-test.yml" />
+    <File Path=".github/workflows/codeql.yml" />
+    <File Path=".github/workflows/publish-package.yml" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Soenneker.Clay.OpenApiClient/Soenneker.Clay.OpenApiClient.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/Soenneker.Clay.OpenApiClient.Tests/Soenneker.Clay.OpenApiClient.Tests.csproj" />
+  </Folder>
+</Solution>
