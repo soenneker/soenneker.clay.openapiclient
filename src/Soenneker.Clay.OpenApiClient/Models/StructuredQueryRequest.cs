@@ -12,7 +12,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
     public partial class StructuredQueryRequest : IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>&quot;Opaque cursor from the previous response. Scans page in least-recently-updated-first order and reflect concurrent writes: a record updated mid-scan can be returned again, so deduplicate by id.&quot;</summary>
+        /// <summary>Opaque cursor from the previous response. Scans page in least-recently-updated-first order and reflect concurrent writes: a record updated mid-scan can be returned again, so deduplicate by id.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Cursor { get; set; }

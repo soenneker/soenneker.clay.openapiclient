@@ -29,13 +29,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public string RoutineRunId { get; set; }
 #endif
         /// <summary>The status property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Status { get; set; }
-#nullable restore
-#else
-        public string Status { get; set; }
-#endif
+        public global::Soenneker.Clay.OpenApiClient.Models.ProcessingFailedStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -56,7 +50,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
             {
                 { "error", n => { Error = n.GetObjectValue<global::Soenneker.Clay.OpenApiClient.Models.BatchResultsProcessingFailedError>(global::Soenneker.Clay.OpenApiClient.Models.BatchResultsProcessingFailedError.CreateFromDiscriminatorValue); } },
                 { "routine_run_id", n => { RoutineRunId = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Clay.OpenApiClient.Models.ProcessingFailedStatus>(); } },
             };
         }
         /// <summary>
@@ -68,7 +62,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.BatchResultsProcessingFailedError>("error", Error);
             writer.WriteStringValue("routine_run_id", RoutineRunId);
-            writer.WriteStringValue("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.ProcessingFailedStatus>("status", Status);
         }
     }
 }

@@ -33,13 +33,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponsePeriodQuota PeriodQuota { get; set; }
 #endif
         /// <summary>The source_type property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? SourceType { get; set; }
-#nullable restore
-#else
-        public string SourceType { get; set; }
-#endif
+        public global::Soenneker.Clay.OpenApiClient.Models.PeopleSourceType? SourceType { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -62,7 +56,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
                 { "exhaustion_reason", n => { ExhaustionReason = n.GetEnumValue<global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponseExhaustionReason>(); } },
                 { "has_more", n => { HasMore = n.GetBoolValue(); } },
                 { "period_quota", n => { PeriodQuota = n.GetObjectValue<global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponsePeriodQuota>(global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponsePeriodQuota.CreateFromDiscriminatorValue); } },
-                { "source_type", n => { SourceType = n.GetStringValue(); } },
+                { "source_type", n => { SourceType = n.GetEnumValue<global::Soenneker.Clay.OpenApiClient.Models.PeopleSourceType>(); } },
             };
         }
         /// <summary>
@@ -76,7 +70,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponseExhaustionReason>("exhaustion_reason", ExhaustionReason);
             writer.WriteBoolValue("has_more", HasMore);
             writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponsePeriodQuota>("period_quota", PeriodQuota);
-            writer.WriteStringValue("source_type", SourceType);
+            writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.PeopleSourceType>("source_type", SourceType);
         }
     }
 }
