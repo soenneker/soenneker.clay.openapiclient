@@ -1994,6 +1994,10 @@
           },
           "fields": {
             "$ref": "#/components/schemas/QueryResponseFieldsProperty"
+          },
+          "truncated": {
+            "type": "boolean",
+            "description": "True when more results matched than the limit but no cursor can be issued (grouped, aggregated, or custom-ordered queries do not support cursor pagination). Narrow the query or raise the limit to see the rest."
           }
         },
         "additionalProperties": false

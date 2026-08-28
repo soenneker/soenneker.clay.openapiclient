@@ -36,6 +36,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
 #else
         public global::Soenneker.Clay.OpenApiClient.Models.QueryResponseFieldsProperty Fields { get; set; }
 #endif
+        /// <summary>True when more results matched than the limit but no cursor can be issued (grouped, aggregated, or custom-ordered queries do not support cursor pagination). Narrow the query or raise the limit to see the rest.</summary>
+        public bool? Truncated { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -57,6 +59,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
                 { "cursor", n => { Cursor = n.GetStringValue(); } },
                 { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.QueryResponseDataItemProperty>(global::Soenneker.Clay.OpenApiClient.Models.QueryResponseDataItemProperty.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "fields", n => { Fields = n.GetObjectValue<global::Soenneker.Clay.OpenApiClient.Models.QueryResponseFieldsProperty>(global::Soenneker.Clay.OpenApiClient.Models.QueryResponseFieldsProperty.CreateFromDiscriminatorValue); } },
+                { "truncated", n => { Truncated = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -69,6 +72,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
             writer.WriteStringValue("cursor", Cursor);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.QueryResponseDataItemProperty>("data", Data);
             writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.QueryResponseFieldsProperty>("fields", Fields);
+            writer.WriteBoolValue("truncated", Truncated);
         }
     }
 }
