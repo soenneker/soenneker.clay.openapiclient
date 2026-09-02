@@ -1349,6 +1349,16 @@
                       "properties": {
                         "id": {
                           "type": "string"
+                        },
+                        "name": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
                         }
                       },
                       "required": ["id"],
@@ -1846,7 +1856,8 @@
     },
     "/search/filters-mode": {
       "post": {
-        "description": "Starts a new Clay search from a source type and structured filter fields.",
+        "deprecated": true,
+        "description": "Deprecated: create searches from a Clay search query with POST /search/query-mode instead. Starts a new Clay search from a source type and structured filter fields. Existing filters-mode searches can still be paged with POST /search/filters-mode/{search_id}/run.",
         "operationId": "createFilters",
         "parameters": [],
         "requestBody": {
@@ -1937,7 +1948,8 @@
     },
     "/search/filters-mode/fields": {
       "get": {
-        "description": "Returns every filter field accepted by POST /search/filters-mode for the given source type, including each field's type, description, allowed values, and usage guidance. Call this before creating a search to build valid filters.",
+        "deprecated": true,
+        "description": "Deprecated: filters-mode search creation is being retired in favor of query-mode. Use GET /search/query-mode/reference to discover the query grammar instead. Returns every filter field accepted by POST /search/filters-mode for the given source type, including each field's type, description, allowed values, and usage guidance.",
         "operationId": "fields",
         "parameters": [
           {
@@ -2008,7 +2020,8 @@
     },
     "/search/filters-mode/{search_id}/run": {
       "post": {
-        "description": "Returns the next page of records for an existing filter-mode search.",
+        "deprecated": true,
+        "description": "Deprecated: filters-mode search is being retired in favor of query-mode. This endpoint remains available to page searches created earlier in filters mode. Returns the next page of records for an existing filters-mode search.",
         "operationId": "run",
         "parameters": [
           {
@@ -2222,7 +2235,7 @@
             "description": "429"
           }
         },
-        "summary": "Create a search from a Clay search query (beta)",
+        "summary": "Create a search from a Clay search query",
         "tags": ["search"]
       }
     },
@@ -2290,7 +2303,7 @@
             "description": "429"
           }
         },
-        "summary": "Get the Clay search query reference (beta)",
+        "summary": "Get the Clay search query reference",
         "tags": ["search"]
       }
     },
@@ -2390,7 +2403,7 @@
             "description": "429"
           }
         },
-        "summary": "Run the query-mode iterator and return the next page of results (beta)",
+        "summary": "Run the query-mode iterator and return the next page of results",
         "tags": ["search"]
       }
     },

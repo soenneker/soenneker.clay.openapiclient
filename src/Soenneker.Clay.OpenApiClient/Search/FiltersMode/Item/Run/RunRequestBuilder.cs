@@ -34,7 +34,7 @@ namespace Soenneker.Clay.OpenApiClient.Search.FiltersMode.Item.Run
         {
         }
         /// <summary>
-        /// Returns the next page of records for an existing filter-mode search.
+        /// Deprecated: filters-mode search is being retired in favor of query-mode. This endpoint remains available to page searches created earlier in filters mode. Returns the next page of records for an existing filters-mode search.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Clay.OpenApiClient.Models.NextSearchResultsResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -47,6 +47,7 @@ namespace Soenneker.Clay.OpenApiClient.Search.FiltersMode.Item.Run
         /// <exception cref="global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse">When receiving a 404 status code</exception>
         /// <exception cref="global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse">When receiving a 413 status code</exception>
         /// <exception cref="global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse">When receiving a 429 status code</exception>
+        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Clay.OpenApiClient.Models.NextSearchResultsResponse?> PostAsync(global::Soenneker.Clay.OpenApiClient.Models.NextSearchResultsBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -71,11 +72,12 @@ namespace Soenneker.Clay.OpenApiClient.Search.FiltersMode.Item.Run
             return await RequestAdapter.SendAsync<global::Soenneker.Clay.OpenApiClient.Models.NextSearchResultsResponse>(requestInfo, global::Soenneker.Clay.OpenApiClient.Models.NextSearchResultsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns the next page of records for an existing filter-mode search.
+        /// Deprecated: filters-mode search is being retired in favor of query-mode. This endpoint remains available to page searches created earlier in filters mode. Returns the next page of records for an existing filters-mode search.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public RequestInformation ToPostRequestInformation(global::Soenneker.Clay.OpenApiClient.Models.NextSearchResultsBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
@@ -97,6 +99,7 @@ namespace Soenneker.Clay.OpenApiClient.Search.FiltersMode.Item.Run
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Clay.OpenApiClient.Search.FiltersMode.Item.Run.RunRequestBuilder"/></returns>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
+        [Obsolete("")]
         public global::Soenneker.Clay.OpenApiClient.Search.FiltersMode.Item.Run.RunRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Clay.OpenApiClient.Search.FiltersMode.Item.Run.RunRequestBuilder(rawUrl, RequestAdapter);

@@ -34,7 +34,7 @@ namespace Soenneker.Clay.OpenApiClient.Search.FiltersMode.Fields
         {
         }
         /// <summary>
-        /// Returns every filter field accepted by POST /search/filters-mode for the given source type, including each field&apos;s type, description, allowed values, and usage guidance. Call this before creating a search to build valid filters.
+        /// Deprecated: filters-mode search creation is being retired in favor of query-mode. Use GET /search/query-mode/reference to discover the query grammar instead. Returns every filter field accepted by POST /search/filters-mode for the given source type, including each field&apos;s type, description, allowed values, and usage guidance.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -43,6 +43,7 @@ namespace Soenneker.Clay.OpenApiClient.Search.FiltersMode.Fields
         /// <exception cref="global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse">When receiving a 401 status code</exception>
         /// <exception cref="global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse">When receiving a 403 status code</exception>
         /// <exception cref="global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse">When receiving a 429 status code</exception>
+        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Clay.OpenApiClient.Search.FiltersMode.Fields.FieldsRequestBuilder.FieldsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -63,10 +64,11 @@ namespace Soenneker.Clay.OpenApiClient.Search.FiltersMode.Fields
             return await RequestAdapter.SendAsync<global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsResponse>(requestInfo, global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns every filter field accepted by POST /search/filters-mode for the given source type, including each field&apos;s type, description, allowed values, and usage guidance. Call this before creating a search to build valid filters.
+        /// Deprecated: filters-mode search creation is being retired in favor of query-mode. Use GET /search/query-mode/reference to discover the query grammar instead. Returns every filter field accepted by POST /search/filters-mode for the given source type, including each field&apos;s type, description, allowed values, and usage guidance.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Clay.OpenApiClient.Search.FiltersMode.Fields.FieldsRequestBuilder.FieldsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
@@ -86,12 +88,13 @@ namespace Soenneker.Clay.OpenApiClient.Search.FiltersMode.Fields
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Clay.OpenApiClient.Search.FiltersMode.Fields.FieldsRequestBuilder"/></returns>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
+        [Obsolete("")]
         public global::Soenneker.Clay.OpenApiClient.Search.FiltersMode.Fields.FieldsRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Clay.OpenApiClient.Search.FiltersMode.Fields.FieldsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Returns every filter field accepted by POST /search/filters-mode for the given source type, including each field&apos;s type, description, allowed values, and usage guidance. Call this before creating a search to build valid filters.
+        /// Deprecated: filters-mode search creation is being retired in favor of query-mode. Use GET /search/query-mode/reference to discover the query grammar instead. Returns every filter field accepted by POST /search/filters-mode for the given source type, including each field&apos;s type, description, allowed values, and usage guidance.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class FieldsRequestBuilderGetQueryParameters 

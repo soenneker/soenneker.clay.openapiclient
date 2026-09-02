@@ -20,6 +20,7 @@ namespace Soenneker.Clay.OpenApiClient.Search.FiltersMode
     public partial class FiltersModeRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The fields property</summary>
+        [Obsolete("")]
         public global::Soenneker.Clay.OpenApiClient.Search.FiltersMode.Fields.FieldsRequestBuilder Fields
         {
             get => new global::Soenneker.Clay.OpenApiClient.Search.FiltersMode.Fields.FieldsRequestBuilder(PathParameters, RequestAdapter);
@@ -53,7 +54,7 @@ namespace Soenneker.Clay.OpenApiClient.Search.FiltersMode
         {
         }
         /// <summary>
-        /// Starts a new Clay search from a source type and structured filter fields.
+        /// Deprecated: create searches from a Clay search query with POST /search/query-mode instead. Starts a new Clay search from a source type and structured filter fields. Existing filters-mode searches can still be paged with POST /search/filters-mode/{search_id}/run.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Clay.OpenApiClient.Models.CreateSearchResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -65,6 +66,7 @@ namespace Soenneker.Clay.OpenApiClient.Search.FiltersMode
         /// <exception cref="global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse">When receiving a 403 status code</exception>
         /// <exception cref="global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse">When receiving a 404 status code</exception>
         /// <exception cref="global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse">When receiving a 429 status code</exception>
+        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Clay.OpenApiClient.Models.CreateSearchResponse?> PostAsync(global::Soenneker.Clay.OpenApiClient.Models.CreateSearchRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -88,11 +90,12 @@ namespace Soenneker.Clay.OpenApiClient.Search.FiltersMode
             return await RequestAdapter.SendAsync<global::Soenneker.Clay.OpenApiClient.Models.CreateSearchResponse>(requestInfo, global::Soenneker.Clay.OpenApiClient.Models.CreateSearchResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Starts a new Clay search from a source type and structured filter fields.
+        /// Deprecated: create searches from a Clay search query with POST /search/query-mode instead. Starts a new Clay search from a source type and structured filter fields. Existing filters-mode searches can still be paged with POST /search/filters-mode/{search_id}/run.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public RequestInformation ToPostRequestInformation(global::Soenneker.Clay.OpenApiClient.Models.CreateSearchRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
@@ -114,6 +117,7 @@ namespace Soenneker.Clay.OpenApiClient.Search.FiltersMode
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Clay.OpenApiClient.Search.FiltersMode.FiltersModeRequestBuilder"/></returns>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
+        [Obsolete("")]
         public global::Soenneker.Clay.OpenApiClient.Search.FiltersMode.FiltersModeRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Clay.OpenApiClient.Search.FiltersMode.FiltersModeRequestBuilder(rawUrl, RequestAdapter);

@@ -531,7 +531,7 @@
           "search"
         ],
         "summary": "Create a search from structured filters",
-        "description": "Starts a new Clay search from a source type and structured filter fields.",
+        "description": "Deprecated: create searches from a Clay search query with POST /search/query-mode instead. Starts a new Clay search from a source type and structured filter fields. Existing filters-mode searches can still be paged with POST /search/filters-mode/{search_id}/run.",
         "operationId": "CreateFilters",
         "requestBody": {
           "description": "Body",
@@ -614,7 +614,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/search/filters-mode/fields": {
@@ -623,7 +624,7 @@
           "search"
         ],
         "summary": "List the filter fields available for a search source type",
-        "description": "Returns every filter field accepted by POST /search/filters-mode for the given source type, including each field\u0027s type, description, allowed values, and usage guidance. Call this before creating a search to build valid filters.",
+        "description": "Deprecated: filters-mode search creation is being retired in favor of query-mode. Use GET /search/query-mode/reference to discover the query grammar instead. Returns every filter field accepted by POST /search/filters-mode for the given source type, including each field\u0027s type, description, allowed values, and usage guidance.",
         "operationId": "Fields",
         "parameters": [
           {
@@ -686,7 +687,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/search/filters-mode/{searchId}/run": {
@@ -695,7 +697,7 @@
           "search"
         ],
         "summary": "Run the search iterator and return the next page of results",
-        "description": "Returns the next page of records for an existing filter-mode search.",
+        "description": "Deprecated: filters-mode search is being retired in favor of query-mode. This endpoint remains available to page searches created earlier in filters mode. Returns the next page of records for an existing filters-mode search.",
         "operationId": "Run",
         "parameters": [
           {
@@ -798,7 +800,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/search/query-mode": {
@@ -806,7 +809,7 @@
         "tags": [
           "search"
         ],
-        "summary": "Create a search from a Clay search query (beta)",
+        "summary": "Create a search from a Clay search query",
         "description": "Starts a new Clay search from a Clay advanced search query. The source type is detected from the query and returned in the response. Count-mode and jobs queries are not supported.",
         "operationId": "CreateQueryMode",
         "requestBody": {
@@ -898,7 +901,7 @@
         "tags": [
           "search"
         ],
-        "summary": "Get the Clay search query reference (beta)",
+        "summary": "Get the Clay search query reference",
         "description": "Returns the Clay search query reference document (markdown), covering the queryable fields and the query grammar. Use it to author a Clay advanced search query before creating a query-mode search.",
         "operationId": "QueryModeReference",
         "responses": {
@@ -960,7 +963,7 @@
         "tags": [
           "search"
         ],
-        "summary": "Run the query-mode iterator and return the next page of results (beta)",
+        "summary": "Run the query-mode iterator and return the next page of results",
         "description": "Returns the next page of records for an existing query-mode search.",
         "operationId": "RunQueryMode",
         "parameters": [
@@ -2851,6 +2854,12 @@
         "properties": {
           "id": {
             "type": "string"
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
           }
         },
         "additionalProperties": false
