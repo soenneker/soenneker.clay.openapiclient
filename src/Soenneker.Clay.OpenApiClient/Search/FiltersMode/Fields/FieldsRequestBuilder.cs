@@ -99,8 +99,10 @@ namespace Soenneker.Clay.OpenApiClient.Search.FiltersMode.Fields
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class FieldsRequestBuilderGetQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("source_type")]
             public global::Soenneker.Clay.OpenApiClient.Models.FieldsSourceTypeParameter? SourceType { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }
