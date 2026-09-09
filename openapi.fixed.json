@@ -1151,6 +1151,140 @@
           }
         }
       }
+    },
+    "/workflows/runs/query": {
+      "post": {
+        "tags": [
+          "workflowsRuns"
+        ],
+        "summary": "Run a Clay workflow-run query (beta)",
+        "description": "Execute a Clay workflow-run query. A \u0060select\u0060 query returns matching runs newest-first with a \u0060cursor\u0060 for the next page; a \u0060count\u0060 query returns the number of matching runs. Get the query grammar with GET /workflows/runs/query/reference. Results are read from an eventually-consistent replica (replication lag is typically a few seconds), so a just-created or just-transitioned run may briefly be missing or show its prior status.",
+        "operationId": "RunQuery",
+        "requestBody": {
+          "description": "Body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RunsQueryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunsQueryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "429",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workflows/runs/query/reference": {
+      "get": {
+        "tags": [
+          "workflowsRuns"
+        ],
+        "summary": "Get the Clay workflow-run query reference (beta)",
+        "description": "Returns the Clay workflow-run query reference document (markdown), covering the queryable run fields, node predicates, content search, and the query grammar. Use it to author a workflow-run query.",
+        "operationId": "QueryReference",
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunsQueryReferenceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "429",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -2120,6 +2254,173 @@
           },
           "status": {
             "$ref": "#/components/schemas/InProgressStatus"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RunsQueryCountResponse": {
+        "required": [
+          "mode",
+          "count"
+        ],
+        "type": "object",
+        "properties": {
+          "count": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "mode": {
+            "$ref": "#/components/schemas/CountMode"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RunsQueryReferenceResponse": {
+        "required": [
+          "reference"
+        ],
+        "type": "object",
+        "properties": {
+          "reference": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RunsQueryRequest": {
+        "required": [
+          "query"
+        ],
+        "type": "object",
+        "properties": {
+          "cursor": {
+            "type": "string"
+          },
+          "limit": {
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "query": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RunsQueryResponse": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/RunsQuerySelectResponse"
+          },
+          {
+            "$ref": "#/components/schemas/RunsQueryCountResponse"
+          }
+        ],
+        "properties": {
+          "cursor": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RunsQueryRow"
+            }
+          },
+          "count": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "type": "integer"
+          }
+        }
+      },
+      "RunsQueryRow": {
+        "required": [
+          "id",
+          "workflow_id",
+          "workflow_snapshot_id",
+          "trigger_id",
+          "run_status",
+          "started_at",
+          "ended_at",
+          "created_at",
+          "data_credits_used",
+          "action_credits_used",
+          "input_field_count",
+          "output_field_count"
+        ],
+        "type": "object",
+        "properties": {
+          "action_credits_used": {
+            "type": "number"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "data_credits_used": {
+            "type": "number"
+          },
+          "ended_at": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "id": {
+            "type": "string"
+          },
+          "input_field_count": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "output_field_count": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "run_status": {
+            "type": "string"
+          },
+          "started_at": {
+            "type": "string"
+          },
+          "trigger_id": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "workflow_id": {
+            "type": "string"
+          },
+          "workflow_snapshot_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RunsQuerySelectResponse": {
+        "required": [
+          "mode",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "cursor": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RunsQueryRow"
+            }
+          },
+          "mode": {
+            "$ref": "#/components/schemas/SelectMode"
           }
         },
         "additionalProperties": false
@@ -3296,6 +3597,40 @@
           ]
         }
       },
+      "CountMode": {
+        "const": null,
+        "enum": [
+          "count"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "CountMode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "count",
+              "name": "Count"
+            }
+          ]
+        }
+      },
+      "SelectMode": {
+        "const": null,
+        "enum": [
+          "select"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "SelectMode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "select",
+              "name": "Select"
+            }
+          ]
+        }
+      },
       "SearchFieldsResponseSourceType": {
         "enum": [
           "people",
@@ -3481,6 +3816,10 @@
     {
       "name": "routines",
       "description": "Routine discovery and execution endpoints."
+    },
+    {
+      "name": "workflowsRuns",
+      "description": "Workflow-run query endpoints."
     }
   ]
 }

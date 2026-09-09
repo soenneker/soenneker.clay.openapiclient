@@ -10,6 +10,7 @@ using Soenneker.Clay.OpenApiClient.Me;
 using Soenneker.Clay.OpenApiClient.Routines;
 using Soenneker.Clay.OpenApiClient.Search;
 using Soenneker.Clay.OpenApiClient.Tables;
+using Soenneker.Clay.OpenApiClient.Workflows;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -41,6 +42,11 @@ namespace Soenneker.Clay.OpenApiClient
         public global::Soenneker.Clay.OpenApiClient.Tables.TablesRequestBuilder Tables
         {
             get => new global::Soenneker.Clay.OpenApiClient.Tables.TablesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The workflows property</summary>
+        public global::Soenneker.Clay.OpenApiClient.Workflows.WorkflowsRequestBuilder Workflows
+        {
+            get => new global::Soenneker.Clay.OpenApiClient.Workflows.WorkflowsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Clay.OpenApiClient.ClayOpenApiClient"/> and sets the default values.
