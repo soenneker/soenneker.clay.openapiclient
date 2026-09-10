@@ -1563,7 +1563,9 @@
             "$ref": "#/components/schemas/CellSuccessFieldsProperty"
           },
           "is_stale": {
-            "$ref": "#/components/schemas/TrueValueIsStale"
+            "const": null,
+            "type": "boolean",
+            "default": true
           },
           "value": {
             "$ref": "#/components/schemas/CellSuccessValue"
@@ -1584,7 +1586,9 @@
             "$ref": "#/components/schemas/CellSuccessFieldsProperty"
           },
           "is_stale": {
-            "$ref": "#/components/schemas/TrueValueIsStale"
+            "const": null,
+            "type": "boolean",
+            "default": true
           },
           "status": {
             "$ref": "#/components/schemas/SuccessStatus"
@@ -3355,23 +3359,6 @@
             {
               "value": "awaiting_callback",
               "name": "AwaitingCallback"
-            }
-          ]
-        }
-      },
-      "TrueValueIsStale": {
-        "const": null,
-        "enum": [
-          "True"
-        ],
-        "type": "boolean",
-        "x-ms-enum": {
-          "name": "TrueValueIsStale",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "True",
-              "name": "TrueValue"
             }
           ]
         }
