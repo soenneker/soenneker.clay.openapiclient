@@ -6,6 +6,7 @@ using Microsoft.Kiota.Serialization.Form;
 using Microsoft.Kiota.Serialization.Json;
 using Microsoft.Kiota.Serialization.Multipart;
 using Microsoft.Kiota.Serialization.Text;
+using Soenneker.Clay.OpenApiClient.Credits;
 using Soenneker.Clay.OpenApiClient.Me;
 using Soenneker.Clay.OpenApiClient.Routines;
 using Soenneker.Clay.OpenApiClient.Search;
@@ -23,6 +24,11 @@ namespace Soenneker.Clay.OpenApiClient
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ClayOpenApiClient : BaseRequestBuilder
     {
+        /// <summary>The credits property</summary>
+        public global::Soenneker.Clay.OpenApiClient.Credits.CreditsRequestBuilder Credits
+        {
+            get => new global::Soenneker.Clay.OpenApiClient.Credits.CreditsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The me property</summary>
         public global::Soenneker.Clay.OpenApiClient.Me.MeRequestBuilder Me
         {
