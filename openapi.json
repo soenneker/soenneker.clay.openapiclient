@@ -805,6 +805,16 @@
               }
             ]
           },
+          "linkedin_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "location": {
             "additionalProperties": false,
             "properties": {
@@ -1539,6 +1549,16 @@
                       "properties": {
                         "cli_onboarded": {
                           "type": "boolean"
+                        },
+                        "email": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
                         },
                         "id": {
                           "type": "string"

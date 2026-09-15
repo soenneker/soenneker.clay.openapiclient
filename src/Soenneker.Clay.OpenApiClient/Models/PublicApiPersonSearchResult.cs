@@ -30,6 +30,14 @@ namespace Soenneker.Clay.OpenApiClient.Models
 #else
         public string LastName { get; set; }
 #endif
+        /// <summary>The linkedin_url property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LinkedinUrl { get; set; }
+#nullable restore
+#else
+        public string LinkedinUrl { get; set; }
+#endif
         /// <summary>The location property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -75,6 +83,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
                 { "clay_profile_id", n => { ClayProfileId = n.GetDoubleValue(); } },
                 { "first_name", n => { FirstName = n.GetStringValue(); } },
                 { "last_name", n => { LastName = n.GetStringValue(); } },
+                { "linkedin_url", n => { LinkedinUrl = n.GetStringValue(); } },
                 { "location", n => { Location = n.GetObjectValue<global::Soenneker.Clay.OpenApiClient.Models.PublicApiPersonSearchResultLocation>(global::Soenneker.Clay.OpenApiClient.Models.PublicApiPersonSearchResultLocation.CreateFromDiscriminatorValue); } },
                 { "matched_experiences", n => { MatchedExperiences = n.GetCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.PublicApiMatchedExperience>(global::Soenneker.Clay.OpenApiClient.Models.PublicApiMatchedExperience.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -90,6 +99,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
             writer.WriteDoubleValue("clay_profile_id", ClayProfileId);
             writer.WriteStringValue("first_name", FirstName);
             writer.WriteStringValue("last_name", LastName);
+            writer.WriteStringValue("linkedin_url", LinkedinUrl);
             writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.PublicApiPersonSearchResultLocation>("location", Location);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.PublicApiMatchedExperience>("matched_experiences", MatchedExperiences);
             writer.WriteStringValue("name", Name);

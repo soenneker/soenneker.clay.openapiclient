@@ -14,6 +14,14 @@ namespace Soenneker.Clay.OpenApiClient.Models
     {
         /// <summary>The cli_onboarded property</summary>
         public bool? CliOnboarded { get; set; }
+        /// <summary>The email property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Email { get; set; }
+#nullable restore
+#else
+        public string Email { get; set; }
+#endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -49,6 +57,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "cli_onboarded", n => { CliOnboarded = n.GetBoolValue(); } },
+                { "email", n => { Email = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
             };
@@ -61,6 +70,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("cli_onboarded", CliOnboarded);
+            writer.WriteStringValue("email", Email);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("name", Name);
         }

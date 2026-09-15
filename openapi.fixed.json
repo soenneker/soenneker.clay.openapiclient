@@ -2152,6 +2152,12 @@
               "string"
             ]
           },
+          "linkedin_url": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
           "location": {
             "$ref": "#/components/schemas/PublicApiPersonSearchResultLocation"
           },
@@ -3207,6 +3213,12 @@
         "properties": {
           "cli_onboarded": {
             "type": "boolean"
+          },
+          "email": {
+            "type": [
+              "null",
+              "string"
+            ]
           },
           "id": {
             "type": "string"
