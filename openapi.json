@@ -2798,7 +2798,7 @@
             "description": "429"
           }
         },
-        "summary": "Run a Clay workflow-run query (beta)",
+        "summary": "Search runs by query (beta)",
         "tags": ["workflowsRuns"]
       }
     },
@@ -2859,7 +2859,7 @@
             "description": "429"
           }
         },
-        "summary": "Get the Clay workflow-run query reference (beta)",
+        "summary": "Get the runs search query reference (beta)",
         "tags": ["workflowsRuns"]
       }
     }
@@ -2897,7 +2897,7 @@
       "name": "routines"
     },
     {
-      "description": "Workflow-run query endpoints.",
+      "description": "Search workflow runs by query.",
       "name": "workflowsRuns"
     }
   ]

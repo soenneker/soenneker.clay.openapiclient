@@ -1209,7 +1209,7 @@
         "tags": [
           "workflowsRuns"
         ],
-        "summary": "Run a Clay workflow-run query (beta)",
+        "summary": "Search runs by query (beta)",
         "description": "Execute a Clay workflow-run query. A \u0060select\u0060 query returns matching runs newest-first with a \u0060cursor\u0060 for the next page; a \u0060count\u0060 query returns the number of matching runs. Get the query grammar with GET /workflows/runs/query/reference. Results are read from an eventually-consistent replica (replication lag is typically a few seconds), so a just-created or just-transitioned run may briefly be missing or show its prior status.",
         "operationId": "RunQuery",
         "requestBody": {
@@ -1281,7 +1281,7 @@
         "tags": [
           "workflowsRuns"
         ],
-        "summary": "Get the Clay workflow-run query reference (beta)",
+        "summary": "Get the runs search query reference (beta)",
         "description": "Returns the Clay workflow-run query reference document (markdown), covering the queryable run fields, node predicates, content search, and the query grammar. Use it to author a workflow-run query.",
         "operationId": "QueryReference",
         "responses": {
@@ -3891,7 +3891,7 @@
     },
     {
       "name": "workflowsRuns",
-      "description": "Workflow-run query endpoints."
+      "description": "Search workflow runs by query."
     }
   ]
 }
