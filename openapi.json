@@ -1123,6 +1123,16 @@
           "started_at": {
             "type": "string"
           },
+          "trigger_fired_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "trigger_id": {
             "anyOf": [
               {

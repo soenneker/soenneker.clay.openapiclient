@@ -2450,6 +2450,12 @@
           "started_at": {
             "type": "string"
           },
+          "trigger_fired_id": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
           "trigger_id": {
             "type": [
               "null",

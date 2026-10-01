@@ -60,6 +60,14 @@ namespace Soenneker.Clay.OpenApiClient.Models
 #else
         public string StartedAt { get; set; }
 #endif
+        /// <summary>The trigger_fired_id property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TriggerFiredId { get; set; }
+#nullable restore
+#else
+        public string TriggerFiredId { get; set; }
+#endif
         /// <summary>The trigger_id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -111,6 +119,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
                 { "output_field_count", n => { OutputFieldCount = n.GetIntValue(); } },
                 { "run_status", n => { RunStatus = n.GetStringValue(); } },
                 { "started_at", n => { StartedAt = n.GetStringValue(); } },
+                { "trigger_fired_id", n => { TriggerFiredId = n.GetStringValue(); } },
                 { "trigger_id", n => { TriggerId = n.GetStringValue(); } },
                 { "workflow_id", n => { WorkflowId = n.GetStringValue(); } },
                 { "workflow_snapshot_id", n => { WorkflowSnapshotId = n.GetStringValue(); } },
@@ -132,6 +141,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
             writer.WriteIntValue("output_field_count", OutputFieldCount);
             writer.WriteStringValue("run_status", RunStatus);
             writer.WriteStringValue("started_at", StartedAt);
+            writer.WriteStringValue("trigger_fired_id", TriggerFiredId);
             writer.WriteStringValue("trigger_id", TriggerId);
             writer.WriteStringValue("workflow_id", WorkflowId);
             writer.WriteStringValue("workflow_snapshot_id", WorkflowSnapshotId);
