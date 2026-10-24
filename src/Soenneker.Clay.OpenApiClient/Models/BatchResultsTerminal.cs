@@ -45,17 +45,17 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.BatchResultsTerminal CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("status")?.GetStringValue();
             var result = new global::Soenneker.Clay.OpenApiClient.Models.BatchResultsTerminal();
-            if("BatchResultsComplete".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("complete".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.BatchResultsComplete = new global::Soenneker.Clay.OpenApiClient.Models.BatchResultsComplete();
             }
-            else if("BatchResultsProcessingFailed".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("processing_failed".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.BatchResultsProcessingFailed = new global::Soenneker.Clay.OpenApiClient.Models.BatchResultsProcessingFailed();
             }
-            else if("BatchResultsValidationFailed".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("validation_failed".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.BatchResultsValidationFailed = new global::Soenneker.Clay.OpenApiClient.Models.BatchResultsValidationFailed();
             }

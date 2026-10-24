@@ -21,7 +21,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public string RoutineRunId { get; set; }
 #endif
         /// <summary>The status property</summary>
-        public global::Soenneker.Clay.OpenApiClient.Models.InProgressStatus? Status { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.RunRoutineResponseStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -41,7 +41,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "routine_run_id", n => { RoutineRunId = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Clay.OpenApiClient.Models.InProgressStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Clay.OpenApiClient.Models.RunRoutineResponseStatus>(); } },
             };
         }
         /// <summary>
@@ -52,7 +52,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("routine_run_id", RoutineRunId);
-            writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.InProgressStatus>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.RunRoutineResponseStatus>("status", Status);
         }
     }
 }

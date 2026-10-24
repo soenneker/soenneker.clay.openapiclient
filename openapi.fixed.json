@@ -1446,7 +1446,6 @@
         "additionalProperties": false
       },
       "BatchResultsTerminal": {
-        "type": "object",
         "oneOf": [
           {
             "$ref": "#/components/schemas/BatchResultsValidationFailed"
@@ -1458,19 +1457,12 @@
             "$ref": "#/components/schemas/BatchResultsComplete"
           }
         ],
-        "properties": {
-          "routine_run_id": {
-            "type": "string"
-          },
-          "finished": {
-            "type": "number"
-          },
-          "result_url": {
-            "type": "string",
-            "format": "uri"
-          },
-          "total": {
-            "type": "number"
+        "discriminator": {
+          "propertyName": "status",
+          "mapping": {
+            "validation_failed": "#/components/schemas/BatchResultsValidationFailed",
+            "processing_failed": "#/components/schemas/BatchResultsProcessingFailed",
+            "complete": "#/components/schemas/BatchResultsComplete"
           }
         }
       },
@@ -1595,7 +1587,6 @@
         "additionalProperties": false
       },
       "CellResult": {
-        "type": "object",
         "oneOf": [
           {
             "$ref": "#/components/schemas/CellSuccess"
@@ -1609,23 +1600,7 @@
           {
             "$ref": "#/components/schemas/CellEmpty"
           }
-        ],
-        "properties": {
-          "fields": {
-            "$ref": "#/components/schemas/CellSuccessFieldsProperty"
-          },
-          "is_stale": {
-            "const": null,
-            "type": "boolean",
-            "default": true
-          },
-          "value": {
-            "$ref": "#/components/schemas/CellSuccessValue"
-          },
-          "error": {
-            "type": "string"
-          }
-        }
+        ]
       },
       "CellSuccess": {
         "required": [
@@ -1645,9 +1620,7 @@
           "status": {
             "$ref": "#/components/schemas/SuccessStatus"
           },
-          "value": {
-            "$ref": "#/components/schemas/CellSuccessValue"
-          }
+          "value": {}
         },
         "additionalProperties": false
       },
@@ -1757,7 +1730,6 @@
         "additionalProperties": false
       },
       "FilterExpression": {
-        "type": "object",
         "anyOf": [
           {
             "$ref": "#/components/schemas/FilterPredicate"
@@ -1771,47 +1743,7 @@
           {
             "$ref": "#/components/schemas/FilterNot"
           }
-        ],
-        "properties": {
-          "field": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "op": {
-            "$ref": "#/components/schemas/FilterPredicateOp"
-          },
-          "path": {
-            "maxItems": 5,
-            "minItems": 1,
-            "type": "array",
-            "items": {
-              "minLength": 1,
-              "type": "string"
-            }
-          },
-          "value": {
-            "$ref": "#/components/schemas/FilterPredicateValue"
-          },
-          "and": {
-            "maxItems": 10,
-            "minItems": 1,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FilterExpression"
-            }
-          },
-          "or": {
-            "maxItems": 10,
-            "minItems": 1,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FilterExpression"
-            }
-          },
-          "not": {
-            "$ref": "#/components/schemas/FilterExpression"
-          }
-        }
+        ]
       },
       "FilterNot": {
         "required": [
@@ -1939,7 +1871,6 @@
         "additionalProperties": false
       },
       "NextQueryModeResultsResponse": {
-        "type": "object",
         "oneOf": [
           {
             "$ref": "#/components/schemas/NextQueryModePeopleResultsResponse"
@@ -1948,15 +1879,11 @@
             "$ref": "#/components/schemas/NextQueryModeCompanyResultsResponse"
           }
         ],
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PublicApiPersonSearchResult"
-            }
-          },
-          "has_more": {
-            "type": "boolean"
+        "discriminator": {
+          "propertyName": "source_type",
+          "mapping": {
+            "people": "#/components/schemas/NextQueryModePeopleResultsResponse",
+            "companies": "#/components/schemas/NextQueryModeCompanyResultsResponse"
           }
         }
       },
@@ -2249,7 +2176,7 @@
             "type": "string"
           },
           "status": {
-            "$ref": "#/components/schemas/CompleteStatus"
+            "$ref": "#/components/schemas/RunResultsCompleteStatus"
           },
           "total": {
             "type": "number"
@@ -2273,7 +2200,7 @@
             "type": "string"
           },
           "status": {
-            "$ref": "#/components/schemas/InProgressStatus"
+            "$ref": "#/components/schemas/RunResultsInProgressStatus"
           },
           "total": {
             "type": "number"
@@ -2315,7 +2242,7 @@
             "type": "string"
           },
           "status": {
-            "$ref": "#/components/schemas/InProgressStatus"
+            "$ref": "#/components/schemas/RunRoutineResponseStatus"
           }
         },
         "additionalProperties": false
@@ -2373,7 +2300,6 @@
         "additionalProperties": false
       },
       "RunsQueryResponse": {
-        "type": "object",
         "oneOf": [
           {
             "$ref": "#/components/schemas/RunsQuerySelectResponse"
@@ -2382,20 +2308,11 @@
             "$ref": "#/components/schemas/RunsQueryCountResponse"
           }
         ],
-        "properties": {
-          "cursor": {
-            "type": "string"
-          },
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RunsQueryRow"
-            }
-          },
-          "count": {
-            "maximum": 9007199254740991,
-            "minimum": 0,
-            "type": "integer"
+        "discriminator": {
+          "propertyName": "mode",
+          "mapping": {
+            "select": "#/components/schemas/RunsQuerySelectResponse",
+            "count": "#/components/schemas/RunsQueryCountResponse"
           }
         }
       },
@@ -2636,7 +2553,7 @@
             "type": "string"
           },
           "status": {
-            "$ref": "#/components/schemas/InProgressStatus"
+            "$ref": "#/components/schemas/StartBatchResponseStatus"
           }
         },
         "additionalProperties": false
@@ -2717,7 +2634,6 @@
         "additionalProperties": false
       },
       "FilterPredicateValue": {
-        "type": "object",
         "anyOf": [
           {
             "type": "string"
@@ -2737,7 +2653,6 @@
         ]
       },
       "StructuredQuerySelectItem": {
-        "type": "object",
         "anyOf": [
           {
             "$ref": "#/components/schemas/AggregateSelect"
@@ -2745,35 +2660,9 @@
           {
             "$ref": "#/components/schemas/FieldSelect"
           }
-        ],
-        "properties": {
-          "as": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "field": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "fn": {
-            "$ref": "#/components/schemas/AggregateSelectFn"
-          },
-          "path": {
-            "maxItems": 5,
-            "minItems": 1,
-            "type": "array",
-            "items": {
-              "minLength": 1,
-              "type": "string"
-            }
-          },
-          "table": {
-            "type": "string"
-          }
-        }
+        ]
       },
       "FilterPredicateValueAnyOf4Item": {
-        "type": "object",
         "anyOf": [
           {
             "type": "string"
@@ -2800,15 +2689,11 @@
           "null",
           "object"
         ],
-        "additionalProperties": {
-          "$ref": "#/components/schemas/CellSuccessFieldsAdditionalProperties"
-        }
+        "additionalProperties": {}
       },
       "CreateSearchRequestFilters": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/CreateSearchRequestFiltersAdditionalProperties"
-        }
+        "additionalProperties": {}
       },
       "NextQueryModeCompanyResultsResponsePeriodQuota": {
         "required": [
@@ -2860,9 +2745,7 @@
       },
       "NextSearchResultsResponseDataItem": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/NextSearchResultsResponseDataItemAdditionalProperties"
-        }
+        "additionalProperties": {}
       },
       "NextSearchResultsResponsePeriodQuota": {
         "required": [
@@ -2943,9 +2826,7 @@
       },
       "RunResultItemResult": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/RunResultItemResultAdditionalProperties"
-        }
+        "additionalProperties": {}
       },
       "RunRoutineRequestItemsItem": {
         "required": [
@@ -3035,15 +2916,11 @@
       },
       "RunRoutineRequestItemsItemInputs": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/RunRoutineRequestItemsItemInputsAdditionalProperties"
-        }
+        "additionalProperties": {}
       },
       "SearchCreateExampleRequestFilters": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/SearchCreateExampleRequestFiltersAdditionalProperties"
-        }
+        "additionalProperties": {}
       },
       "StructuredQueryJoinItemOn": {
         "required": [
@@ -3142,25 +3019,19 @@
         "description": "Placeholder schema for path example refs"
       },
       "CellSuccessFieldsProperty": {
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/CellSuccessFieldsPropertyAdditionalProperties"
-        }
-      },
-      "CellSuccessValue": {
-        "type": "object"
+        "type": [
+          "null",
+          "object"
+        ],
+        "additionalProperties": {}
       },
       "CreateSearchRequestFiltersProperty": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/CreateSearchRequestFiltersPropertyAdditionalProperties"
-        }
+        "additionalProperties": {}
       },
       "NextSearchResultsResponseDataItemProperty": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/NextSearchResultsResponseDataItemPropertyAdditionalProperties"
-        }
+        "additionalProperties": {}
       },
       "QueryResponseDataItemProperty": {
         "type": "object",
@@ -3176,39 +3047,15 @@
       },
       "RunResultItemResultProperty": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/RunResultItemResultPropertyAdditionalProperties"
-        }
-      },
-      "CellSuccessFieldsAdditionalProperties": {
-        "type": "object"
-      },
-      "CreateSearchRequestFiltersAdditionalProperties": {
-        "type": "object"
-      },
-      "NextSearchResultsResponseDataItemAdditionalProperties": {
-        "type": "object"
-      },
-      "RunResultItemResultAdditionalProperties": {
-        "type": "object"
+        "additionalProperties": {}
       },
       "RunRoutineRequestItemsItemInputsProperty": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/RunRoutineRequestItemsItemInputsPropertyAdditionalProperties"
-        }
+        "additionalProperties": {}
       },
       "SearchCreateExampleRequestFiltersProperty": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/SearchCreateExampleRequestFiltersPropertyAdditionalProperties"
-        }
-      },
-      "RunRoutineRequestItemsItemInputsAdditionalProperties": {
-        "type": "object"
-      },
-      "SearchCreateExampleRequestFiltersAdditionalProperties": {
-        "type": "object"
+        "additionalProperties": {}
       },
       "GetPublicApiMe200ResponseUser": {
         "required": [
@@ -3256,24 +3103,6 @@
         },
         "additionalProperties": false
       },
-      "CellSuccessFieldsPropertyAdditionalProperties": {
-        "type": "object"
-      },
-      "CreateSearchRequestFiltersPropertyAdditionalProperties": {
-        "type": "object"
-      },
-      "NextSearchResultsResponseDataItemPropertyAdditionalProperties": {
-        "type": "object"
-      },
-      "RunResultItemResultPropertyAdditionalProperties": {
-        "type": "object"
-      },
-      "RunRoutineRequestItemsItemInputsPropertyAdditionalProperties": {
-        "type": "object"
-      },
-      "SearchCreateExampleRequestFiltersPropertyAdditionalProperties": {
-        "type": "object"
-      },
       "AggregateSelectFn": {
         "enum": [
           "count",
@@ -3283,7 +3112,6 @@
           "min"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "AggregateSelectFn",
           "modelAsString": false,
@@ -3422,7 +3250,6 @@
           "awaiting_callback"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "CellPendingStatus",
           "modelAsString": false,
@@ -3473,7 +3300,6 @@
           "companies"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "CreateSearchRequestSourceType",
           "modelAsString": false,
@@ -3507,7 +3333,6 @@
           "is_not_empty"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "FilterPredicateOp",
           "modelAsString": false,
@@ -3577,7 +3402,6 @@
           "no_more_results"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "NextQueryModeCompanyResultsResponseExhaustionReason",
           "modelAsString": false,
@@ -3616,7 +3440,6 @@
           "no_more_results"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "NextQueryModePeopleResultsResponseExhaustionReason",
           "modelAsString": false,
@@ -3655,7 +3478,6 @@
           "failed"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "RunResultItemStatus",
           "modelAsString": false,
@@ -3667,6 +3489,57 @@
             {
               "value": "failed",
               "name": "Failed"
+            }
+          ]
+        }
+      },
+      "RunResultsCompleteStatus": {
+        "const": null,
+        "enum": [
+          "complete"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "RunResultsCompleteStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "complete",
+              "name": "Complete"
+            }
+          ]
+        }
+      },
+      "RunResultsInProgressStatus": {
+        "const": null,
+        "enum": [
+          "in_progress"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "RunResultsInProgressStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "in_progress",
+              "name": "InProgress"
+            }
+          ]
+        }
+      },
+      "RunRoutineResponseStatus": {
+        "const": null,
+        "enum": [
+          "in_progress"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "RunRoutineResponseStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "in_progress",
+              "name": "InProgress"
             }
           ]
         }
@@ -3711,7 +3584,6 @@
           "companies"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "SearchFieldsResponseSourceType",
           "modelAsString": false,
@@ -3727,13 +3599,29 @@
           ]
         }
       },
+      "StartBatchResponseStatus": {
+        "const": null,
+        "enum": [
+          "in_progress"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "StartBatchResponseStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "in_progress",
+              "name": "InProgress"
+            }
+          ]
+        }
+      },
       "StructuredQueryFieldMode": {
         "enum": [
           "names",
           "ids"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "StructuredQueryFieldMode",
           "modelAsString": false,
@@ -3755,7 +3643,6 @@
           "companies"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "SearchCreateExampleRequestSourceType",
           "modelAsString": false,
@@ -3777,7 +3664,6 @@
           "left"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "StructuredQueryJoinItemType",
           "modelAsString": false,
@@ -3799,7 +3685,6 @@
           "desc"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "StructuredQueryOrderByItemDirection",
           "modelAsString": false,
@@ -3821,7 +3706,6 @@
           "companies"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "CreateQueryMode200ResponseSourceType",
           "modelAsString": false,
@@ -3843,7 +3727,6 @@
           "companies"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "FieldsSourceTypeParameter",
           "modelAsString": false,

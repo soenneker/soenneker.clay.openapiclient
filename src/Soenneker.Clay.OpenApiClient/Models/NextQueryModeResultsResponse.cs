@@ -37,13 +37,13 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.NextQueryModeResultsResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("source_type")?.GetStringValue();
             var result = new global::Soenneker.Clay.OpenApiClient.Models.NextQueryModeResultsResponse();
-            if("NextQueryModeCompanyResultsResponse".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("companies".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.NextQueryModeCompanyResultsResponse = new global::Soenneker.Clay.OpenApiClient.Models.NextQueryModeCompanyResultsResponse();
             }
-            else if("NextQueryModePeopleResultsResponse".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("people".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.NextQueryModePeopleResultsResponse = new global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponse();
             }

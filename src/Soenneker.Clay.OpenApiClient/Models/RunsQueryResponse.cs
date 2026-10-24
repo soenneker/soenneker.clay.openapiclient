@@ -37,13 +37,13 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.RunsQueryResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("mode")?.GetStringValue();
             var result = new global::Soenneker.Clay.OpenApiClient.Models.RunsQueryResponse();
-            if("RunsQueryCountResponse".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("count".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.RunsQueryCountResponse = new global::Soenneker.Clay.OpenApiClient.Models.RunsQueryCountResponse();
             }
-            else if("RunsQuerySelectResponse".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("select".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.RunsQuerySelectResponse = new global::Soenneker.Clay.OpenApiClient.Models.RunsQuerySelectResponse();
             }

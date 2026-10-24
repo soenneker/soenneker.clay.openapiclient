@@ -39,7 +39,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public string RoutineRunId { get; set; }
 #endif
         /// <summary>The status property</summary>
-        public global::Soenneker.Clay.OpenApiClient.Models.CompleteStatus? Status { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.RunResultsCompleteStatus? Status { get; set; }
         /// <summary>The total property</summary>
         public double? Total { get; set; }
         /// <summary>
@@ -64,7 +64,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
                 { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.RunResultItem>(global::Soenneker.Clay.OpenApiClient.Models.RunResultItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "finished", n => { Finished = n.GetDoubleValue(); } },
                 { "routine_run_id", n => { RoutineRunId = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Clay.OpenApiClient.Models.CompleteStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Clay.OpenApiClient.Models.RunResultsCompleteStatus>(); } },
                 { "total", n => { Total = n.GetDoubleValue(); } },
             };
         }
@@ -79,7 +79,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.RunResultItem>("data", Data);
             writer.WriteDoubleValue("finished", Finished);
             writer.WriteStringValue("routine_run_id", RoutineRunId);
-            writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.CompleteStatus>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.RunResultsCompleteStatus>("status", Status);
             writer.WriteDoubleValue("total", Total);
         }
     }
