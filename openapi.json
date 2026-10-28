@@ -23,6 +23,98 @@
         "required": ["fn", "field", "as"],
         "type": "object"
       },
+      "AudiencesPrivacyDeletePeople200Response": {
+        "description": "Returns HTTP 200 for a dry-run preview or when no people match.",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AudiencesPrivacyDeletePeopleDryRunResponse"
+          },
+          {
+            "$ref": "#/components/schemas/AudiencesPrivacyDeletePeopleNoMatchesResponse"
+          }
+        ]
+      },
+      "AudiencesPrivacyDeletePeople202Response": {
+        "additionalProperties": false,
+        "description": "Returns HTTP 202 when deletion is queued.",
+        "properties": {
+          "job_id": {
+            "description": "Deletion job ID for asynchronous processing.",
+            "type": "string"
+          },
+          "status": {
+            "const": "in_progress",
+            "type": "string"
+          }
+        },
+        "required": ["status", "job_id"],
+        "type": "object"
+      },
+      "AudiencesPrivacyDeletePeopleDryRunResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "matched_count": {
+            "description": "The number of unique matching people, including archived people. No deletion was queued.",
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "status": {
+            "const": "dry_run",
+            "type": "string"
+          }
+        },
+        "required": ["status", "matched_count"],
+        "type": "object"
+      },
+      "AudiencesPrivacyDeletePeopleNoMatchesResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "matched_count": {
+            "const": 0,
+            "description": "No matching people were found.",
+            "type": "number"
+          },
+          "status": {
+            "const": "no_matches",
+            "type": "string"
+          }
+        },
+        "required": ["status", "matched_count"],
+        "type": "object"
+      },
+      "AudiencesPrivacyDeletePeopleRequest": {
+        "additionalProperties": false,
+        "description": "Identifies people to delete within the workspace associated with your API key.",
+        "properties": {
+          "dry_run": {
+            "default": false,
+            "description": "Preview the number of matching people without queueing deletion. Defaults to false.",
+            "type": "boolean"
+          },
+          "person_identifiers": {
+            "description": "Provide 1–100 email, LinkedIn slug, or phone identifiers. People matching any identifier are selected.",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/EmailIdentifier"
+                },
+                {
+                  "$ref": "#/components/schemas/LinkedInSlugIdentifier"
+                },
+                {
+                  "$ref": "#/components/schemas/PhoneNumberIdentifier"
+                }
+              ]
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": ["person_identifiers"],
+        "type": "object"
+      },
       "BatchResultsComplete": {
         "additionalProperties": false,
         "properties": {
@@ -275,6 +367,23 @@
         "required": ["search_id"],
         "type": "object"
       },
+      "EmailIdentifier": {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "const": "email",
+            "type": "string"
+          },
+          "value": {
+            "format": "email",
+            "maxLength": 254,
+            "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$",
+            "type": "string"
+          }
+        },
+        "required": ["type", "value"],
+        "type": "object"
+      },
       "ErrorResponse": {
         "additionalProperties": false,
         "properties": {
@@ -436,6 +545,24 @@
         "required": ["field", "op"],
         "type": "object"
       },
+      "LinkedInSlugIdentifier": {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "const": "linkedin",
+            "type": "string"
+          },
+          "value": {
+            "description": "LinkedIn profile slug (vanityName) after /in/, such as alice-smith. Do not include the URL.",
+            "maxLength": 200,
+            "minLength": 1,
+            "pattern": "^[\\p{L}\\p{N}_%-]+$",
+            "type": "string"
+          }
+        },
+        "required": ["type", "value"],
+        "type": "object"
+      },
       "NestedPath": {
         "items": {
           "minLength": 1,
@@ -587,6 +714,22 @@
           }
         },
         "required": ["data", "has_more"],
+        "type": "object"
+      },
+      "PhoneNumberIdentifier": {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "const": "phone",
+            "type": "string"
+          },
+          "value": {
+            "maxLength": 50,
+            "pattern": "^\\+?(?:[().\\s-]*[0-9]){7,15}[().\\s-]*$",
+            "type": "string"
+          }
+        },
+        "required": ["type", "value"],
         "type": "object"
       },
       "PublicApiCompanySearchResult": {
@@ -1479,6 +1622,241 @@
   },
   "openapi": "3.1.0",
   "paths": {
+    "/audiences/privacy-delete": {
+      "post": {
+        "description": "Queues deletion of people from Audiences to support privacy-related requests.",
+        "operationId": "privacyDeletePeople",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AudiencesPrivacyDeletePeopleRequest"
+              }
+            }
+          },
+          "description": "Body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AudiencesPrivacyDeletePeople200Response"
+                }
+              }
+            },
+            "description": "Returns HTTP 200 for a dry-run preview or when no people match."
+          },
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AudiencesPrivacyDeletePeople202Response"
+                }
+              }
+            },
+            "description": "Returns HTTP 202 when deletion is queued."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "400"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "401"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "403"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "404"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "429"
+          }
+        },
+        "summary": "Privacy delete people from Audiences",
+        "tags": ["audiences"]
+      }
+    },
+    "/audiences/privacy-delete/{job_id}": {
+      "get": {
+        "description": "Checks a privacy deletion job in your workspace, including tracked cascading cleanup. Status is available while the job is retained: up to five days after completion or failure, subject to a shared 100-job limit for each terminal state.",
+        "operationId": "getPrivacyDeleteStatus",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "job_id",
+            "required": true,
+            "schema": {
+              "maxLength": 200,
+              "minLength": 1,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "The deletion job is complete or failed.",
+                  "properties": {
+                    "finished": {
+                      "description": "The number of people confirmed complete. Remains 0 until the entire job completes, then equals total. This is not an estimate of partial progress.",
+                      "maximum": 9007199254740991,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "job_id": {
+                      "description": "The deletion job ID returned when the request was queued.",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "in_progress includes queued work, retries, and cascading cleanup; complete means the deletion job and its tracked cleanup tasks succeeded; failed means the job failed and cleanup may be partial.",
+                      "enum": ["in_progress", "complete", "failed"],
+                      "type": "string"
+                    },
+                    "total": {
+                      "description": "The number of unique people selected for deletion.",
+                      "maximum": 9007199254740991,
+                      "minimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": ["job_id", "status", "total", "finished"],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The deletion job is complete or failed."
+          },
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "The deletion job is queued or in progress. Continue polling.",
+                  "properties": {
+                    "finished": {
+                      "description": "The number of people confirmed complete. Remains 0 until the entire job completes, then equals total. This is not an estimate of partial progress.",
+                      "maximum": 9007199254740991,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "job_id": {
+                      "description": "The deletion job ID returned when the request was queued.",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "in_progress includes queued work, retries, and cascading cleanup; complete means the deletion job and its tracked cleanup tasks succeeded; failed means the job failed and cleanup may be partial.",
+                      "enum": ["in_progress", "complete", "failed"],
+                      "type": "string"
+                    },
+                    "total": {
+                      "description": "The number of unique people selected for deletion.",
+                      "maximum": 9007199254740991,
+                      "minimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": ["job_id", "status", "total", "finished"],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The deletion job is queued or in progress. Continue polling."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "400"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "401"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "403"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "The job was not found in this workspace or is no longer retained."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "429"
+          }
+        },
+        "summary": "Get Audiences privacy deletion status",
+        "tags": ["audiences"]
+      }
+    },
     "/credits/balance": {
       "get": {
         "description": "Returns the current credit balances for the workspace associated with the API key. Reading balances does not consume credits.",
@@ -2886,6 +3264,10 @@
     }
   ],
   "tags": [
+    {
+      "description": "Audiences endpoints.",
+      "name": "audiences"
+    },
     {
       "description": "Authenticated user and workspace endpoints.",
       "name": "me"
