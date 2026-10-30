@@ -1645,7 +1645,10 @@
         "type": "object",
         "properties": {
           "matched_count": {
-            "$ref": "#/components/schemas/Value0MatchedCount"
+            "type": "number",
+            "description": "No matching people were found.",
+            "default": 0,
+            "x-client-original-const": 0
           },
           "status": {
             "$ref": "#/components/schemas/NoMatchesStatus"
@@ -1918,9 +1921,9 @@
             "$ref": "#/components/schemas/CellSuccessFieldsProperty"
           },
           "is_stale": {
-            "const": null,
             "type": "boolean",
-            "default": true
+            "default": true,
+            "x-client-original-const": true
           },
           "status": {
             "$ref": "#/components/schemas/SuccessStatus"
@@ -3587,11 +3590,11 @@
         }
       },
       "InProgressStatus": {
-        "const": null,
         "enum": [
           "in_progress"
         ],
         "type": "string",
+        "x-client-original-const": "in_progress",
         "x-ms-enum": {
           "name": "InProgressStatus",
           "modelAsString": false,
@@ -3604,11 +3607,11 @@
         }
       },
       "DryRunStatus": {
-        "const": null,
         "enum": [
           "dry_run"
         ],
         "type": "string",
+        "x-client-original-const": "dry_run",
         "x-ms-enum": {
           "name": "DryRunStatus",
           "modelAsString": false,
@@ -3620,18 +3623,12 @@
           ]
         }
       },
-      "Value0MatchedCount": {
-        "const": null,
-        "type": "number",
-        "description": "No matching people were found.",
-        "not": {}
-      },
       "NoMatchesStatus": {
-        "const": null,
         "enum": [
           "no_matches"
         ],
         "type": "string",
+        "x-client-original-const": "no_matches",
         "x-ms-enum": {
           "name": "NoMatchesStatus",
           "modelAsString": false,
@@ -3644,11 +3641,11 @@
         }
       },
       "CompleteStatus": {
-        "const": null,
         "enum": [
           "complete"
         ],
         "type": "string",
+        "x-client-original-const": "complete",
         "x-ms-enum": {
           "name": "CompleteStatus",
           "modelAsString": false,
@@ -3661,11 +3658,11 @@
         }
       },
       "BatchResultsInProgressStatus": {
-        "const": null,
         "enum": [
           "in_progress"
         ],
         "type": "string",
+        "x-client-original-const": "in_progress",
         "x-ms-enum": {
           "name": "BatchResultsInProgressStatus",
           "modelAsString": false,
@@ -3678,11 +3675,11 @@
         }
       },
       "ProcessingFailedStatus": {
-        "const": null,
         "enum": [
           "processing_failed"
         ],
         "type": "string",
+        "x-client-original-const": "processing_failed",
         "x-ms-enum": {
           "name": "ProcessingFailedStatus",
           "modelAsString": false,
@@ -3695,11 +3692,11 @@
         }
       },
       "ValidationFailedStatus": {
-        "const": null,
         "enum": [
           "validation_failed"
         ],
         "type": "string",
+        "x-client-original-const": "validation_failed",
         "x-ms-enum": {
           "name": "ValidationFailedStatus",
           "modelAsString": false,
@@ -3712,11 +3709,11 @@
         }
       },
       "EmptyStatus": {
-        "const": null,
         "enum": [
           "empty"
         ],
         "type": "string",
+        "x-client-original-const": "empty",
         "x-ms-enum": {
           "name": "EmptyStatus",
           "modelAsString": false,
@@ -3729,11 +3726,11 @@
         }
       },
       "ErrorStatus": {
-        "const": null,
         "enum": [
           "error"
         ],
         "type": "string",
+        "x-client-original-const": "error",
         "x-ms-enum": {
           "name": "ErrorStatus",
           "modelAsString": false,
@@ -3782,11 +3779,11 @@
         }
       },
       "SuccessStatus": {
-        "const": null,
         "enum": [
           "success"
         ],
         "type": "string",
+        "x-client-original-const": "success",
         "x-ms-enum": {
           "name": "SuccessStatus",
           "modelAsString": false,
@@ -3820,11 +3817,11 @@
         }
       },
       "EmailType": {
-        "const": null,
         "enum": [
           "email"
         ],
         "type": "string",
+        "x-client-original-const": "email",
         "x-ms-enum": {
           "name": "EmailType",
           "modelAsString": false,
@@ -3918,11 +3915,11 @@
         }
       },
       "LinkedinType": {
-        "const": null,
         "enum": [
           "linkedin"
         ],
         "type": "string",
+        "x-client-original-const": "linkedin",
         "x-ms-enum": {
           "name": "LinkedinType",
           "modelAsString": false,
@@ -3956,11 +3953,11 @@
         }
       },
       "CompaniesSourceType": {
-        "const": null,
         "enum": [
           "companies"
         ],
         "type": "string",
+        "x-client-original-const": "companies",
         "x-ms-enum": {
           "name": "CompaniesSourceType",
           "modelAsString": false,
@@ -3994,11 +3991,11 @@
         }
       },
       "PeopleSourceType": {
-        "const": null,
         "enum": [
           "people"
         ],
         "type": "string",
+        "x-client-original-const": "people",
         "x-ms-enum": {
           "name": "PeopleSourceType",
           "modelAsString": false,
@@ -4011,11 +4008,11 @@
         }
       },
       "PhoneType": {
-        "const": null,
         "enum": [
           "phone"
         ],
         "type": "string",
+        "x-client-original-const": "phone",
         "x-ms-enum": {
           "name": "PhoneType",
           "modelAsString": false,
@@ -4049,11 +4046,11 @@
         }
       },
       "RunResultsCompleteStatus": {
-        "const": null,
         "enum": [
           "complete"
         ],
         "type": "string",
+        "x-client-original-const": "complete",
         "x-ms-enum": {
           "name": "RunResultsCompleteStatus",
           "modelAsString": false,
@@ -4066,11 +4063,11 @@
         }
       },
       "RunResultsInProgressStatus": {
-        "const": null,
         "enum": [
           "in_progress"
         ],
         "type": "string",
+        "x-client-original-const": "in_progress",
         "x-ms-enum": {
           "name": "RunResultsInProgressStatus",
           "modelAsString": false,
@@ -4083,11 +4080,11 @@
         }
       },
       "RunRoutineResponseStatus": {
-        "const": null,
         "enum": [
           "in_progress"
         ],
         "type": "string",
+        "x-client-original-const": "in_progress",
         "x-ms-enum": {
           "name": "RunRoutineResponseStatus",
           "modelAsString": false,
@@ -4100,11 +4097,11 @@
         }
       },
       "CountMode": {
-        "const": null,
         "enum": [
           "count"
         ],
         "type": "string",
+        "x-client-original-const": "count",
         "x-ms-enum": {
           "name": "CountMode",
           "modelAsString": false,
@@ -4117,11 +4114,11 @@
         }
       },
       "SelectMode": {
-        "const": null,
         "enum": [
           "select"
         ],
         "type": "string",
+        "x-client-original-const": "select",
         "x-ms-enum": {
           "name": "SelectMode",
           "modelAsString": false,
@@ -4155,11 +4152,11 @@
         }
       },
       "StartBatchResponseStatus": {
-        "const": null,
         "enum": [
           "in_progress"
         ],
         "type": "string",
+        "x-client-original-const": "in_progress",
         "x-ms-enum": {
           "name": "StartBatchResponseStatus",
           "modelAsString": false,

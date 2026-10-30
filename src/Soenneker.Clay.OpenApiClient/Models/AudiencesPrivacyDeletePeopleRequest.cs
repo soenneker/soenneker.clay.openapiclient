@@ -18,8 +18,10 @@ namespace Soenneker.Clay.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("dry_run") is { } nullNodeDryRun && nullNodeDryRun.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DryRun = null;
-            if (parseNode.GetChildNode("person_identifiers") is { } nullNodePersonIdentifiers && nullNodePersonIdentifiers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PersonIdentifiers = null;
+            if (parseNode.GetChildNode("dry_run") is null) { _explicitNullValueDryRun = default!; _explicitNullProperties?.Remove("dry_run"); }
+            else if (parseNode.GetChildNode("dry_run") is { } nullNodeDryRun && nullNodeDryRun.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DryRun = null;
+            if (parseNode.GetChildNode("person_identifiers") is null) { _explicitNullValuePersonIdentifiers = default!; _explicitNullProperties?.Remove("person_identifiers"); }
+            else if (parseNode.GetChildNode("person_identifiers") is { } nullNodePersonIdentifiers && nullNodePersonIdentifiers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PersonIdentifiers = null;
         }
 
         /// <summary>Preview the number of matching people without queueing deletion. Defaults to false.</summary>

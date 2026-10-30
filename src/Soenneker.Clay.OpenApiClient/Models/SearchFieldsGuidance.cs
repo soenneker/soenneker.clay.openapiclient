@@ -17,9 +17,12 @@ namespace Soenneker.Clay.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("behavior") is { } nullNodeBehavior && nullNodeBehavior.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Behavior = null;
-            if (parseNode.GetChildNode("create_examples") is { } nullNodeCreateExamples && nullNodeCreateExamples.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreateExamples = null;
-            if (parseNode.GetChildNode("field_guidance") is { } nullNodeFieldGuidance && nullNodeFieldGuidance.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FieldGuidance = null;
+            if (parseNode.GetChildNode("behavior") is null) { _explicitNullValueBehavior = default!; _explicitNullProperties?.Remove("behavior"); }
+            else if (parseNode.GetChildNode("behavior") is { } nullNodeBehavior && nullNodeBehavior.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Behavior = null;
+            if (parseNode.GetChildNode("create_examples") is null) { _explicitNullValueCreateExamples = default!; _explicitNullProperties?.Remove("create_examples"); }
+            else if (parseNode.GetChildNode("create_examples") is { } nullNodeCreateExamples && nullNodeCreateExamples.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreateExamples = null;
+            if (parseNode.GetChildNode("field_guidance") is null) { _explicitNullValueFieldGuidance = default!; _explicitNullProperties?.Remove("field_guidance"); }
+            else if (parseNode.GetChildNode("field_guidance") is { } nullNodeFieldGuidance && nullNodeFieldGuidance.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FieldGuidance = null;
         }
 
         /// <summary>The behavior property</summary>

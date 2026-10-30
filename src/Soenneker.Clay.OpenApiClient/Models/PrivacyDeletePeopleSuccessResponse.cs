@@ -47,9 +47,13 @@ namespace Soenneker.Clay.OpenApiClient.Models
             
             
             var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
-            bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("status") != null && (parseNode.GetChildNode("status")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag1 && ("in_progress".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal))) && parseNode.GetChildNode("job_id") != null))();
-            if (result.AudiencesPrivacyDeletePeople200Response == null && result.AudiencesPrivacyDeletePeople202Response == null && matchesUnionBranch0) result.AudiencesPrivacyDeletePeople202Response = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeople202Response(), parseNode);
-            if (result.AudiencesPrivacyDeletePeople200Response == null && result.AudiencesPrivacyDeletePeople202Response == null && unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject) result.AudiencesPrivacyDeletePeople202Response = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeople202Response(), parseNode);
+            bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => true))();
+            bool matchesUnionBranch1 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => ((unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject)) && (unionPayload is not global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject shapeObject0 || (shapeObject0.GetValue() is var shapeMembers1 && (shapeMembers1.ContainsKey("status") && shapeMembers1.ContainsKey("job_id") && (!shapeMembers1.ContainsKey("job_id") || (((shapeMembers1["job_id"] is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString)))) && (!shapeMembers1.ContainsKey("status") || (((shapeMembers1["status"] is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString)) && (shapeMembers1["status"] is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString literal4 && "in_progress".Equals(literal4.GetValue(), global::System.StringComparison.Ordinal)) && ((shapeMembers1["status"] is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString literal5 && "in_progress".Equals(literal5.GetValue(), global::System.StringComparison.Ordinal))))) && global::System.Linq.Enumerable.All(shapeMembers1.Keys, key => key == "job_id" || key == "status"))))))();
+            int matchingUnionBranches = 0;
+            if (matchesUnionBranch0) matchingUnionBranches++;
+            if (matchesUnionBranch1) matchingUnionBranches++;
+            bool noSelectedUnionBranch = result.AudiencesPrivacyDeletePeople200Response == null && result.AudiencesPrivacyDeletePeople202Response == null;
+            if (noSelectedUnionBranch && matchesUnionBranch1 && matchingUnionBranches == 1) result.AudiencesPrivacyDeletePeople202Response = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeople202Response(), parseNode);
             if (result.AudiencesPrivacyDeletePeople200Response == null && result.AudiencesPrivacyDeletePeople202Response == null) result.UnrecognizedValue = unionPayload;
 return result;
         }
@@ -59,6 +63,8 @@ return result;
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
+            if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawFields) { var fields = new global::System.Collections.Generic.Dictionary<string, global::System.Action<IParseNode>>(); foreach (var entry in rawFields.GetValue()) fields[entry.Key] = _ => { }; return fields; }
+
             if(AudiencesPrivacyDeletePeople200Response != null || AudiencesPrivacyDeletePeople202Response != null)
             {
                 return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(AudiencesPrivacyDeletePeople200Response, AudiencesPrivacyDeletePeople202Response);
@@ -73,8 +79,11 @@ return result;
         {
             if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
             if (AudiencesPrivacyDeletePeople200Response == null && AudiencesPrivacyDeletePeople202Response == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
-            if (AudiencesPrivacyDeletePeople200Response != null && AudiencesPrivacyDeletePeople202Response == null) { if (AudiencesPrivacyDeletePeople200Response is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, AudiencesPrivacyDeletePeople200Response); return; }
-            if (AudiencesPrivacyDeletePeople202Response != null && AudiencesPrivacyDeletePeople200Response == null) { if (AudiencesPrivacyDeletePeople202Response is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, AudiencesPrivacyDeletePeople202Response); return; }
+            int selectedUnionBranches = 0;
+            if (AudiencesPrivacyDeletePeople200Response != null) selectedUnionBranches++;
+            if (AudiencesPrivacyDeletePeople202Response != null) selectedUnionBranches++;
+            if (AudiencesPrivacyDeletePeople200Response != null && selectedUnionBranches == 1) { if (AudiencesPrivacyDeletePeople200Response is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, AudiencesPrivacyDeletePeople200Response); return; }
+            if (AudiencesPrivacyDeletePeople202Response != null && selectedUnionBranches == 1) { if (AudiencesPrivacyDeletePeople202Response is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, AudiencesPrivacyDeletePeople202Response); return; }
 
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeople200Response>(null, AudiencesPrivacyDeletePeople200Response, AudiencesPrivacyDeletePeople202Response);
