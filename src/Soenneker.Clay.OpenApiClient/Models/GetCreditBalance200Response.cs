@@ -11,11 +11,22 @@ namespace Soenneker.Clay.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetCreditBalance200Response : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("action_execution_balance") is { } nullNodeActionExecutionBalance && nullNodeActionExecutionBalance.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ActionExecutionBalance = null;
+            if (parseNode.GetChildNode("balance") is { } nullNodeBalance && nullNodeBalance.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Balance = null;
+        }
+
         /// <summary>Remaining actions. Omitted for workspaces on legacy billing plans or without a billing plan.</summary>
-        public double? ActionExecutionBalance { get; set; }
+        public double? ActionExecutionBalance { get => _explicitNullValueActionExecutionBalance; set { _explicitNullValueActionExecutionBalance = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("action_execution_balance"); else _explicitNullProperties?.Remove("action_execution_balance"); } }
+        private double? _explicitNullValueActionExecutionBalance = default!;
         /// <summary>Total remaining spendable data credits, including rollover credits.</summary>
-        public double? Balance { get; set; }
+        public double? Balance { get => _explicitNullValueBalance; set { _explicitNullValueBalance = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("balance"); else _explicitNullProperties?.Remove("balance"); } }
+        private double? _explicitNullValueBalance = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -24,7 +35,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.GetCreditBalance200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Clay.OpenApiClient.Models.GetCreditBalance200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.GetCreditBalance200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +57,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("action_execution_balance", ActionExecutionBalance);
-            writer.WriteDoubleValue("balance", Balance);
+            writer.WriteDoubleValue("balance", Balance);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

@@ -11,17 +11,29 @@ namespace Soenneker.Clay.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class CreateSearchRequest : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("filters") is { } nullNodeFilters && nullNodeFilters.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Filters = null;
+            if (parseNode.GetChildNode("source_type") is { } nullNodeSourceType && nullNodeSourceType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceType = null;
+        }
+
         /// <summary>The filters property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Clay.OpenApiClient.Models.CreateSearchRequestFiltersProperty? Filters { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.CreateSearchRequestFiltersProperty? Filters { get => _explicitNullValueFilters; set { _explicitNullValueFilters = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filters"); else _explicitNullProperties?.Remove("filters"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.CreateSearchRequestFiltersProperty? _explicitNullValueFilters = default!;
 #nullable restore
 #else
-        public global::Soenneker.Clay.OpenApiClient.Models.CreateSearchRequestFiltersProperty Filters { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.CreateSearchRequestFiltersProperty Filters { get => _explicitNullValueFilters; set { _explicitNullValueFilters = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filters"); else _explicitNullProperties?.Remove("filters"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.CreateSearchRequestFiltersProperty _explicitNullValueFilters = default!;
 #endif
         /// <summary>The source_type property</summary>
-        public global::Soenneker.Clay.OpenApiClient.Models.CreateSearchRequestSourceType? SourceType { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.CreateSearchRequestSourceType? SourceType { get => _explicitNullValueSourceType; set { _explicitNullValueSourceType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("source_type"); else _explicitNullProperties?.Remove("source_type"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.CreateSearchRequestSourceType? _explicitNullValueSourceType = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -30,7 +42,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.CreateSearchRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Clay.OpenApiClient.Models.CreateSearchRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.CreateSearchRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -52,7 +64,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.CreateSearchRequestFiltersProperty>("filters", Filters);
-            writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.CreateSearchRequestSourceType>("source_type", SourceType);
+            writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.CreateSearchRequestSourceType>("source_type", SourceType);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

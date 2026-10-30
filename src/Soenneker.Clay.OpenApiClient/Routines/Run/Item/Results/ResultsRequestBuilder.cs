@@ -36,7 +36,7 @@ namespace Soenneker.Clay.OpenApiClient.Routines.Run.Item.Results
         /// <summary>
         /// Returns current status and paginated results for an asynchronous routine run.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Clay.OpenApiClient.Models.RunResultsComplete"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Clay.OpenApiClient.Models.GetRunResultsSuccessResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse">When receiving a 400 status code</exception>
@@ -45,11 +45,11 @@ namespace Soenneker.Clay.OpenApiClient.Routines.Run.Item.Results
         /// <exception cref="global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse">When receiving a 429 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Clay.OpenApiClient.Models.RunResultsComplete?> GetAsync(Action<RequestConfiguration<global::Soenneker.Clay.OpenApiClient.Routines.Run.Item.Results.ResultsRequestBuilder.ResultsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Clay.OpenApiClient.Models.GetRunResultsSuccessResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Clay.OpenApiClient.Routines.Run.Item.Results.ResultsRequestBuilder.ResultsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Clay.OpenApiClient.Models.RunResultsComplete> GetAsync(Action<RequestConfiguration<global::Soenneker.Clay.OpenApiClient.Routines.Run.Item.Results.ResultsRequestBuilder.ResultsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Clay.OpenApiClient.Models.GetRunResultsSuccessResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Clay.OpenApiClient.Routines.Run.Item.Results.ResultsRequestBuilder.ResultsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -59,8 +59,10 @@ namespace Soenneker.Clay.OpenApiClient.Routines.Run.Item.Results
                 { "401", global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Clay.OpenApiClient.Models.RunResultsComplete>(requestInfo, global::Soenneker.Clay.OpenApiClient.Models.RunResultsComplete.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Clay.OpenApiClient.Models.GetRunResultsSuccessResponse>(requestInfo, global::Soenneker.Clay.OpenApiClient.Models.GetRunResultsSuccessResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns current status and paginated results for an asynchronous routine run.

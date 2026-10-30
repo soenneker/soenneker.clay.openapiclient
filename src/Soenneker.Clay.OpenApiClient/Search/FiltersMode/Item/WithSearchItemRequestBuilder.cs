@@ -16,6 +16,7 @@ namespace Soenneker.Clay.OpenApiClient.Search.FiltersMode.Item
     public partial class WithSearchItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The run property</summary>
+        [Obsolete("")]
         public global::Soenneker.Clay.OpenApiClient.Search.FiltersMode.Item.Run.RunRequestBuilder Run
         {
             get => new global::Soenneker.Clay.OpenApiClient.Search.FiltersMode.Item.Run.RunRequestBuilder(PathParameters, RequestAdapter);

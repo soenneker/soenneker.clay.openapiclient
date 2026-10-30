@@ -12,7 +12,12 @@ namespace Soenneker.Clay.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class NextQueryModeResultsResponse : IComposedTypeWrapper, IParsable
-    {
+    , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
+        // Preserve ambiguous union payloads without inventing a discriminator.
+        /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Clay.OpenApiClient.Models.NextQueryModeCompanyResultsResponse"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -41,13 +46,20 @@ namespace Soenneker.Clay.OpenApiClient.Models
             var result = new global::Soenneker.Clay.OpenApiClient.Models.NextQueryModeResultsResponse();
             if("companies".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.NextQueryModeCompanyResultsResponse = new global::Soenneker.Clay.OpenApiClient.Models.NextQueryModeCompanyResultsResponse();
+                
             }
             else if("people".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.NextQueryModePeopleResultsResponse = new global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponse();
+                
             }
-            return result;
+            
+            var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
+            bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("data") != null && parseNode.GetChildNode("has_more") != null && parseNode.GetChildNode("source_type") != null && (parseNode.GetChildNode("source_type")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag3 && ("people".Equals(tag3.GetValue(), global::System.StringComparison.Ordinal))) && (parseNode.GetChildNode("exhaustion_reason") == null || (parseNode.GetChildNode("exhaustion_reason")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString optionalTag4 && ("query_limit".Equals(optionalTag4.GetValue(), global::System.StringComparison.Ordinal) || "no_more_results".Equals(optionalTag4.GetValue(), global::System.StringComparison.Ordinal))))))();
+            bool matchesUnionBranch1 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("data") != null && parseNode.GetChildNode("has_more") != null && parseNode.GetChildNode("source_type") != null && (parseNode.GetChildNode("source_type")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag3 && ("companies".Equals(tag3.GetValue(), global::System.StringComparison.Ordinal))) && (parseNode.GetChildNode("exhaustion_reason") == null || (parseNode.GetChildNode("exhaustion_reason")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString optionalTag4 && ("query_limit".Equals(optionalTag4.GetValue(), global::System.StringComparison.Ordinal) || "no_more_results".Equals(optionalTag4.GetValue(), global::System.StringComparison.Ordinal))))))();
+            if (result.NextQueryModeCompanyResultsResponse == null && result.NextQueryModePeopleResultsResponse == null && matchesUnionBranch0 && !matchesUnionBranch1) result.NextQueryModePeopleResultsResponse = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponse(), parseNode);
+            if (result.NextQueryModeCompanyResultsResponse == null && result.NextQueryModePeopleResultsResponse == null && matchesUnionBranch1 && !matchesUnionBranch0) result.NextQueryModeCompanyResultsResponse = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.NextQueryModeCompanyResultsResponse(), parseNode);
+            if (result.NextQueryModeCompanyResultsResponse == null && result.NextQueryModePeopleResultsResponse == null) result.UnrecognizedValue = unionPayload;
+return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -71,13 +83,20 @@ namespace Soenneker.Clay.OpenApiClient.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
+            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
+            if (NextQueryModeCompanyResultsResponse == null && NextQueryModePeopleResultsResponse == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
+            if (NextQueryModeCompanyResultsResponse != null && NextQueryModePeopleResultsResponse == null) { if (NextQueryModeCompanyResultsResponse is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, NextQueryModeCompanyResultsResponse); return; }
+            if (NextQueryModePeopleResultsResponse != null && NextQueryModeCompanyResultsResponse == null) { if (NextQueryModePeopleResultsResponse is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, NextQueryModePeopleResultsResponse); return; }
+
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             if(NextQueryModeCompanyResultsResponse != null)
             {
+                if (NextQueryModeCompanyResultsResponse is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.NextQueryModeCompanyResultsResponse>(null, NextQueryModeCompanyResultsResponse);
             }
             else if(NextQueryModePeopleResultsResponse != null)
             {
+                if (NextQueryModePeopleResultsResponse is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponse>(null, NextQueryModePeopleResultsResponse);
             }
         }

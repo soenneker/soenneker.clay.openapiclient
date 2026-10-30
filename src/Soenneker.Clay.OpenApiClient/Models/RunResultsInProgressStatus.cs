@@ -5,12 +5,12 @@ namespace Soenneker.Clay.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public enum ProcessingFailedStatus
+    public enum RunResultsInProgressStatus
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "processing_failed")]
+        [EnumMember(Value = "in_progress")]
         #pragma warning disable CS1591
-        ProcessingFailed,
+        InProgress,
         #pragma warning restore CS1591
     }
 }

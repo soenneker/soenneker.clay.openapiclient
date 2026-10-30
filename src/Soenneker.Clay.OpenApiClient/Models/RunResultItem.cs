@@ -11,33 +11,51 @@ namespace Soenneker.Clay.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class RunResultItem : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("error") is { } nullNodeError && nullNodeError.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Error = null;
+            if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("result") is { } nullNodeResult && nullNodeResult.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Result = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+        }
+
         /// <summary>The error property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Clay.OpenApiClient.Models.RunResultItemError? Error { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.RunResultItemError? Error { get => _explicitNullValueError; set { _explicitNullValueError = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.RunResultItemError? _explicitNullValueError = default!;
 #nullable restore
 #else
-        public global::Soenneker.Clay.OpenApiClient.Models.RunResultItemError Error { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.RunResultItemError Error { get => _explicitNullValueError; set { _explicitNullValueError = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.RunResultItemError _explicitNullValueError = default!;
 #endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Id { get; set; }
+        public string? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        private string? _explicitNullValueId = default!;
 #nullable restore
 #else
-        public string Id { get; set; }
+        public string Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        private string _explicitNullValueId = default!;
 #endif
         /// <summary>The result property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Clay.OpenApiClient.Models.RunResultItemResultProperty? Result { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.RunResultItemResultProperty? Result { get => _explicitNullValueResult; set { _explicitNullValueResult = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("result"); else _explicitNullProperties?.Remove("result"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.RunResultItemResultProperty? _explicitNullValueResult = default!;
 #nullable restore
 #else
-        public global::Soenneker.Clay.OpenApiClient.Models.RunResultItemResultProperty Result { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.RunResultItemResultProperty Result { get => _explicitNullValueResult; set { _explicitNullValueResult = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("result"); else _explicitNullProperties?.Remove("result"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.RunResultItemResultProperty _explicitNullValueResult = default!;
 #endif
         /// <summary>The status property</summary>
-        public global::Soenneker.Clay.OpenApiClient.Models.RunResultItemStatus? Status { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.RunResultItemStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.RunResultItemStatus? _explicitNullValueStatus = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -46,7 +64,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.RunResultItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Clay.OpenApiClient.Models.RunResultItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.RunResultItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,7 +90,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.RunResultItemError>("error", Error);
             writer.WriteStringValue("id", Id);
             writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.RunResultItemResultProperty>("result", Result);
-            writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.RunResultItemStatus>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.RunResultItemStatus>("status", Status);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

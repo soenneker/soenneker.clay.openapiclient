@@ -12,21 +12,37 @@ namespace Soenneker.Clay.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class GetPrivacyDeleteStatus200Response : IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("finished") is { } nullNodeFinished && nullNodeFinished.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Finished = null;
+            if (parseNode.GetChildNode("job_id") is { } nullNodeJobId && nullNodeJobId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) JobId = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("total") is { } nullNodeTotal && nullNodeTotal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Total = null;
+        }
+
         /// <summary>The number of people confirmed complete. Remains 0 until the entire job completes, then equals total. This is not an estimate of partial progress.</summary>
-        public int? Finished { get; set; }
+        public int? Finished { get => _explicitNullValueFinished; set { _explicitNullValueFinished = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("finished"); else _explicitNullProperties?.Remove("finished"); } }
+        private int? _explicitNullValueFinished = default!;
         /// <summary>The deletion job ID returned when the request was queued.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? JobId { get; set; }
+        public string? JobId { get => _explicitNullValueJobId; set { _explicitNullValueJobId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("job_id"); else _explicitNullProperties?.Remove("job_id"); } }
+        private string? _explicitNullValueJobId = default!;
 #nullable restore
 #else
-        public string JobId { get; set; }
+        public string JobId { get => _explicitNullValueJobId; set { _explicitNullValueJobId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("job_id"); else _explicitNullProperties?.Remove("job_id"); } }
+        private string _explicitNullValueJobId = default!;
 #endif
         /// <summary>in_progress includes queued work, retries, and cascading cleanup; complete means the deletion job and its tracked cleanup tasks succeeded; failed means the job failed and cleanup may be partial.</summary>
-        public global::Soenneker.Clay.OpenApiClient.Models.GetPrivacyDeleteStatus200ResponseStatus? Status { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.GetPrivacyDeleteStatus200ResponseStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.GetPrivacyDeleteStatus200ResponseStatus? _explicitNullValueStatus = default!;
         /// <summary>The number of unique people selected for deletion.</summary>
-        public int? Total { get; set; }
+        public int? Total { get => _explicitNullValueTotal; set { _explicitNullValueTotal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("total"); else _explicitNullProperties?.Remove("total"); } }
+        private int? _explicitNullValueTotal = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -35,7 +51,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.GetPrivacyDeleteStatus200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Clay.OpenApiClient.Models.GetPrivacyDeleteStatus200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.GetPrivacyDeleteStatus200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,7 +77,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
             writer.WriteIntValue("finished", Finished);
             writer.WriteStringValue("job_id", JobId);
             writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.GetPrivacyDeleteStatus200ResponseStatus>("status", Status);
-            writer.WriteIntValue("total", Total);
+            writer.WriteIntValue("total", Total);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

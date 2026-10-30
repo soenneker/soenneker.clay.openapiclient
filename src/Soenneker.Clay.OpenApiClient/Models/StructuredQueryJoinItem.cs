@@ -11,25 +11,40 @@ namespace Soenneker.Clay.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class StructuredQueryJoinItem : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("on") is { } nullNodeOn && nullNodeOn.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) On = null;
+            if (parseNode.GetChildNode("table") is { } nullNodeTable && nullNodeTable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Table = null;
+            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+        }
+
         /// <summary>The on property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItemOn? On { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItemOn? On { get => _explicitNullValueOn; set { _explicitNullValueOn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("on"); else _explicitNullProperties?.Remove("on"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItemOn? _explicitNullValueOn = default!;
 #nullable restore
 #else
-        public global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItemOn On { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItemOn On { get => _explicitNullValueOn; set { _explicitNullValueOn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("on"); else _explicitNullProperties?.Remove("on"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItemOn _explicitNullValueOn = default!;
 #endif
         /// <summary>The table property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Table { get; set; }
+        public string? Table { get => _explicitNullValueTable; set { _explicitNullValueTable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("table"); else _explicitNullProperties?.Remove("table"); } }
+        private string? _explicitNullValueTable = default!;
 #nullable restore
 #else
-        public string Table { get; set; }
+        public string Table { get => _explicitNullValueTable; set { _explicitNullValueTable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("table"); else _explicitNullProperties?.Remove("table"); } }
+        private string _explicitNullValueTable = default!;
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItemType? Type { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItemType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItemType? _explicitNullValueType = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -38,7 +53,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,7 +77,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItemOn>("on", On);
             writer.WriteStringValue("table", Table);
-            writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItemType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItemType>("type", Type);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

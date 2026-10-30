@@ -12,16 +12,28 @@ namespace Soenneker.Clay.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class AudiencesPrivacyDeletePeopleRequest : IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("dry_run") is { } nullNodeDryRun && nullNodeDryRun.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DryRun = null;
+            if (parseNode.GetChildNode("person_identifiers") is { } nullNodePersonIdentifiers && nullNodePersonIdentifiers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PersonIdentifiers = null;
+        }
+
         /// <summary>Preview the number of matching people without queueing deletion. Defaults to false.</summary>
-        public bool? DryRun { get; set; }
+        public bool? DryRun { get => _explicitNullValueDryRun; set { _explicitNullValueDryRun = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dry_run"); else _explicitNullProperties?.Remove("dry_run"); } }
+        private bool? _explicitNullValueDryRun = default!;
         /// <summary>Provide 1–100 email, LinkedIn slug, or phone identifiers. People matching any identifier are selected.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleRequestPersonIdentifiersItem>? PersonIdentifiers { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleRequestPersonIdentifiersItem>? PersonIdentifiers { get => _explicitNullValuePersonIdentifiers; set { _explicitNullValuePersonIdentifiers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("person_identifiers"); else _explicitNullProperties?.Remove("person_identifiers"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleRequestPersonIdentifiersItem>? _explicitNullValuePersonIdentifiers = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleRequestPersonIdentifiersItem> PersonIdentifiers { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleRequestPersonIdentifiersItem> PersonIdentifiers { get => _explicitNullValuePersonIdentifiers; set { _explicitNullValuePersonIdentifiers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("person_identifiers"); else _explicitNullProperties?.Remove("person_identifiers"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleRequestPersonIdentifiersItem> _explicitNullValuePersonIdentifiers = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleRequest"/> and sets the default values.
@@ -38,7 +50,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -60,7 +72,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("dry_run", DryRun);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleRequestPersonIdentifiersItem>("person_identifiers", PersonIdentifiers);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleRequestPersonIdentifiersItem>("person_identifiers", PersonIdentifiers);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

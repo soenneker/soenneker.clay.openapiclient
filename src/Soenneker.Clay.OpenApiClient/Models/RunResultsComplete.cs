@@ -11,37 +11,59 @@ namespace Soenneker.Clay.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class RunResultsComplete : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("cursor") is { } nullNodeCursor && nullNodeCursor.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Cursor = null;
+            if (parseNode.GetChildNode("data") is { } nullNodeData && nullNodeData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Data = null;
+            if (parseNode.GetChildNode("finished") is { } nullNodeFinished && nullNodeFinished.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Finished = null;
+            if (parseNode.GetChildNode("routine_run_id") is { } nullNodeRoutineRunId && nullNodeRoutineRunId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RoutineRunId = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("total") is { } nullNodeTotal && nullNodeTotal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Total = null;
+        }
+
         /// <summary>The cursor property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Cursor { get; set; }
+        public string? Cursor { get => _explicitNullValueCursor; set { _explicitNullValueCursor = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cursor"); else _explicitNullProperties?.Remove("cursor"); } }
+        private string? _explicitNullValueCursor = default!;
 #nullable restore
 #else
-        public string Cursor { get; set; }
+        public string Cursor { get => _explicitNullValueCursor; set { _explicitNullValueCursor = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cursor"); else _explicitNullProperties?.Remove("cursor"); } }
+        private string _explicitNullValueCursor = default!;
 #endif
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Clay.OpenApiClient.Models.RunResultItem>? Data { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.RunResultItem>? Data { get => _explicitNullValueData; set { _explicitNullValueData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.RunResultItem>? _explicitNullValueData = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Clay.OpenApiClient.Models.RunResultItem> Data { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.RunResultItem> Data { get => _explicitNullValueData; set { _explicitNullValueData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.RunResultItem> _explicitNullValueData = default!;
 #endif
         /// <summary>The finished property</summary>
-        public double? Finished { get; set; }
+        public double? Finished { get => _explicitNullValueFinished; set { _explicitNullValueFinished = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("finished"); else _explicitNullProperties?.Remove("finished"); } }
+        private double? _explicitNullValueFinished = default!;
         /// <summary>The routine_run_id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RoutineRunId { get; set; }
+        public string? RoutineRunId { get => _explicitNullValueRoutineRunId; set { _explicitNullValueRoutineRunId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("routine_run_id"); else _explicitNullProperties?.Remove("routine_run_id"); } }
+        private string? _explicitNullValueRoutineRunId = default!;
 #nullable restore
 #else
-        public string RoutineRunId { get; set; }
+        public string RoutineRunId { get => _explicitNullValueRoutineRunId; set { _explicitNullValueRoutineRunId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("routine_run_id"); else _explicitNullProperties?.Remove("routine_run_id"); } }
+        private string _explicitNullValueRoutineRunId = default!;
 #endif
         /// <summary>The status property</summary>
-        public global::Soenneker.Clay.OpenApiClient.Models.RunResultsCompleteStatus? Status { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.RunResultsCompleteStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.RunResultsCompleteStatus? _explicitNullValueStatus = default!;
         /// <summary>The total property</summary>
-        public double? Total { get; set; }
+        public double? Total { get => _explicitNullValueTotal; set { _explicitNullValueTotal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("total"); else _explicitNullProperties?.Remove("total"); } }
+        private double? _explicitNullValueTotal = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -50,7 +72,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.RunResultsComplete CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Clay.OpenApiClient.Models.RunResultsComplete();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.RunResultsComplete(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -80,7 +102,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
             writer.WriteDoubleValue("finished", Finished);
             writer.WriteStringValue("routine_run_id", RoutineRunId);
             writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.RunResultsCompleteStatus>("status", Status);
-            writer.WriteDoubleValue("total", Total);
+            writer.WriteDoubleValue("total", Total);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

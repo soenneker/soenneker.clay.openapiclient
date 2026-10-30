@@ -11,30 +11,46 @@ namespace Soenneker.Clay.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class SearchFieldsGuidance : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("behavior") is { } nullNodeBehavior && nullNodeBehavior.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Behavior = null;
+            if (parseNode.GetChildNode("create_examples") is { } nullNodeCreateExamples && nullNodeCreateExamples.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreateExamples = null;
+            if (parseNode.GetChildNode("field_guidance") is { } nullNodeFieldGuidance && nullNodeFieldGuidance.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FieldGuidance = null;
+        }
+
         /// <summary>The behavior property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Behavior { get; set; }
+        public List<string>? Behavior { get => _explicitNullValueBehavior; set { _explicitNullValueBehavior = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("behavior"); else _explicitNullProperties?.Remove("behavior"); } }
+        private List<string>? _explicitNullValueBehavior = default!;
 #nullable restore
 #else
-        public List<string> Behavior { get; set; }
+        public List<string> Behavior { get => _explicitNullValueBehavior; set { _explicitNullValueBehavior = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("behavior"); else _explicitNullProperties?.Remove("behavior"); } }
+        private List<string> _explicitNullValueBehavior = default!;
 #endif
         /// <summary>The create_examples property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Clay.OpenApiClient.Models.SearchCreateExample>? CreateExamples { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.SearchCreateExample>? CreateExamples { get => _explicitNullValueCreateExamples; set { _explicitNullValueCreateExamples = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("create_examples"); else _explicitNullProperties?.Remove("create_examples"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.SearchCreateExample>? _explicitNullValueCreateExamples = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Clay.OpenApiClient.Models.SearchCreateExample> CreateExamples { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.SearchCreateExample> CreateExamples { get => _explicitNullValueCreateExamples; set { _explicitNullValueCreateExamples = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("create_examples"); else _explicitNullProperties?.Remove("create_examples"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.SearchCreateExample> _explicitNullValueCreateExamples = default!;
 #endif
         /// <summary>The field_guidance property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Clay.OpenApiClient.Models.SearchGuidanceItem>? FieldGuidance { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.SearchGuidanceItem>? FieldGuidance { get => _explicitNullValueFieldGuidance; set { _explicitNullValueFieldGuidance = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("field_guidance"); else _explicitNullProperties?.Remove("field_guidance"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.SearchGuidanceItem>? _explicitNullValueFieldGuidance = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Clay.OpenApiClient.Models.SearchGuidanceItem> FieldGuidance { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.SearchGuidanceItem> FieldGuidance { get => _explicitNullValueFieldGuidance; set { _explicitNullValueFieldGuidance = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("field_guidance"); else _explicitNullProperties?.Remove("field_guidance"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.SearchGuidanceItem> _explicitNullValueFieldGuidance = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -44,7 +60,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsGuidance CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsGuidance();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsGuidance(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,7 +84,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("behavior", Behavior);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.SearchCreateExample>("create_examples", CreateExamples);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.SearchGuidanceItem>("field_guidance", FieldGuidance);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.SearchGuidanceItem>("field_guidance", FieldGuidance);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

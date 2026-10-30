@@ -11,56 +11,83 @@ namespace Soenneker.Clay.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PublicApiPersonSearchResult : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("clay_profile_id") is { } nullNodeClayProfileId && nullNodeClayProfileId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ClayProfileId = null;
+            if (parseNode.GetChildNode("first_name") is { } nullNodeFirstName && nullNodeFirstName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FirstName = null;
+            if (parseNode.GetChildNode("last_name") is { } nullNodeLastName && nullNodeLastName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastName = null;
+            if (parseNode.GetChildNode("linkedin_url") is { } nullNodeLinkedinUrl && nullNodeLinkedinUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LinkedinUrl = null;
+            if (parseNode.GetChildNode("location") is { } nullNodeLocation && nullNodeLocation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Location = null;
+            if (parseNode.GetChildNode("matched_experiences") is { } nullNodeMatchedExperiences && nullNodeMatchedExperiences.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MatchedExperiences = null;
+            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+        }
+
         /// <summary>The clay_profile_id property</summary>
-        public double? ClayProfileId { get; set; }
+        public double? ClayProfileId { get => _explicitNullValueClayProfileId; set { _explicitNullValueClayProfileId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("clay_profile_id"); else _explicitNullProperties?.Remove("clay_profile_id"); } }
+        private double? _explicitNullValueClayProfileId = default!;
         /// <summary>The first_name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FirstName { get; set; }
+        public string? FirstName { get => _explicitNullValueFirstName; set { _explicitNullValueFirstName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("first_name"); else _explicitNullProperties?.Remove("first_name"); } }
+        private string? _explicitNullValueFirstName = default!;
 #nullable restore
 #else
-        public string FirstName { get; set; }
+        public string FirstName { get => _explicitNullValueFirstName; set { _explicitNullValueFirstName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("first_name"); else _explicitNullProperties?.Remove("first_name"); } }
+        private string _explicitNullValueFirstName = default!;
 #endif
         /// <summary>The last_name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LastName { get; set; }
+        public string? LastName { get => _explicitNullValueLastName; set { _explicitNullValueLastName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("last_name"); else _explicitNullProperties?.Remove("last_name"); } }
+        private string? _explicitNullValueLastName = default!;
 #nullable restore
 #else
-        public string LastName { get; set; }
+        public string LastName { get => _explicitNullValueLastName; set { _explicitNullValueLastName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("last_name"); else _explicitNullProperties?.Remove("last_name"); } }
+        private string _explicitNullValueLastName = default!;
 #endif
         /// <summary>The linkedin_url property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LinkedinUrl { get; set; }
+        public string? LinkedinUrl { get => _explicitNullValueLinkedinUrl; set { _explicitNullValueLinkedinUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("linkedin_url"); else _explicitNullProperties?.Remove("linkedin_url"); } }
+        private string? _explicitNullValueLinkedinUrl = default!;
 #nullable restore
 #else
-        public string LinkedinUrl { get; set; }
+        public string LinkedinUrl { get => _explicitNullValueLinkedinUrl; set { _explicitNullValueLinkedinUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("linkedin_url"); else _explicitNullProperties?.Remove("linkedin_url"); } }
+        private string _explicitNullValueLinkedinUrl = default!;
 #endif
         /// <summary>The location property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Clay.OpenApiClient.Models.PublicApiPersonSearchResultLocation? Location { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.PublicApiPersonSearchResultLocation? Location { get => _explicitNullValueLocation; set { _explicitNullValueLocation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("location"); else _explicitNullProperties?.Remove("location"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.PublicApiPersonSearchResultLocation? _explicitNullValueLocation = default!;
 #nullable restore
 #else
-        public global::Soenneker.Clay.OpenApiClient.Models.PublicApiPersonSearchResultLocation Location { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.PublicApiPersonSearchResultLocation Location { get => _explicitNullValueLocation; set { _explicitNullValueLocation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("location"); else _explicitNullProperties?.Remove("location"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.PublicApiPersonSearchResultLocation _explicitNullValueLocation = default!;
 #endif
         /// <summary>The matched_experiences property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Clay.OpenApiClient.Models.PublicApiMatchedExperience>? MatchedExperiences { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.PublicApiMatchedExperience>? MatchedExperiences { get => _explicitNullValueMatchedExperiences; set { _explicitNullValueMatchedExperiences = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("matched_experiences"); else _explicitNullProperties?.Remove("matched_experiences"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.PublicApiMatchedExperience>? _explicitNullValueMatchedExperiences = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Clay.OpenApiClient.Models.PublicApiMatchedExperience> MatchedExperiences { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.PublicApiMatchedExperience> MatchedExperiences { get => _explicitNullValueMatchedExperiences; set { _explicitNullValueMatchedExperiences = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("matched_experiences"); else _explicitNullProperties?.Remove("matched_experiences"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.PublicApiMatchedExperience> _explicitNullValueMatchedExperiences = default!;
 #endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string _explicitNullValueName = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -70,7 +97,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.PublicApiPersonSearchResult CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Clay.OpenApiClient.Models.PublicApiPersonSearchResult();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.PublicApiPersonSearchResult(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -102,7 +129,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
             writer.WriteStringValue("linkedin_url", LinkedinUrl);
             writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.PublicApiPersonSearchResultLocation>("location", Location);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.PublicApiMatchedExperience>("matched_experiences", MatchedExperiences);
-            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("name", Name);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

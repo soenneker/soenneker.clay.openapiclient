@@ -59,6 +59,8 @@ namespace Soenneker.Clay.OpenApiClient.Workflows.Runs.Query.Reference
                 { "401", global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Clay.OpenApiClient.Models.RunsQueryReferenceResponse>(requestInfo, global::Soenneker.Clay.OpenApiClient.Models.RunsQueryReferenceResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

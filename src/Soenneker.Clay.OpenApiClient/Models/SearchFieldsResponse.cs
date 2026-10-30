@@ -11,25 +11,40 @@ namespace Soenneker.Clay.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class SearchFieldsResponse : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("fields") is { } nullNodeFields && nullNodeFields.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Fields = null;
+            if (parseNode.GetChildNode("guidance") is { } nullNodeGuidance && nullNodeGuidance.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Guidance = null;
+            if (parseNode.GetChildNode("source_type") is { } nullNodeSourceType && nullNodeSourceType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceType = null;
+        }
+
         /// <summary>The fields property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Clay.OpenApiClient.Models.SearchFilterField>? Fields { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.SearchFilterField>? Fields { get => _explicitNullValueFields; set { _explicitNullValueFields = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fields"); else _explicitNullProperties?.Remove("fields"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.SearchFilterField>? _explicitNullValueFields = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Clay.OpenApiClient.Models.SearchFilterField> Fields { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.SearchFilterField> Fields { get => _explicitNullValueFields; set { _explicitNullValueFields = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fields"); else _explicitNullProperties?.Remove("fields"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.SearchFilterField> _explicitNullValueFields = default!;
 #endif
         /// <summary>The guidance property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsGuidance? Guidance { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsGuidance? Guidance { get => _explicitNullValueGuidance; set { _explicitNullValueGuidance = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("guidance"); else _explicitNullProperties?.Remove("guidance"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsGuidance? _explicitNullValueGuidance = default!;
 #nullable restore
 #else
-        public global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsGuidance Guidance { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsGuidance Guidance { get => _explicitNullValueGuidance; set { _explicitNullValueGuidance = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("guidance"); else _explicitNullProperties?.Remove("guidance"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsGuidance _explicitNullValueGuidance = default!;
 #endif
         /// <summary>The source_type property</summary>
-        public global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsResponseSourceType? SourceType { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsResponseSourceType? SourceType { get => _explicitNullValueSourceType; set { _explicitNullValueSourceType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("source_type"); else _explicitNullProperties?.Remove("source_type"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsResponseSourceType? _explicitNullValueSourceType = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -38,7 +53,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsResponse();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsResponse(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,7 +77,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.SearchFilterField>("fields", Fields);
             writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsGuidance>("guidance", Guidance);
-            writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsResponseSourceType>("source_type", SourceType);
+            writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.SearchFieldsResponseSourceType>("source_type", SourceType);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

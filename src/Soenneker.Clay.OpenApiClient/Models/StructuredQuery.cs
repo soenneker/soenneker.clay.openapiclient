@@ -11,56 +11,83 @@ namespace Soenneker.Clay.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class StructuredQuery : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("field_mode") is { } nullNodeFieldMode && nullNodeFieldMode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FieldMode = null;
+            if (parseNode.GetChildNode("filter") is { } nullNodeFilter && nullNodeFilter.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Filter = null;
+            if (parseNode.GetChildNode("group_by") is { } nullNodeGroupBy && nullNodeGroupBy.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) GroupBy = null;
+            if (parseNode.GetChildNode("join") is { } nullNodeJoin && nullNodeJoin.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Join = null;
+            if (parseNode.GetChildNode("order_by") is { } nullNodeOrderBy && nullNodeOrderBy.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrderBy = null;
+            if (parseNode.GetChildNode("select") is { } nullNodeSelect && nullNodeSelect.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Select = null;
+            if (parseNode.GetChildNode("tables") is { } nullNodeTables && nullNodeTables.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tables = null;
+        }
+
         /// <summary>The field_mode property</summary>
-        public global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryFieldMode? FieldMode { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryFieldMode? FieldMode { get => _explicitNullValueFieldMode; set { _explicitNullValueFieldMode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("field_mode"); else _explicitNullProperties?.Remove("field_mode"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryFieldMode? _explicitNullValueFieldMode = default!;
         /// <summary>The filter property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Clay.OpenApiClient.Models.FilterExpression? Filter { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.FilterExpression? Filter { get => _explicitNullValueFilter; set { _explicitNullValueFilter = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filter"); else _explicitNullProperties?.Remove("filter"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.FilterExpression? _explicitNullValueFilter = default!;
 #nullable restore
 #else
-        public global::Soenneker.Clay.OpenApiClient.Models.FilterExpression Filter { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.FilterExpression Filter { get => _explicitNullValueFilter; set { _explicitNullValueFilter = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filter"); else _explicitNullProperties?.Remove("filter"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.FilterExpression _explicitNullValueFilter = default!;
 #endif
         /// <summary>The group_by property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? GroupBy { get; set; }
+        public List<string>? GroupBy { get => _explicitNullValueGroupBy; set { _explicitNullValueGroupBy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("group_by"); else _explicitNullProperties?.Remove("group_by"); } }
+        private List<string>? _explicitNullValueGroupBy = default!;
 #nullable restore
 #else
-        public List<string> GroupBy { get; set; }
+        public List<string> GroupBy { get => _explicitNullValueGroupBy; set { _explicitNullValueGroupBy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("group_by"); else _explicitNullProperties?.Remove("group_by"); } }
+        private List<string> _explicitNullValueGroupBy = default!;
 #endif
         /// <summary>The join property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItem>? Join { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItem>? Join { get => _explicitNullValueJoin; set { _explicitNullValueJoin = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("join"); else _explicitNullProperties?.Remove("join"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItem>? _explicitNullValueJoin = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItem> Join { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItem> Join { get => _explicitNullValueJoin; set { _explicitNullValueJoin = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("join"); else _explicitNullProperties?.Remove("join"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItem> _explicitNullValueJoin = default!;
 #endif
         /// <summary>Custom sort. Queries with a custom order_by do not support cursor pagination.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryOrderByItem>? OrderBy { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryOrderByItem>? OrderBy { get => _explicitNullValueOrderBy; set { _explicitNullValueOrderBy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("order_by"); else _explicitNullProperties?.Remove("order_by"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryOrderByItem>? _explicitNullValueOrderBy = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryOrderByItem> OrderBy { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryOrderByItem> OrderBy { get => _explicitNullValueOrderBy; set { _explicitNullValueOrderBy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("order_by"); else _explicitNullProperties?.Remove("order_by"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryOrderByItem> _explicitNullValueOrderBy = default!;
 #endif
         /// <summary>The select property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQuerySelectItem>? Select { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQuerySelectItem>? Select { get => _explicitNullValueSelect; set { _explicitNullValueSelect = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("select"); else _explicitNullProperties?.Remove("select"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQuerySelectItem>? _explicitNullValueSelect = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQuerySelectItem> Select { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQuerySelectItem> Select { get => _explicitNullValueSelect; set { _explicitNullValueSelect = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("select"); else _explicitNullProperties?.Remove("select"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQuerySelectItem> _explicitNullValueSelect = default!;
 #endif
         /// <summary>The tables property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryTablesItem>? Tables { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryTablesItem>? Tables { get => _explicitNullValueTables; set { _explicitNullValueTables = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tables"); else _explicitNullProperties?.Remove("tables"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryTablesItem>? _explicitNullValueTables = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryTablesItem> Tables { get; set; }
+        public List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryTablesItem> Tables { get => _explicitNullValueTables; set { _explicitNullValueTables = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tables"); else _explicitNullProperties?.Remove("tables"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryTablesItem> _explicitNullValueTables = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -70,7 +97,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.StructuredQuery CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Clay.OpenApiClient.Models.StructuredQuery();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.StructuredQuery(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -102,7 +129,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItem>("join", Join);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryOrderByItem>("order_by", OrderBy);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.StructuredQuerySelectItem>("select", Select);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryTablesItem>("tables", Tables);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryTablesItem>("tables", Tables);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

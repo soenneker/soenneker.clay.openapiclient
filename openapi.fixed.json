@@ -40,6 +40,9 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/PrivacyDeletePeopleSuccessResponse"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/AudiencesPrivacyDeletePeople200Response"
                 }
               }
@@ -50,6 +53,9 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/PrivacyDeletePeopleSuccessResponse"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/AudiencesPrivacyDeletePeople202Response"
                 }
               }
@@ -134,6 +140,9 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/GetPrivacyDeleteStatusSuccessResponse"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/GetPrivacyDeleteStatus200Response"
                 }
               }
@@ -144,6 +153,9 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/GetPrivacyDeleteStatusSuccessResponse"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/GetPrivacyDeleteStatus202Response"
                 }
               }
@@ -332,6 +344,9 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/GetRoutineRunBatchResultsSuccessResponse"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/BatchResultsTerminal"
                 }
               }
@@ -342,6 +357,9 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/GetRoutineRunBatchResultsSuccessResponse"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/BatchResultsInProgress"
                 }
               }
@@ -433,6 +451,9 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/GetRunResultsSuccessResponse"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/RunResultsComplete"
                 }
               }
@@ -443,6 +464,9 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/GetRunResultsSuccessResponse"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/RunResultsInProgress"
                 }
               }
@@ -4326,6 +4350,46 @@
             }
           ]
         }
+      },
+      "PrivacyDeletePeopleSuccessResponse": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/AudiencesPrivacyDeletePeople200Response"
+          },
+          {
+            "$ref": "#/components/schemas/AudiencesPrivacyDeletePeople202Response"
+          }
+        ]
+      },
+      "GetPrivacyDeleteStatusSuccessResponse": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/GetPrivacyDeleteStatus200Response"
+          },
+          {
+            "$ref": "#/components/schemas/GetPrivacyDeleteStatus202Response"
+          }
+        ]
+      },
+      "GetRoutineRunBatchResultsSuccessResponse": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/BatchResultsTerminal"
+          },
+          {
+            "$ref": "#/components/schemas/BatchResultsInProgress"
+          }
+        ]
+      },
+      "GetRunResultsSuccessResponse": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/RunResultsComplete"
+          },
+          {
+            "$ref": "#/components/schemas/RunResultsInProgress"
+          }
+        ]
       }
     },
     "securitySchemes": {

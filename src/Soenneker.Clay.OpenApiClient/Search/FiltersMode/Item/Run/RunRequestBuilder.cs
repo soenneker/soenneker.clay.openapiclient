@@ -68,6 +68,8 @@ namespace Soenneker.Clay.OpenApiClient.Search.FiltersMode.Item.Run
                 { "404", global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "413", global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Clay.OpenApiClient.Models.NextSearchResultsResponse>(requestInfo, global::Soenneker.Clay.OpenApiClient.Models.NextSearchResultsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

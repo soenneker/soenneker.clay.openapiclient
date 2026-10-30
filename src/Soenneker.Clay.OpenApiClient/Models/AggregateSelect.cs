@@ -11,32 +11,50 @@ namespace Soenneker.Clay.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class AggregateSelect : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("as") is { } nullNodeAs && nullNodeAs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) As = null;
+            if (parseNode.GetChildNode("field") is { } nullNodeField && nullNodeField.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Field = null;
+            if (parseNode.GetChildNode("fn") is { } nullNodeFn && nullNodeFn.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Fn = null;
+            if (parseNode.GetChildNode("path") is { } nullNodePath && nullNodePath.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Path = null;
+        }
+
         /// <summary>The as property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? As { get; set; }
+        public string? As { get => _explicitNullValueAs; set { _explicitNullValueAs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("as"); else _explicitNullProperties?.Remove("as"); } }
+        private string? _explicitNullValueAs = default!;
 #nullable restore
 #else
-        public string As { get; set; }
+        public string As { get => _explicitNullValueAs; set { _explicitNullValueAs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("as"); else _explicitNullProperties?.Remove("as"); } }
+        private string _explicitNullValueAs = default!;
 #endif
         /// <summary>The field property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Field { get; set; }
+        public string? Field { get => _explicitNullValueField; set { _explicitNullValueField = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("field"); else _explicitNullProperties?.Remove("field"); } }
+        private string? _explicitNullValueField = default!;
 #nullable restore
 #else
-        public string Field { get; set; }
+        public string Field { get => _explicitNullValueField; set { _explicitNullValueField = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("field"); else _explicitNullProperties?.Remove("field"); } }
+        private string _explicitNullValueField = default!;
 #endif
         /// <summary>The fn property</summary>
-        public global::Soenneker.Clay.OpenApiClient.Models.AggregateSelectFn? Fn { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.AggregateSelectFn? Fn { get => _explicitNullValueFn; set { _explicitNullValueFn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fn"); else _explicitNullProperties?.Remove("fn"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.AggregateSelectFn? _explicitNullValueFn = default!;
         /// <summary>The path property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Path { get; set; }
+        public List<string>? Path { get => _explicitNullValuePath; set { _explicitNullValuePath = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("path"); else _explicitNullProperties?.Remove("path"); } }
+        private List<string>? _explicitNullValuePath = default!;
 #nullable restore
 #else
-        public List<string> Path { get; set; }
+        public List<string> Path { get => _explicitNullValuePath; set { _explicitNullValuePath = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("path"); else _explicitNullProperties?.Remove("path"); } }
+        private List<string> _explicitNullValuePath = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -46,7 +64,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.AggregateSelect CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Clay.OpenApiClient.Models.AggregateSelect();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.AggregateSelect(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,7 +90,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
             writer.WriteStringValue("as", As);
             writer.WriteStringValue("field", Field);
             writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.AggregateSelectFn>("fn", Fn);
-            writer.WriteCollectionOfPrimitiveValues<string>("path", Path);
+            writer.WriteCollectionOfPrimitiveValues<string>("path", Path);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

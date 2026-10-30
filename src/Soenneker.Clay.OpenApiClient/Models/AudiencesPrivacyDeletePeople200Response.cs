@@ -8,27 +8,37 @@ using System;
 namespace Soenneker.Clay.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleDryRunResponse"/>, <see cref="global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleNoMatchesResponse"/>
+    /// Returns HTTP 200 for a dry-run preview or when no people match.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class AudiencesPrivacyDeletePeople200Response : IComposedTypeWrapper, IParsable
-    {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleDryRunResponse"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+    public partial class AudiencesPrivacyDeletePeople200Response : IAdditionalDataHolder, IParsable
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("matched_count") is { } nullNodeMatchedCount && nullNodeMatchedCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MatchedCount = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+        }
+
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The number of unique matching people, including archived people. No deletion was queued.</summary>
+        public int? MatchedCount { get => _explicitNullValueMatchedCount; set { _explicitNullValueMatchedCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("matched_count"); else _explicitNullProperties?.Remove("matched_count"); } }
+        private int? _explicitNullValueMatchedCount = default!;
+        /// <summary>The status property</summary>
 #nullable enable
-        public global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleDryRunResponse? AudiencesPrivacyDeletePeopleDryRunResponse { get; set; }
+        public string? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private string? _explicitNullValueStatus = default!;
 #nullable restore
-#else
-        public global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleDryRunResponse AudiencesPrivacyDeletePeopleDryRunResponse { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleNoMatchesResponse"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleNoMatchesResponse? AudiencesPrivacyDeletePeopleNoMatchesResponse { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleNoMatchesResponse AudiencesPrivacyDeletePeopleNoMatchesResponse { get; set; }
-#endif
+        /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeople200Response"/> and sets the default values.
+        /// </summary>
+        public AudiencesPrivacyDeletePeople200Response()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -37,17 +47,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeople200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("status")?.GetStringValue();
-            var result = new global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeople200Response();
-            if("dry_run".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-            {
-                result.AudiencesPrivacyDeletePeopleDryRunResponse = new global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleDryRunResponse();
-            }
-            else if("no_matches".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-            {
-                result.AudiencesPrivacyDeletePeopleNoMatchesResponse = new global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleNoMatchesResponse();
-            }
-            return result;
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeople200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,15 +55,11 @@ namespace Soenneker.Clay.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(AudiencesPrivacyDeletePeopleDryRunResponse != null)
+            return new Dictionary<string, Action<IParseNode>>
             {
-                return AudiencesPrivacyDeletePeopleDryRunResponse.GetFieldDeserializers();
-            }
-            else if(AudiencesPrivacyDeletePeopleNoMatchesResponse != null)
-            {
-                return AudiencesPrivacyDeletePeopleNoMatchesResponse.GetFieldDeserializers();
-            }
-            return new Dictionary<string, Action<IParseNode>>();
+                { "matched_count", n => { MatchedCount = n.GetIntValue(); } },
+                { "status", n => { Status = n.GetStringValue(); } },
+            };
         }
         /// <summary>
         /// Serializes information the current object
@@ -72,14 +68,10 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(AudiencesPrivacyDeletePeopleDryRunResponse != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleDryRunResponse>(null, AudiencesPrivacyDeletePeopleDryRunResponse);
-            }
-            else if(AudiencesPrivacyDeletePeopleNoMatchesResponse != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeopleNoMatchesResponse>(null, AudiencesPrivacyDeletePeopleNoMatchesResponse);
-            }
+            writer.WriteIntValue("matched_count", MatchedCount);
+            writer.WriteStringValue("status", Status);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

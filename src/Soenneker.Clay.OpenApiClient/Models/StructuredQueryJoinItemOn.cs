@@ -11,22 +11,35 @@ namespace Soenneker.Clay.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class StructuredQueryJoinItemOn : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("left") is { } nullNodeLeft && nullNodeLeft.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Left = null;
+            if (parseNode.GetChildNode("right") is { } nullNodeRight && nullNodeRight.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Right = null;
+        }
+
         /// <summary>The left property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Left { get; set; }
+        public string? Left { get => _explicitNullValueLeft; set { _explicitNullValueLeft = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("left"); else _explicitNullProperties?.Remove("left"); } }
+        private string? _explicitNullValueLeft = default!;
 #nullable restore
 #else
-        public string Left { get; set; }
+        public string Left { get => _explicitNullValueLeft; set { _explicitNullValueLeft = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("left"); else _explicitNullProperties?.Remove("left"); } }
+        private string _explicitNullValueLeft = default!;
 #endif
         /// <summary>The right property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Right { get; set; }
+        public string? Right { get => _explicitNullValueRight; set { _explicitNullValueRight = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("right"); else _explicitNullProperties?.Remove("right"); } }
+        private string? _explicitNullValueRight = default!;
 #nullable restore
 #else
-        public string Right { get; set; }
+        public string Right { get => _explicitNullValueRight; set { _explicitNullValueRight = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("right"); else _explicitNullProperties?.Remove("right"); } }
+        private string _explicitNullValueRight = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -36,7 +49,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItemOn CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItemOn();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.StructuredQueryJoinItemOn(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -58,7 +71,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("left", Left);
-            writer.WriteStringValue("right", Right);
+            writer.WriteStringValue("right", Right);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

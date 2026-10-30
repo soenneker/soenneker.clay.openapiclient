@@ -11,21 +11,37 @@ namespace Soenneker.Clay.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class NextQueryModeCompanyResultsResponsePeriodQuota : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("limit") is { } nullNodeLimit && nullNodeLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Limit = null;
+            if (parseNode.GetChildNode("remaining") is { } nullNodeRemaining && nullNodeRemaining.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Remaining = null;
+            if (parseNode.GetChildNode("resets_at") is { } nullNodeResetsAt && nullNodeResetsAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResetsAt = null;
+            if (parseNode.GetChildNode("used") is { } nullNodeUsed && nullNodeUsed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Used = null;
+        }
+
         /// <summary>The limit property</summary>
-        public double? Limit { get; set; }
+        public double? Limit { get => _explicitNullValueLimit; set { _explicitNullValueLimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("limit"); else _explicitNullProperties?.Remove("limit"); } }
+        private double? _explicitNullValueLimit = default!;
         /// <summary>The remaining property</summary>
-        public double? Remaining { get; set; }
+        public double? Remaining { get => _explicitNullValueRemaining; set { _explicitNullValueRemaining = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("remaining"); else _explicitNullProperties?.Remove("remaining"); } }
+        private double? _explicitNullValueRemaining = default!;
         /// <summary>The resets_at property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ResetsAt { get; set; }
+        public string? ResetsAt { get => _explicitNullValueResetsAt; set { _explicitNullValueResetsAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resets_at"); else _explicitNullProperties?.Remove("resets_at"); } }
+        private string? _explicitNullValueResetsAt = default!;
 #nullable restore
 #else
-        public string ResetsAt { get; set; }
+        public string ResetsAt { get => _explicitNullValueResetsAt; set { _explicitNullValueResetsAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resets_at"); else _explicitNullProperties?.Remove("resets_at"); } }
+        private string _explicitNullValueResetsAt = default!;
 #endif
         /// <summary>The used property</summary>
-        public double? Used { get; set; }
+        public double? Used { get => _explicitNullValueUsed; set { _explicitNullValueUsed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("used"); else _explicitNullProperties?.Remove("used"); } }
+        private double? _explicitNullValueUsed = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -34,7 +50,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.NextQueryModeCompanyResultsResponsePeriodQuota CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Clay.OpenApiClient.Models.NextQueryModeCompanyResultsResponsePeriodQuota();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.NextQueryModeCompanyResultsResponsePeriodQuota(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -60,7 +76,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
             writer.WriteDoubleValue("limit", Limit);
             writer.WriteDoubleValue("remaining", Remaining);
             writer.WriteStringValue("resets_at", ResetsAt);
-            writer.WriteDoubleValue("used", Used);
+            writer.WriteDoubleValue("used", Used);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

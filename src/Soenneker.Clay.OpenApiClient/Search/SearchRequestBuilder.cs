@@ -17,6 +17,7 @@ namespace Soenneker.Clay.OpenApiClient.Search
     public partial class SearchRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The filtersMode property</summary>
+        [Obsolete("")]
         public global::Soenneker.Clay.OpenApiClient.Search.FiltersMode.FiltersModeRequestBuilder FiltersMode
         {
             get => new global::Soenneker.Clay.OpenApiClient.Search.FiltersMode.FiltersModeRequestBuilder(PathParameters, RequestAdapter);

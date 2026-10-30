@@ -7,36 +7,74 @@ using System.IO;
 using System;
 namespace Soenneker.Clay.OpenApiClient.Models
 {
-    /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Clay.OpenApiClient.Models.BatchResultsComplete"/>, <see cref="global::Soenneker.Clay.OpenApiClient.Models.BatchResultsProcessingFailed"/>, <see cref="global::Soenneker.Clay.OpenApiClient.Models.BatchResultsValidationFailed"/>
-    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class BatchResultsTerminal : IComposedTypeWrapper, IParsable
-    {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Clay.OpenApiClient.Models.BatchResultsComplete"/></summary>
+    #pragma warning disable CS1591
+    public partial class BatchResultsTerminal : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("error") is { } nullNodeError && nullNodeError.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Error = null;
+            if (parseNode.GetChildNode("finished") is { } nullNodeFinished && nullNodeFinished.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Finished = null;
+            if (parseNode.GetChildNode("result_url") is { } nullNodeResultUrl && nullNodeResultUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResultUrl = null;
+            if (parseNode.GetChildNode("routine_run_id") is { } nullNodeRoutineRunId && nullNodeRoutineRunId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RoutineRunId = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("total") is { } nullNodeTotal && nullNodeTotal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Total = null;
+        }
+
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The error property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Clay.OpenApiClient.Models.BatchResultsComplete? BatchResultsComplete { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.BatchValidationError? Error { get => _explicitNullValueError; set { _explicitNullValueError = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.BatchValidationError? _explicitNullValueError = default!;
 #nullable restore
 #else
-        public global::Soenneker.Clay.OpenApiClient.Models.BatchResultsComplete BatchResultsComplete { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.BatchValidationError Error { get => _explicitNullValueError; set { _explicitNullValueError = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.BatchValidationError _explicitNullValueError = default!;
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Clay.OpenApiClient.Models.BatchResultsProcessingFailed"/></summary>
+        /// <summary>The finished property</summary>
+        public double? Finished { get => _explicitNullValueFinished; set { _explicitNullValueFinished = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("finished"); else _explicitNullProperties?.Remove("finished"); } }
+        private double? _explicitNullValueFinished = default!;
+        /// <summary>The result_url property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Clay.OpenApiClient.Models.BatchResultsProcessingFailed? BatchResultsProcessingFailed { get; set; }
+        public string? ResultUrl { get => _explicitNullValueResultUrl; set { _explicitNullValueResultUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("result_url"); else _explicitNullProperties?.Remove("result_url"); } }
+        private string? _explicitNullValueResultUrl = default!;
 #nullable restore
 #else
-        public global::Soenneker.Clay.OpenApiClient.Models.BatchResultsProcessingFailed BatchResultsProcessingFailed { get; set; }
+        public string ResultUrl { get => _explicitNullValueResultUrl; set { _explicitNullValueResultUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("result_url"); else _explicitNullProperties?.Remove("result_url"); } }
+        private string _explicitNullValueResultUrl = default!;
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Clay.OpenApiClient.Models.BatchResultsValidationFailed"/></summary>
+        /// <summary>The routine_run_id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Clay.OpenApiClient.Models.BatchResultsValidationFailed? BatchResultsValidationFailed { get; set; }
+        public string? RoutineRunId { get => _explicitNullValueRoutineRunId; set { _explicitNullValueRoutineRunId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("routine_run_id"); else _explicitNullProperties?.Remove("routine_run_id"); } }
+        private string? _explicitNullValueRoutineRunId = default!;
 #nullable restore
 #else
-        public global::Soenneker.Clay.OpenApiClient.Models.BatchResultsValidationFailed BatchResultsValidationFailed { get; set; }
+        public string RoutineRunId { get => _explicitNullValueRoutineRunId; set { _explicitNullValueRoutineRunId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("routine_run_id"); else _explicitNullProperties?.Remove("routine_run_id"); } }
+        private string _explicitNullValueRoutineRunId = default!;
 #endif
+        /// <summary>The status property</summary>
+#nullable enable
+        public string? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private string? _explicitNullValueStatus = default!;
+#nullable restore
+        /// <summary>The total property</summary>
+        public double? Total { get => _explicitNullValueTotal; set { _explicitNullValueTotal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("total"); else _explicitNullProperties?.Remove("total"); } }
+        private double? _explicitNullValueTotal = default!;
+        /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Clay.OpenApiClient.Models.BatchResultsTerminal"/> and sets the default values.
+        /// </summary>
+        public BatchResultsTerminal()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -45,21 +83,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.BatchResultsTerminal CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("status")?.GetStringValue();
-            var result = new global::Soenneker.Clay.OpenApiClient.Models.BatchResultsTerminal();
-            if("complete".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-            {
-                result.BatchResultsComplete = new global::Soenneker.Clay.OpenApiClient.Models.BatchResultsComplete();
-            }
-            else if("processing_failed".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-            {
-                result.BatchResultsProcessingFailed = new global::Soenneker.Clay.OpenApiClient.Models.BatchResultsProcessingFailed();
-            }
-            else if("validation_failed".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-            {
-                result.BatchResultsValidationFailed = new global::Soenneker.Clay.OpenApiClient.Models.BatchResultsValidationFailed();
-            }
-            return result;
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.BatchResultsTerminal(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -67,19 +91,15 @@ namespace Soenneker.Clay.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(BatchResultsComplete != null)
+            return new Dictionary<string, Action<IParseNode>>
             {
-                return BatchResultsComplete.GetFieldDeserializers();
-            }
-            else if(BatchResultsProcessingFailed != null)
-            {
-                return BatchResultsProcessingFailed.GetFieldDeserializers();
-            }
-            else if(BatchResultsValidationFailed != null)
-            {
-                return BatchResultsValidationFailed.GetFieldDeserializers();
-            }
-            return new Dictionary<string, Action<IParseNode>>();
+                { "error", n => { Error = n.GetObjectValue<global::Soenneker.Clay.OpenApiClient.Models.BatchValidationError>(global::Soenneker.Clay.OpenApiClient.Models.BatchValidationError.CreateFromDiscriminatorValue); } },
+                { "finished", n => { Finished = n.GetDoubleValue(); } },
+                { "result_url", n => { ResultUrl = n.GetStringValue(); } },
+                { "routine_run_id", n => { RoutineRunId = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetStringValue(); } },
+                { "total", n => { Total = n.GetDoubleValue(); } },
+            };
         }
         /// <summary>
         /// Serializes information the current object
@@ -88,18 +108,14 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(BatchResultsComplete != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.BatchResultsComplete>(null, BatchResultsComplete);
-            }
-            else if(BatchResultsProcessingFailed != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.BatchResultsProcessingFailed>(null, BatchResultsProcessingFailed);
-            }
-            else if(BatchResultsValidationFailed != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.BatchResultsValidationFailed>(null, BatchResultsValidationFailed);
-            }
+            writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.BatchValidationError>("error", Error);
+            writer.WriteDoubleValue("finished", Finished);
+            writer.WriteStringValue("result_url", ResultUrl);
+            writer.WriteStringValue("routine_run_id", RoutineRunId);
+            writer.WriteStringValue("status", Status);
+            writer.WriteDoubleValue("total", Total);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

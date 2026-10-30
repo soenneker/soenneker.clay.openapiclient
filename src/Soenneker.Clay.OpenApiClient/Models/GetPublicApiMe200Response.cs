@@ -11,22 +11,35 @@ namespace Soenneker.Clay.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetPublicApiMe200Response : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("user") is { } nullNodeUser && nullNodeUser.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) User = null;
+            if (parseNode.GetChildNode("workspace") is { } nullNodeWorkspace && nullNodeWorkspace.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Workspace = null;
+        }
+
         /// <summary>The user property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Clay.OpenApiClient.Models.GetPublicApiMe200ResponseUser? User { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.GetPublicApiMe200ResponseUser? User { get => _explicitNullValueUser; set { _explicitNullValueUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("user"); else _explicitNullProperties?.Remove("user"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.GetPublicApiMe200ResponseUser? _explicitNullValueUser = default!;
 #nullable restore
 #else
-        public global::Soenneker.Clay.OpenApiClient.Models.GetPublicApiMe200ResponseUser User { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.GetPublicApiMe200ResponseUser User { get => _explicitNullValueUser; set { _explicitNullValueUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("user"); else _explicitNullProperties?.Remove("user"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.GetPublicApiMe200ResponseUser _explicitNullValueUser = default!;
 #endif
         /// <summary>The workspace property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Clay.OpenApiClient.Models.GetPublicApiMe200ResponseWorkspace? Workspace { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.GetPublicApiMe200ResponseWorkspace? Workspace { get => _explicitNullValueWorkspace; set { _explicitNullValueWorkspace = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workspace"); else _explicitNullProperties?.Remove("workspace"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.GetPublicApiMe200ResponseWorkspace? _explicitNullValueWorkspace = default!;
 #nullable restore
 #else
-        public global::Soenneker.Clay.OpenApiClient.Models.GetPublicApiMe200ResponseWorkspace Workspace { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.GetPublicApiMe200ResponseWorkspace Workspace { get => _explicitNullValueWorkspace; set { _explicitNullValueWorkspace = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workspace"); else _explicitNullProperties?.Remove("workspace"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.GetPublicApiMe200ResponseWorkspace _explicitNullValueWorkspace = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -36,7 +49,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.GetPublicApiMe200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Clay.OpenApiClient.Models.GetPublicApiMe200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.GetPublicApiMe200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -58,7 +71,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.GetPublicApiMe200ResponseUser>("user", User);
-            writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.GetPublicApiMe200ResponseWorkspace>("workspace", Workspace);
+            writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.GetPublicApiMe200ResponseWorkspace>("workspace", Workspace);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

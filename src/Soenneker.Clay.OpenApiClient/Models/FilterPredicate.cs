@@ -11,32 +11,52 @@ namespace Soenneker.Clay.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class FilterPredicate : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("field") is { } nullNodeField && nullNodeField.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Field = null;
+            if (parseNode.GetChildNode("op") is { } nullNodeOp && nullNodeOp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Op = null;
+            if (parseNode.GetChildNode("path") is { } nullNodePath && nullNodePath.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Path = null;
+            if (parseNode.GetChildNode("value") is { } nullNodeValue && nullNodeValue.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Value = null;
+        }
+
         /// <summary>The field property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Field { get; set; }
+        public string? Field { get => _explicitNullValueField; set { _explicitNullValueField = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("field"); else _explicitNullProperties?.Remove("field"); } }
+        private string? _explicitNullValueField = default!;
 #nullable restore
 #else
-        public string Field { get; set; }
+        public string Field { get => _explicitNullValueField; set { _explicitNullValueField = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("field"); else _explicitNullProperties?.Remove("field"); } }
+        private string _explicitNullValueField = default!;
 #endif
         /// <summary>The op property</summary>
-        public global::Soenneker.Clay.OpenApiClient.Models.FilterPredicateOp? Op { get; set; }
+#nullable enable
+        public string? Op { get => _explicitNullValueOp; set { _explicitNullValueOp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("op"); else _explicitNullProperties?.Remove("op"); } }
+        private string? _explicitNullValueOp = default!;
+#nullable restore
         /// <summary>The path property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Path { get; set; }
+        public List<string>? Path { get => _explicitNullValuePath; set { _explicitNullValuePath = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("path"); else _explicitNullProperties?.Remove("path"); } }
+        private List<string>? _explicitNullValuePath = default!;
 #nullable restore
 #else
-        public List<string> Path { get; set; }
+        public List<string> Path { get => _explicitNullValuePath; set { _explicitNullValuePath = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("path"); else _explicitNullProperties?.Remove("path"); } }
+        private List<string> _explicitNullValuePath = default!;
 #endif
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Clay.OpenApiClient.Models.FilterPredicateValue? Value { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.FilterPredicateValue? Value { get => _explicitNullValueValue; set { _explicitNullValueValue = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("value"); else _explicitNullProperties?.Remove("value"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.FilterPredicateValue? _explicitNullValueValue = default!;
 #nullable restore
 #else
-        public global::Soenneker.Clay.OpenApiClient.Models.FilterPredicateValue Value { get; set; }
+        public global::Soenneker.Clay.OpenApiClient.Models.FilterPredicateValue Value { get => _explicitNullValueValue; set { _explicitNullValueValue = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("value"); else _explicitNullProperties?.Remove("value"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.FilterPredicateValue _explicitNullValueValue = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -46,7 +66,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.FilterPredicate CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Clay.OpenApiClient.Models.FilterPredicate();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.FilterPredicate(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -57,7 +77,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "field", n => { Field = n.GetStringValue(); } },
-                { "op", n => { Op = n.GetEnumValue<global::Soenneker.Clay.OpenApiClient.Models.FilterPredicateOp>(); } },
+                { "op", n => { Op = n.GetStringValue(); } },
                 { "path", n => { Path = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "value", n => { Value = n.GetObjectValue<global::Soenneker.Clay.OpenApiClient.Models.FilterPredicateValue>(global::Soenneker.Clay.OpenApiClient.Models.FilterPredicateValue.CreateFromDiscriminatorValue); } },
             };
@@ -70,9 +90,10 @@ namespace Soenneker.Clay.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("field", Field);
-            writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.FilterPredicateOp>("op", Op);
+            writer.WriteStringValue("op", Op);
             writer.WriteCollectionOfPrimitiveValues<string>("path", Path);
-            writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.FilterPredicateValue>("value", Value);
+            writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.FilterPredicateValue>("value", Value);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }
