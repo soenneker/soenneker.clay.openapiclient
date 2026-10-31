@@ -80,7 +80,7 @@ namespace Soenneker.Clay.OpenApiClient.Search.FiltersMode.Fields
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Clay.OpenApiClient.Search.FiltersMode.Fields.FieldsRequestBuilder.FieldsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve(UrlTemplate, RequestAdapter.BaseUrl, "https://api.clay.com/public/v0", "/search/filters-mode/fields", PathParameters.ContainsKey("request-raw-url")), PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
