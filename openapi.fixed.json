@@ -605,6 +605,17 @@
                 }
               }
             }
+          },
+          "200": {
+            "description": "202",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunRoutineResponse"
+                }
+              }
+            },
+            "x-client-success-response-status": "202"
           }
         }
       }
@@ -699,6 +710,17 @@
                 }
               }
             }
+          },
+          "200": {
+            "description": "202",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StartBatchResponse"
+                }
+              }
+            },
+            "x-client-success-response-status": "202"
           }
         }
       }
