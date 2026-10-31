@@ -120,7 +120,7 @@
           "audiences"
         ],
         "summary": "Get Audiences privacy deletion status",
-        "description": "Checks a privacy deletion job in your workspace, including tracked cascading cleanup. Status is available while the job is retained: up to five days after completion or failure, subject to a shared 100-job limit for each terminal state.",
+        "description": "Checks a privacy deletion job in your workspace, including tracked cascading cleanup. Completed and failed job statuses are retained for three days after completion or failure.",
         "operationId": "GetPrivacyDeleteStatus",
         "parameters": [
           {

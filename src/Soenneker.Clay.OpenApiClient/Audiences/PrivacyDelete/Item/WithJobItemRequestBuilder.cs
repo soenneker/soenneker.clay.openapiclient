@@ -34,7 +34,7 @@ namespace Soenneker.Clay.OpenApiClient.Audiences.PrivacyDelete.Item
         {
         }
         /// <summary>
-        /// Checks a privacy deletion job in your workspace, including tracked cascading cleanup. Status is available while the job is retained: up to five days after completion or failure, subject to a shared 100-job limit for each terminal state.
+        /// Checks a privacy deletion job in your workspace, including tracked cascading cleanup. Completed and failed job statuses are retained for three days after completion or failure.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Clay.OpenApiClient.Models.GetPrivacyDeleteStatusSuccessResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -67,7 +67,7 @@ namespace Soenneker.Clay.OpenApiClient.Audiences.PrivacyDelete.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Clay.OpenApiClient.Models.GetPrivacyDeleteStatusSuccessResponse>(requestInfo, global::Soenneker.Clay.OpenApiClient.Models.GetPrivacyDeleteStatusSuccessResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Checks a privacy deletion job in your workspace, including tracked cascading cleanup. Status is available while the job is retained: up to five days after completion or failure, subject to a shared 100-job limit for each terminal state.
+        /// Checks a privacy deletion job in your workspace, including tracked cascading cleanup. Completed and failed job statuses are retained for three days after completion or failure.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
