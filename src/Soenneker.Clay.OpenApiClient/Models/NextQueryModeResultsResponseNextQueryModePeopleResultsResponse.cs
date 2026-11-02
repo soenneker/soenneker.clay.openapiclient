@@ -9,14 +9,15 @@ namespace Soenneker.Clay.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class NextQueryModePeopleResultsResponse : IParsable
+    public partial class NextQueryModeResultsResponseNextQueryModePeopleResultsResponse : global::Soenneker.Clay.OpenApiClient.Models.NextQueryModeResultsResponse, IParsable
     #pragma warning restore CS1591
-    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+    {
         // Track explicitly assigned nulls separately from absent properties.
         private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
 
-        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        public override void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
+            base.CaptureExplicitNulls(parseNode);
             if (parseNode.GetChildNode("data") is null) { _explicitNullValueData = default!; _explicitNullProperties?.Remove("data"); }
             else if (parseNode.GetChildNode("data") is { } nullNodeData && nullNodeData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Data = null;
             if (parseNode.GetChildNode("exhaustion_reason") is null) { _explicitNullValueExhaustionReason = default!; _explicitNullProperties?.Remove("exhaustion_reason"); }
@@ -25,8 +26,6 @@ namespace Soenneker.Clay.OpenApiClient.Models
             else if (parseNode.GetChildNode("has_more") is { } nullNodeHasMore && nullNodeHasMore.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HasMore = null;
             if (parseNode.GetChildNode("period_quota") is null) { _explicitNullValuePeriodQuota = default!; _explicitNullProperties?.Remove("period_quota"); }
             else if (parseNode.GetChildNode("period_quota") is { } nullNodePeriodQuota && nullNodePeriodQuota.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PeriodQuota = null;
-            if (parseNode.GetChildNode("source_type") is null) { _explicitNullValueSourceType = default!; _explicitNullProperties?.Remove("source_type"); }
-            else if (parseNode.GetChildNode("source_type") is { } nullNodeSourceType && nullNodeSourceType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceType = null;
         }
 
         /// <summary>The data property</summary>
@@ -55,46 +54,42 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponsePeriodQuota PeriodQuota { get => _explicitNullValuePeriodQuota; set { _explicitNullValuePeriodQuota = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("period_quota"); else _explicitNullProperties?.Remove("period_quota"); } }
         private global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponsePeriodQuota _explicitNullValuePeriodQuota = default!;
 #endif
-        /// <summary>The source_type property</summary>
-        public global::Soenneker.Clay.OpenApiClient.Models.PeopleSourceType? SourceType { get => _explicitNullValueSourceType; set { _explicitNullValueSourceType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("source_type"); else _explicitNullProperties?.Remove("source_type"); } }
-        private global::Soenneker.Clay.OpenApiClient.Models.PeopleSourceType? _explicitNullValueSourceType = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Clay.OpenApiClient.Models.NextQueryModeResultsResponseNextQueryModePeopleResultsResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new global::Soenneker.Clay.OpenApiClient.Models.NextQueryModeResultsResponseNextQueryModePeopleResultsResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponse(), parseNode);
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.NextQueryModeResultsResponseNextQueryModePeopleResultsResponse(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.PublicApiPersonSearchResult>(global::Soenneker.Clay.OpenApiClient.Models.PublicApiPersonSearchResult.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "exhaustion_reason", n => { ExhaustionReason = n.GetEnumValue<global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponseExhaustionReason>(); } },
                 { "has_more", n => { HasMore = n.GetBoolValue(); } },
                 { "period_quota", n => { PeriodQuota = n.GetObjectValue<global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponsePeriodQuota>(global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponsePeriodQuota.CreateFromDiscriminatorValue); } },
-                { "source_type", n => { SourceType = n.GetEnumValue<global::Soenneker.Clay.OpenApiClient.Models.PeopleSourceType>(); } },
             };
         }
         /// <summary>
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public virtual void Serialize(ISerializationWriter writer)
+        public override void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.PublicApiPersonSearchResult>("data", Data);
             writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponseExhaustionReason>("exhaustion_reason", ExhaustionReason);
             writer.WriteBoolValue("has_more", HasMore);
-            writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponsePeriodQuota>("period_quota", PeriodQuota);
-            writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.PeopleSourceType>("source_type", SourceType);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponsePeriodQuota>("period_quota", PeriodQuota);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             
         }
     }

@@ -18,22 +18,22 @@ namespace Soenneker.Clay.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("matched_count") is null) { _explicitNullValueMatchedCount = default!; _explicitNullProperties?.Remove("matched_count"); }
-            else if (parseNode.GetChildNode("matched_count") is { } nullNodeMatchedCount && nullNodeMatchedCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MatchedCount = null;
             if (parseNode.GetChildNode("status") is null) { _explicitNullValueStatus = default!; _explicitNullProperties?.Remove("status"); }
             else if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The number of unique matching people, including archived people. No deletion was queued.</summary>
-        public int? MatchedCount { get => _explicitNullValueMatchedCount; set { _explicitNullValueMatchedCount = value; AdditionalData?.Remove("matched_count"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("matched_count"); else _explicitNullProperties?.Remove("matched_count"); } }
-        private int? _explicitNullValueMatchedCount = default!;
         /// <summary>The status property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; AdditionalData?.Remove("status"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
         private string? _explicitNullValueStatus = default!;
 #nullable restore
+#else
+        public string Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; AdditionalData?.Remove("status"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private string _explicitNullValueStatus = default!;
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeople200Response"/> and sets the default values.
         /// </summary>
@@ -49,7 +49,13 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public static global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeople200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeople200Response(), parseNode);
+            var mappingValue = parseNode.GetChildNode("status")?.GetStringValue();
+            return mappingValue switch
+            {
+                "dry_run" => new global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeople200ResponseAudiencesPrivacyDeletePeopleDryRunResponse(),
+                "no_matches" => new global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeople200ResponseAudiencesPrivacyDeletePeopleNoMatchesResponse(),
+                _ => new global::Soenneker.Clay.OpenApiClient.Models.AudiencesPrivacyDeletePeople200Response(),
+            };
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -59,7 +65,6 @@ namespace Soenneker.Clay.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "matched_count", n => { MatchedCount = n.GetIntValue(); } },
                 { "status", n => { Status = n.GetStringValue(); } },
             };
         }
@@ -70,7 +75,6 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteIntValue("matched_count", MatchedCount);
             writer.WriteStringValue("status", Status);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);

@@ -82,11 +82,11 @@ namespace Soenneker.Clay.OpenApiClient.Models
         private string _explicitNullValueId = default!;
 #endif
         /// <summary>The input_field_count property</summary>
-        public int? InputFieldCount { get => _explicitNullValueInputFieldCount; set { _explicitNullValueInputFieldCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("input_field_count"); else _explicitNullProperties?.Remove("input_field_count"); } }
-        private int? _explicitNullValueInputFieldCount = default!;
+        public long? InputFieldCount { get => _explicitNullValueInputFieldCount; set { _explicitNullValueInputFieldCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("input_field_count"); else _explicitNullProperties?.Remove("input_field_count"); } }
+        private long? _explicitNullValueInputFieldCount = default!;
         /// <summary>The output_field_count property</summary>
-        public int? OutputFieldCount { get => _explicitNullValueOutputFieldCount; set { _explicitNullValueOutputFieldCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("output_field_count"); else _explicitNullProperties?.Remove("output_field_count"); } }
-        private int? _explicitNullValueOutputFieldCount = default!;
+        public long? OutputFieldCount { get => _explicitNullValueOutputFieldCount; set { _explicitNullValueOutputFieldCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("output_field_count"); else _explicitNullProperties?.Remove("output_field_count"); } }
+        private long? _explicitNullValueOutputFieldCount = default!;
         /// <summary>The run_status property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -170,8 +170,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
                 { "data_credits_used", n => { DataCreditsUsed = n.GetDoubleValue(); } },
                 { "ended_at", n => { EndedAt = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
-                { "input_field_count", n => { InputFieldCount = n.GetIntValue(); } },
-                { "output_field_count", n => { OutputFieldCount = n.GetIntValue(); } },
+                { "input_field_count", n => { InputFieldCount = n.GetLongValue(); } },
+                { "output_field_count", n => { OutputFieldCount = n.GetLongValue(); } },
                 { "run_status", n => { RunStatus = n.GetStringValue(); } },
                 { "started_at", n => { StartedAt = n.GetStringValue(); } },
                 { "trigger_fired_id", n => { TriggerFiredId = n.GetStringValue(); } },
@@ -192,8 +192,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
             writer.WriteDoubleValue("data_credits_used", DataCreditsUsed);
             writer.WriteStringValue("ended_at", EndedAt);
             writer.WriteStringValue("id", Id);
-            writer.WriteIntValue("input_field_count", InputFieldCount);
-            writer.WriteIntValue("output_field_count", OutputFieldCount);
+            writer.WriteLongValue("input_field_count", InputFieldCount);
+            writer.WriteLongValue("output_field_count", OutputFieldCount);
             writer.WriteStringValue("run_status", RunStatus);
             writer.WriteStringValue("started_at", StartedAt);
             writer.WriteStringValue("trigger_fired_id", TriggerFiredId);

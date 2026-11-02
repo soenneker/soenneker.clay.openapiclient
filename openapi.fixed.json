@@ -1605,22 +1605,41 @@
         "additionalProperties": false
       },
       "AudiencesPrivacyDeletePeople200Response": {
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/AudiencesPrivacyDeletePeopleDryRunResponse"
-          },
-          {
-            "$ref": "#/components/schemas/AudiencesPrivacyDeletePeopleNoMatchesResponse"
-          }
-        ],
         "description": "Returns HTTP 200 for a dry-run preview or when no people match.",
         "discriminator": {
           "propertyName": "status",
           "mapping": {
-            "dry_run": "#/components/schemas/AudiencesPrivacyDeletePeopleDryRunResponse",
-            "no_matches": "#/components/schemas/AudiencesPrivacyDeletePeopleNoMatchesResponse"
+            "dry_run": "#/components/schemas/AudiencesPrivacyDeletePeople200ResponseAudiencesPrivacyDeletePeopleDryRunResponse",
+            "no_matches": "#/components/schemas/AudiencesPrivacyDeletePeople200ResponseAudiencesPrivacyDeletePeopleNoMatchesResponse"
           }
-        }
+        },
+        "x-client-original-tagged-union": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/AudiencesPrivacyDeletePeopleDryRunResponse"
+            },
+            {
+              "$ref": "#/components/schemas/AudiencesPrivacyDeletePeopleNoMatchesResponse"
+            }
+          ],
+          "description": "Returns HTTP 200 for a dry-run preview or when no people match.",
+          "discriminator": {
+            "propertyName": "status",
+            "mapping": {
+              "dry_run": "#/components/schemas/AudiencesPrivacyDeletePeopleDryRunResponse",
+              "no_matches": "#/components/schemas/AudiencesPrivacyDeletePeopleNoMatchesResponse"
+            }
+          }
+        },
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ]
       },
       "AudiencesPrivacyDeletePeople202Response": {
         "required": [
@@ -1639,44 +1658,6 @@
         },
         "additionalProperties": false,
         "description": "Returns HTTP 202 when deletion is queued."
-      },
-      "AudiencesPrivacyDeletePeopleDryRunResponse": {
-        "required": [
-          "status",
-          "matched_count"
-        ],
-        "type": "object",
-        "properties": {
-          "matched_count": {
-            "maximum": 9007199254740991,
-            "minimum": 0,
-            "type": "integer",
-            "description": "The number of unique matching people, including archived people. No deletion was queued."
-          },
-          "status": {
-            "$ref": "#/components/schemas/DryRunStatus"
-          }
-        },
-        "additionalProperties": false
-      },
-      "AudiencesPrivacyDeletePeopleNoMatchesResponse": {
-        "required": [
-          "status",
-          "matched_count"
-        ],
-        "type": "object",
-        "properties": {
-          "matched_count": {
-            "type": "number",
-            "description": "No matching people were found.",
-            "default": 0,
-            "x-client-original-const": 0
-          },
-          "status": {
-            "$ref": "#/components/schemas/NoMatchesStatus"
-          }
-        },
-        "additionalProperties": false
       },
       "AudiencesPrivacyDeletePeopleRequest": {
         "required": [
@@ -1702,35 +1683,6 @@
         "additionalProperties": false,
         "description": "Identifies people to delete within the workspace associated with your API key."
       },
-      "BatchResultsComplete": {
-        "required": [
-          "routine_run_id",
-          "total",
-          "finished",
-          "status",
-          "result_url"
-        ],
-        "type": "object",
-        "properties": {
-          "finished": {
-            "type": "number"
-          },
-          "result_url": {
-            "type": "string",
-            "format": "uri"
-          },
-          "routine_run_id": {
-            "type": "string"
-          },
-          "status": {
-            "$ref": "#/components/schemas/CompleteStatus"
-          },
-          "total": {
-            "type": "number"
-          }
-        },
-        "additionalProperties": false
-      },
       "BatchResultsInProgress": {
         "required": [
           "routine_run_id",
@@ -1755,66 +1707,45 @@
         },
         "additionalProperties": false
       },
-      "BatchResultsProcessingFailed": {
-        "required": [
-          "routine_run_id",
-          "status",
-          "error"
-        ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "$ref": "#/components/schemas/BatchResultsProcessingFailedError"
-          },
-          "routine_run_id": {
-            "type": "string"
-          },
-          "status": {
-            "$ref": "#/components/schemas/ProcessingFailedStatus"
-          }
-        },
-        "additionalProperties": false
-      },
       "BatchResultsTerminal": {
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/BatchResultsValidationFailed"
-          },
-          {
-            "$ref": "#/components/schemas/BatchResultsProcessingFailed"
-          },
-          {
-            "$ref": "#/components/schemas/BatchResultsComplete"
-          }
-        ],
         "discriminator": {
           "propertyName": "status",
           "mapping": {
-            "validation_failed": "#/components/schemas/BatchResultsValidationFailed",
-            "processing_failed": "#/components/schemas/BatchResultsProcessingFailed",
-            "complete": "#/components/schemas/BatchResultsComplete"
-          }
-        }
-      },
-      "BatchResultsValidationFailed": {
-        "required": [
-          "routine_run_id",
-          "status",
-          "error"
-        ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "$ref": "#/components/schemas/BatchValidationError"
-          },
-          "routine_run_id": {
-            "type": "string"
-          },
-          "status": {
-            "$ref": "#/components/schemas/ValidationFailedStatus"
+            "validation_failed": "#/components/schemas/BatchResultsTerminalBatchResultsValidationFailed",
+            "processing_failed": "#/components/schemas/BatchResultsTerminalBatchResultsProcessingFailed",
+            "complete": "#/components/schemas/BatchResultsTerminalBatchResultsComplete"
           }
         },
-        "additionalProperties": false
+        "x-client-original-tagged-union": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/BatchResultsValidationFailed"
+            },
+            {
+              "$ref": "#/components/schemas/BatchResultsProcessingFailed"
+            },
+            {
+              "$ref": "#/components/schemas/BatchResultsComplete"
+            }
+          ],
+          "discriminator": {
+            "propertyName": "status",
+            "mapping": {
+              "validation_failed": "#/components/schemas/BatchResultsValidationFailed",
+              "processing_failed": "#/components/schemas/BatchResultsProcessingFailed",
+              "complete": "#/components/schemas/BatchResultsComplete"
+            }
+          }
+        },
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ]
       },
       "BatchUploadUrlResponse": {
         "required": [
@@ -1828,7 +1759,7 @@
           },
           "upload_url": {
             "type": "string",
-            "format": "uri"
+            "x-client-original-format": "uri"
           }
         },
         "additionalProperties": false
@@ -1877,82 +1808,58 @@
         },
         "additionalProperties": false
       },
-      "CellEmpty": {
-        "required": [
-          "status"
-        ],
-        "type": "object",
-        "properties": {
-          "status": {
-            "$ref": "#/components/schemas/EmptyStatus"
-          }
-        },
-        "additionalProperties": false
-      },
-      "CellError": {
-        "required": [
-          "status"
-        ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "string"
-          },
-          "status": {
-            "$ref": "#/components/schemas/ErrorStatus"
-          }
-        },
-        "additionalProperties": false
-      },
-      "CellPending": {
-        "required": [
-          "status"
-        ],
-        "type": "object",
-        "properties": {
-          "status": {
-            "$ref": "#/components/schemas/CellPendingStatus"
-          }
-        },
-        "additionalProperties": false
-      },
       "CellResult": {
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/CellSuccess"
-          },
-          {
-            "$ref": "#/components/schemas/CellError"
-          },
-          {
-            "$ref": "#/components/schemas/CellPending"
-          },
-          {
-            "$ref": "#/components/schemas/CellEmpty"
+        "discriminator": {
+          "propertyName": "status",
+          "mapping": {
+            "success": "#/components/schemas/CellResultCellSuccess",
+            "error": "#/components/schemas/CellResultCellError",
+            "running": "#/components/schemas/CellResultCellPending",
+            "queued": "#/components/schemas/CellResultCellPending",
+            "retry": "#/components/schemas/CellResultCellPending",
+            "rate_limited": "#/components/schemas/CellResultCellPending",
+            "awaiting_callback": "#/components/schemas/CellResultCellPending",
+            "empty": "#/components/schemas/CellResultCellEmpty"
           }
-        ]
-      },
-      "CellSuccess": {
-        "required": [
-          "status",
-          "fields"
-        ],
+        },
+        "x-client-original-tagged-union": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/CellSuccess"
+            },
+            {
+              "$ref": "#/components/schemas/CellError"
+            },
+            {
+              "$ref": "#/components/schemas/CellPending"
+            },
+            {
+              "$ref": "#/components/schemas/CellEmpty"
+            }
+          ],
+          "discriminator": {
+            "propertyName": "status",
+            "mapping": {
+              "success": "#/components/schemas/CellSuccess",
+              "error": "#/components/schemas/CellError",
+              "running": "#/components/schemas/CellPending",
+              "queued": "#/components/schemas/CellPending",
+              "retry": "#/components/schemas/CellPending",
+              "rate_limited": "#/components/schemas/CellPending",
+              "awaiting_callback": "#/components/schemas/CellPending",
+              "empty": "#/components/schemas/CellEmpty"
+            }
+          }
+        },
         "type": "object",
         "properties": {
-          "fields": {
-            "$ref": "#/components/schemas/CellSuccessFieldsProperty"
-          },
-          "is_stale": {
-            "type": "boolean",
-            "default": true,
-            "x-client-original-const": true
-          },
           "status": {
-            "$ref": "#/components/schemas/SuccessStatus"
-          },
-          "value": {}
+            "type": "string"
+          }
         },
-        "additionalProperties": false
+        "required": [
+          "status"
+        ]
       },
       "CreateSearchRequest": {
         "required": [
@@ -1978,25 +1885,6 @@
         "properties": {
           "search_id": {
             "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
-      "EmailIdentifier": {
-        "required": [
-          "type",
-          "value"
-        ],
-        "type": "object",
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/EmailType"
-          },
-          "value": {
-            "maxLength": 254,
-            "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_\u0027\u002B\\-\\.]*)[A-Za-z0-9_\u002B-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)\u002B[A-Za-z]{2,}$",
-            "type": "string",
-            "format": "email"
           }
         },
         "additionalProperties": false
@@ -2152,109 +2040,40 @@
         },
         "additionalProperties": false
       },
-      "LinkedInSlugIdentifier": {
-        "required": [
-          "type",
-          "value"
-        ],
-        "type": "object",
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/LinkedinType"
-          },
-          "value": {
-            "maxLength": 200,
-            "minLength": 1,
-            "pattern": "^[\\p{L}\\p{N}_%-]\u002B$",
-            "type": "string",
-            "description": "LinkedIn profile slug (vanityName) after /in/, such as alice-smith. Do not include the URL."
-          }
-        },
-        "additionalProperties": false
-      },
-      "NestedPath": {
-        "maxItems": 5,
-        "minItems": 1,
-        "type": "array",
-        "items": {
-          "minLength": 1,
-          "type": "string"
-        }
-      },
-      "NextQueryModeCompanyResultsResponse": {
-        "required": [
-          "data",
-          "has_more",
-          "source_type"
-        ],
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PublicApiCompanySearchResult"
-            }
-          },
-          "exhaustion_reason": {
-            "$ref": "#/components/schemas/NextQueryModeCompanyResultsResponseExhaustionReason"
-          },
-          "has_more": {
-            "type": "boolean"
-          },
-          "period_quota": {
-            "$ref": "#/components/schemas/NextQueryModeCompanyResultsResponsePeriodQuota"
-          },
-          "source_type": {
-            "$ref": "#/components/schemas/CompaniesSourceType"
-          }
-        },
-        "additionalProperties": false
-      },
-      "NextQueryModePeopleResultsResponse": {
-        "required": [
-          "data",
-          "has_more",
-          "source_type"
-        ],
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PublicApiPersonSearchResult"
-            }
-          },
-          "exhaustion_reason": {
-            "$ref": "#/components/schemas/NextQueryModePeopleResultsResponseExhaustionReason"
-          },
-          "has_more": {
-            "type": "boolean"
-          },
-          "period_quota": {
-            "$ref": "#/components/schemas/NextQueryModePeopleResultsResponsePeriodQuota"
-          },
-          "source_type": {
-            "$ref": "#/components/schemas/PeopleSourceType"
-          }
-        },
-        "additionalProperties": false
-      },
       "NextQueryModeResultsResponse": {
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/NextQueryModePeopleResultsResponse"
-          },
-          {
-            "$ref": "#/components/schemas/NextQueryModeCompanyResultsResponse"
-          }
-        ],
         "discriminator": {
           "propertyName": "source_type",
           "mapping": {
-            "people": "#/components/schemas/NextQueryModePeopleResultsResponse",
-            "companies": "#/components/schemas/NextQueryModeCompanyResultsResponse"
+            "people": "#/components/schemas/NextQueryModeResultsResponseNextQueryModePeopleResultsResponse",
+            "companies": "#/components/schemas/NextQueryModeResultsResponseNextQueryModeCompanyResultsResponse"
           }
-        }
+        },
+        "x-client-original-tagged-union": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/NextQueryModePeopleResultsResponse"
+            },
+            {
+              "$ref": "#/components/schemas/NextQueryModeCompanyResultsResponse"
+            }
+          ],
+          "discriminator": {
+            "propertyName": "source_type",
+            "mapping": {
+              "people": "#/components/schemas/NextQueryModePeopleResultsResponse",
+              "companies": "#/components/schemas/NextQueryModeCompanyResultsResponse"
+            }
+          }
+        },
+        "type": "object",
+        "properties": {
+          "source_type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "source_type"
+        ]
       },
       "NextSearchResultsBody": {
         "type": "object",
@@ -2286,24 +2105,6 @@
           },
           "period_quota": {
             "$ref": "#/components/schemas/NextSearchResultsResponsePeriodQuota"
-          }
-        },
-        "additionalProperties": false
-      },
-      "PhoneNumberIdentifier": {
-        "required": [
-          "type",
-          "value"
-        ],
-        "type": "object",
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/PhoneType"
-          },
-          "value": {
-            "maxLength": 50,
-            "pattern": "^\\\u002B?(?:[().\\s-]*[0-9]){7,15}[().\\s-]*$",
-            "type": "string"
           }
         },
         "additionalProperties": false
@@ -2537,64 +2338,6 @@
         },
         "additionalProperties": false
       },
-      "RunResultsComplete": {
-        "required": [
-          "routine_run_id",
-          "total",
-          "finished",
-          "status",
-          "data"
-        ],
-        "type": "object",
-        "properties": {
-          "cursor": {
-            "type": "string"
-          },
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RunResultItem"
-            }
-          },
-          "finished": {
-            "type": "number"
-          },
-          "routine_run_id": {
-            "type": "string"
-          },
-          "status": {
-            "$ref": "#/components/schemas/RunResultsCompleteStatus"
-          },
-          "total": {
-            "type": "number"
-          }
-        },
-        "additionalProperties": false
-      },
-      "RunResultsInProgress": {
-        "required": [
-          "routine_run_id",
-          "total",
-          "finished",
-          "status"
-        ],
-        "type": "object",
-        "properties": {
-          "finished": {
-            "type": "number"
-          },
-          "routine_run_id": {
-            "type": "string"
-          },
-          "status": {
-            "$ref": "#/components/schemas/RunResultsInProgressStatus"
-          },
-          "total": {
-            "type": "number"
-          }
-        },
-        "additionalProperties": false
-      },
       "RunRoutineRequest": {
         "required": [
           "items"
@@ -2634,24 +2377,6 @@
         },
         "additionalProperties": false
       },
-      "RunsQueryCountResponse": {
-        "required": [
-          "mode",
-          "count"
-        ],
-        "type": "object",
-        "properties": {
-          "count": {
-            "maximum": 9007199254740991,
-            "minimum": 0,
-            "type": "integer"
-          },
-          "mode": {
-            "$ref": "#/components/schemas/CountMode"
-          }
-        },
-        "additionalProperties": false
-      },
       "RunsQueryReferenceResponse": {
         "required": [
           "reference"
@@ -2687,21 +2412,39 @@
         "additionalProperties": false
       },
       "RunsQueryResponse": {
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/RunsQuerySelectResponse"
-          },
-          {
-            "$ref": "#/components/schemas/RunsQueryCountResponse"
-          }
-        ],
         "discriminator": {
           "propertyName": "mode",
           "mapping": {
-            "select": "#/components/schemas/RunsQuerySelectResponse",
-            "count": "#/components/schemas/RunsQueryCountResponse"
+            "select": "#/components/schemas/RunsQueryResponseRunsQuerySelectResponse",
+            "count": "#/components/schemas/RunsQueryResponseRunsQueryCountResponse"
           }
-        }
+        },
+        "x-client-original-tagged-union": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/RunsQuerySelectResponse"
+            },
+            {
+              "$ref": "#/components/schemas/RunsQueryCountResponse"
+            }
+          ],
+          "discriminator": {
+            "propertyName": "mode",
+            "mapping": {
+              "select": "#/components/schemas/RunsQuerySelectResponse",
+              "count": "#/components/schemas/RunsQueryCountResponse"
+            }
+          }
+        },
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "mode"
+        ]
       },
       "RunsQueryRow": {
         "required": [
@@ -2741,12 +2484,14 @@
           "input_field_count": {
             "maximum": 9007199254740991,
             "minimum": 0,
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
           },
           "output_field_count": {
             "maximum": 9007199254740991,
             "minimum": 0,
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
           },
           "run_status": {
             "type": "string"
@@ -2771,28 +2516,6 @@
           },
           "workflow_snapshot_id": {
             "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
-      "RunsQuerySelectResponse": {
-        "required": [
-          "mode",
-          "data"
-        ],
-        "type": "object",
-        "properties": {
-          "cursor": {
-            "type": "string"
-          },
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RunsQueryRow"
-            }
-          },
-          "mode": {
-            "$ref": "#/components/schemas/SelectMode"
           }
         },
         "additionalProperties": false
@@ -3021,25 +2744,44 @@
         "additionalProperties": false
       },
       "AudiencesPrivacyDeletePeopleRequestPersonIdentifiersItem": {
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/EmailIdentifier"
-          },
-          {
-            "$ref": "#/components/schemas/LinkedInSlugIdentifier"
-          },
-          {
-            "$ref": "#/components/schemas/PhoneNumberIdentifier"
-          }
-        ],
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "email": "#/components/schemas/EmailIdentifier",
-            "linkedin": "#/components/schemas/LinkedInSlugIdentifier",
-            "phone": "#/components/schemas/PhoneNumberIdentifier"
+            "email": "#/components/schemas/AudiencesPrivacyDeletePeopleRequestPersonIdentifiersItemEmailIdentifier",
+            "linkedin": "#/components/schemas/AudiencesPrivacyDeletePeopleRequestPersonIdentifiersItemLinkedInSlugIdentifier",
+            "phone": "#/components/schemas/AudiencesPrivacyDeletePeopleRequestPersonIdentifiersItemPhoneNumberIdentifier"
           }
-        }
+        },
+        "x-client-original-tagged-union": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/EmailIdentifier"
+            },
+            {
+              "$ref": "#/components/schemas/LinkedInSlugIdentifier"
+            },
+            {
+              "$ref": "#/components/schemas/PhoneNumberIdentifier"
+            }
+          ],
+          "discriminator": {
+            "propertyName": "type",
+            "mapping": {
+              "email": "#/components/schemas/EmailIdentifier",
+              "linkedin": "#/components/schemas/LinkedInSlugIdentifier",
+              "phone": "#/components/schemas/PhoneNumberIdentifier"
+            }
+          }
+        },
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type"
+        ]
       },
       "FilterPredicateValue": {
         "anyOf": [
@@ -3092,17 +2834,6 @@
         },
         "additionalProperties": false
       },
-      "CellSuccessFields": {
-        "type": [
-          "null",
-          "object"
-        ],
-        "additionalProperties": {}
-      },
-      "CreateSearchRequestFilters": {
-        "type": "object",
-        "additionalProperties": {}
-      },
       "NextQueryModeCompanyResultsResponsePeriodQuota": {
         "required": [
           "limit",
@@ -3150,10 +2881,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "NextSearchResultsResponseDataItem": {
-        "type": "object",
-        "additionalProperties": {}
       },
       "NextSearchResultsResponsePeriodQuota": {
         "required": [
@@ -3208,18 +2935,6 @@
         },
         "additionalProperties": false
       },
-      "QueryResponseDataItem": {
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/CellResult"
-        }
-      },
-      "QueryResponseFields": {
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/FieldMeta"
-        }
-      },
       "RunResultItemError": {
         "required": [
           "message"
@@ -3231,10 +2946,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "RunResultItemResult": {
-        "type": "object",
-        "additionalProperties": {}
       },
       "RunRoutineRequestItemsItem": {
         "required": [
@@ -3322,14 +3033,6 @@
         },
         "additionalProperties": false
       },
-      "RunRoutineRequestItemsItemInputs": {
-        "type": "object",
-        "additionalProperties": {}
-      },
-      "SearchCreateExampleRequestFilters": {
-        "type": "object",
-        "additionalProperties": {}
-      },
       "StructuredQueryJoinItemOn": {
         "required": [
           "left",
@@ -3361,7 +3064,8 @@
             "maximum": 9007199254740991,
             "minimum": 0,
             "type": "integer",
-            "description": "The number of people confirmed complete. Remains 0 until the entire job completes, then equals total. This is not an estimate of partial progress."
+            "description": "The number of people confirmed complete. Remains 0 until the entire job completes, then equals total. This is not an estimate of partial progress.",
+            "format": "int64"
           },
           "job_id": {
             "type": "string",
@@ -3374,7 +3078,8 @@
             "maximum": 9007199254740991,
             "minimum": 0,
             "type": "integer",
-            "description": "The number of unique people selected for deletion."
+            "description": "The number of unique people selected for deletion.",
+            "format": "int64"
           }
         },
         "additionalProperties": false,
@@ -3393,7 +3098,8 @@
             "maximum": 9007199254740991,
             "minimum": 0,
             "type": "integer",
-            "description": "The number of people confirmed complete. Remains 0 until the entire job completes, then equals total. This is not an estimate of partial progress."
+            "description": "The number of people confirmed complete. Remains 0 until the entire job completes, then equals total. This is not an estimate of partial progress.",
+            "format": "int64"
           },
           "job_id": {
             "type": "string",
@@ -3406,7 +3112,8 @@
             "maximum": 9007199254740991,
             "minimum": 0,
             "type": "integer",
-            "description": "The number of unique people selected for deletion."
+            "description": "The number of unique people selected for deletion.",
+            "format": "int64"
           }
         },
         "additionalProperties": false,
@@ -3485,10 +3192,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "ExamplePayload": {
-        "type": "object",
-        "description": "Placeholder schema for path example refs"
       },
       "CellSuccessFieldsProperty": {
         "type": [
@@ -4401,12 +4104,539 @@
         ]
       },
       "GetRunResultsSuccessResponse": {
-        "anyOf": [
+        "x-client-original-tagged-union": {
+          "anyOf": [
+            {
+              "$ref": "#/components/schemas/RunResultsComplete"
+            },
+            {
+              "$ref": "#/components/schemas/RunResultsInProgress"
+            }
+          ]
+        },
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "discriminator": {
+          "propertyName": "status",
+          "mapping": {
+            "complete": "#/components/schemas/GetRunResultsSuccessResponseRunResultsComplete",
+            "in_progress": "#/components/schemas/GetRunResultsSuccessResponseRunResultsInProgress"
+          }
+        }
+      },
+      "AudiencesPrivacyDeletePeople200ResponseAudiencesPrivacyDeletePeopleDryRunResponse": {
+        "allOf": [
           {
-            "$ref": "#/components/schemas/RunResultsComplete"
+            "$ref": "#/components/schemas/AudiencesPrivacyDeletePeople200Response"
           },
           {
-            "$ref": "#/components/schemas/RunResultsInProgress"
+            "required": [
+              "status",
+              "matched_count"
+            ],
+            "type": "object",
+            "properties": {
+              "matched_count": {
+                "maximum": 9007199254740991,
+                "minimum": 0,
+                "type": "integer",
+                "description": "The number of unique matching people, including archived people. No deletion was queued.",
+                "format": "int64"
+              },
+              "status": {
+                "$ref": "#/components/schemas/DryRunStatus"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "AudiencesPrivacyDeletePeople200ResponseAudiencesPrivacyDeletePeopleNoMatchesResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AudiencesPrivacyDeletePeople200Response"
+          },
+          {
+            "required": [
+              "status",
+              "matched_count"
+            ],
+            "type": "object",
+            "properties": {
+              "matched_count": {
+                "type": "number",
+                "description": "No matching people were found.",
+                "default": 0,
+                "x-client-original-const": 0
+              },
+              "status": {
+                "$ref": "#/components/schemas/NoMatchesStatus"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "BatchResultsTerminalBatchResultsValidationFailed": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BatchResultsTerminal"
+          },
+          {
+            "required": [
+              "routine_run_id",
+              "status",
+              "error"
+            ],
+            "type": "object",
+            "properties": {
+              "error": {
+                "$ref": "#/components/schemas/BatchValidationError"
+              },
+              "routine_run_id": {
+                "type": "string"
+              },
+              "status": {
+                "$ref": "#/components/schemas/ValidationFailedStatus"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "BatchResultsTerminalBatchResultsProcessingFailed": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BatchResultsTerminal"
+          },
+          {
+            "required": [
+              "routine_run_id",
+              "status",
+              "error"
+            ],
+            "type": "object",
+            "properties": {
+              "error": {
+                "$ref": "#/components/schemas/BatchResultsProcessingFailedError"
+              },
+              "routine_run_id": {
+                "type": "string"
+              },
+              "status": {
+                "$ref": "#/components/schemas/ProcessingFailedStatus"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "BatchResultsTerminalBatchResultsComplete": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BatchResultsTerminal"
+          },
+          {
+            "required": [
+              "routine_run_id",
+              "total",
+              "finished",
+              "status",
+              "result_url"
+            ],
+            "type": "object",
+            "properties": {
+              "finished": {
+                "type": "number"
+              },
+              "result_url": {
+                "type": "string",
+                "x-client-original-format": "uri"
+              },
+              "routine_run_id": {
+                "type": "string"
+              },
+              "status": {
+                "$ref": "#/components/schemas/CompleteStatus"
+              },
+              "total": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CellResultCellSuccess": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CellResult"
+          },
+          {
+            "required": [
+              "status",
+              "fields"
+            ],
+            "type": "object",
+            "properties": {
+              "fields": {
+                "$ref": "#/components/schemas/CellSuccessFieldsProperty"
+              },
+              "is_stale": {
+                "type": "boolean",
+                "default": true,
+                "x-client-original-const": true
+              },
+              "status": {
+                "$ref": "#/components/schemas/SuccessStatus"
+              },
+              "value": {}
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CellResultCellError": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CellResult"
+          },
+          {
+            "required": [
+              "status"
+            ],
+            "type": "object",
+            "properties": {
+              "error": {
+                "type": "string"
+              },
+              "status": {
+                "$ref": "#/components/schemas/ErrorStatus"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CellResultCellPending": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CellResult"
+          },
+          {
+            "required": [
+              "status"
+            ],
+            "type": "object",
+            "properties": {
+              "status": {
+                "$ref": "#/components/schemas/CellPendingStatus"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CellResultCellEmpty": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CellResult"
+          },
+          {
+            "required": [
+              "status"
+            ],
+            "type": "object",
+            "properties": {
+              "status": {
+                "$ref": "#/components/schemas/EmptyStatus"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "NextQueryModeResultsResponseNextQueryModePeopleResultsResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/NextQueryModeResultsResponse"
+          },
+          {
+            "required": [
+              "data",
+              "has_more",
+              "source_type"
+            ],
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PublicApiPersonSearchResult"
+                }
+              },
+              "exhaustion_reason": {
+                "$ref": "#/components/schemas/NextQueryModePeopleResultsResponseExhaustionReason"
+              },
+              "has_more": {
+                "type": "boolean"
+              },
+              "period_quota": {
+                "$ref": "#/components/schemas/NextQueryModePeopleResultsResponsePeriodQuota"
+              },
+              "source_type": {
+                "$ref": "#/components/schemas/PeopleSourceType"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "NextQueryModeResultsResponseNextQueryModeCompanyResultsResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/NextQueryModeResultsResponse"
+          },
+          {
+            "required": [
+              "data",
+              "has_more",
+              "source_type"
+            ],
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PublicApiCompanySearchResult"
+                }
+              },
+              "exhaustion_reason": {
+                "$ref": "#/components/schemas/NextQueryModeCompanyResultsResponseExhaustionReason"
+              },
+              "has_more": {
+                "type": "boolean"
+              },
+              "period_quota": {
+                "$ref": "#/components/schemas/NextQueryModeCompanyResultsResponsePeriodQuota"
+              },
+              "source_type": {
+                "$ref": "#/components/schemas/CompaniesSourceType"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "RunsQueryResponseRunsQuerySelectResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/RunsQueryResponse"
+          },
+          {
+            "required": [
+              "mode",
+              "data"
+            ],
+            "type": "object",
+            "properties": {
+              "cursor": {
+                "type": "string"
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RunsQueryRow"
+                }
+              },
+              "mode": {
+                "$ref": "#/components/schemas/SelectMode"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "RunsQueryResponseRunsQueryCountResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/RunsQueryResponse"
+          },
+          {
+            "required": [
+              "mode",
+              "count"
+            ],
+            "type": "object",
+            "properties": {
+              "count": {
+                "maximum": 9007199254740991,
+                "minimum": 0,
+                "type": "integer",
+                "format": "int64"
+              },
+              "mode": {
+                "$ref": "#/components/schemas/CountMode"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "AudiencesPrivacyDeletePeopleRequestPersonIdentifiersItemEmailIdentifier": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AudiencesPrivacyDeletePeopleRequestPersonIdentifiersItem"
+          },
+          {
+            "required": [
+              "type",
+              "value"
+            ],
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/components/schemas/EmailType"
+              },
+              "value": {
+                "maxLength": 254,
+                "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_\u0027\u002B\\-\\.]*)[A-Za-z0-9_\u002B-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)\u002B[A-Za-z]{2,}$",
+                "type": "string",
+                "x-client-original-format": "email"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "AudiencesPrivacyDeletePeopleRequestPersonIdentifiersItemLinkedInSlugIdentifier": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AudiencesPrivacyDeletePeopleRequestPersonIdentifiersItem"
+          },
+          {
+            "required": [
+              "type",
+              "value"
+            ],
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/components/schemas/LinkedinType"
+              },
+              "value": {
+                "maxLength": 200,
+                "minLength": 1,
+                "pattern": "^[\\p{L}\\p{N}_%-]\u002B$",
+                "type": "string",
+                "description": "LinkedIn profile slug (vanityName) after /in/, such as alice-smith. Do not include the URL."
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "AudiencesPrivacyDeletePeopleRequestPersonIdentifiersItemPhoneNumberIdentifier": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AudiencesPrivacyDeletePeopleRequestPersonIdentifiersItem"
+          },
+          {
+            "required": [
+              "type",
+              "value"
+            ],
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/components/schemas/PhoneType"
+              },
+              "value": {
+                "maxLength": 50,
+                "pattern": "^\\\u002B?(?:[().\\s-]*[0-9]){7,15}[().\\s-]*$",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "GetRunResultsSuccessResponseRunResultsComplete": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GetRunResultsSuccessResponse"
+          },
+          {
+            "required": [
+              "routine_run_id",
+              "total",
+              "finished",
+              "status",
+              "data"
+            ],
+            "type": "object",
+            "properties": {
+              "cursor": {
+                "type": "string"
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RunResultItem"
+                }
+              },
+              "finished": {
+                "type": "number"
+              },
+              "routine_run_id": {
+                "type": "string"
+              },
+              "status": {
+                "$ref": "#/components/schemas/RunResultsCompleteStatus"
+              },
+              "total": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "GetRunResultsSuccessResponseRunResultsInProgress": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GetRunResultsSuccessResponse"
+          },
+          {
+            "required": [
+              "routine_run_id",
+              "total",
+              "finished",
+              "status"
+            ],
+            "type": "object",
+            "properties": {
+              "finished": {
+                "type": "number"
+              },
+              "routine_run_id": {
+                "type": "string"
+              },
+              "status": {
+                "$ref": "#/components/schemas/RunResultsInProgressStatus"
+              },
+              "total": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
           }
         ]
       }
@@ -4454,5 +4684,442 @@
       "name": "workflowsRuns",
       "description": "Search workflow runs by query."
     }
-  ]
+  ],
+  "x-client-unused-schemas": {
+    "AudiencesPrivacyDeletePeopleDryRunResponse": {
+      "required": [
+        "status",
+        "matched_count"
+      ],
+      "type": "object",
+      "properties": {
+        "matched_count": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer",
+          "description": "The number of unique matching people, including archived people. No deletion was queued.",
+          "format": "int64"
+        },
+        "status": {
+          "$ref": "#/components/schemas/DryRunStatus"
+        }
+      },
+      "additionalProperties": false
+    },
+    "AudiencesPrivacyDeletePeopleNoMatchesResponse": {
+      "required": [
+        "status",
+        "matched_count"
+      ],
+      "type": "object",
+      "properties": {
+        "matched_count": {
+          "type": "number",
+          "description": "No matching people were found.",
+          "default": 0,
+          "x-client-original-const": 0
+        },
+        "status": {
+          "$ref": "#/components/schemas/NoMatchesStatus"
+        }
+      },
+      "additionalProperties": false
+    },
+    "BatchResultsComplete": {
+      "required": [
+        "routine_run_id",
+        "total",
+        "finished",
+        "status",
+        "result_url"
+      ],
+      "type": "object",
+      "properties": {
+        "finished": {
+          "type": "number"
+        },
+        "result_url": {
+          "type": "string",
+          "x-client-original-format": "uri"
+        },
+        "routine_run_id": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/components/schemas/CompleteStatus"
+        },
+        "total": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "BatchResultsProcessingFailed": {
+      "required": [
+        "routine_run_id",
+        "status",
+        "error"
+      ],
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/components/schemas/BatchResultsProcessingFailedError"
+        },
+        "routine_run_id": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/components/schemas/ProcessingFailedStatus"
+        }
+      },
+      "additionalProperties": false
+    },
+    "BatchResultsValidationFailed": {
+      "required": [
+        "routine_run_id",
+        "status",
+        "error"
+      ],
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/components/schemas/BatchValidationError"
+        },
+        "routine_run_id": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/components/schemas/ValidationFailedStatus"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CellEmpty": {
+      "required": [
+        "status"
+      ],
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/components/schemas/EmptyStatus"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CellError": {
+      "required": [
+        "status"
+      ],
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/components/schemas/ErrorStatus"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CellPending": {
+      "required": [
+        "status"
+      ],
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/components/schemas/CellPendingStatus"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CellSuccess": {
+      "required": [
+        "status",
+        "fields"
+      ],
+      "type": "object",
+      "properties": {
+        "fields": {
+          "$ref": "#/components/schemas/CellSuccessFieldsProperty"
+        },
+        "is_stale": {
+          "type": "boolean",
+          "default": true,
+          "x-client-original-const": true
+        },
+        "status": {
+          "$ref": "#/components/schemas/SuccessStatus"
+        },
+        "value": {}
+      },
+      "additionalProperties": false
+    },
+    "EmailIdentifier": {
+      "required": [
+        "type",
+        "value"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/EmailType"
+        },
+        "value": {
+          "maxLength": 254,
+          "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_\u0027\u002B\\-\\.]*)[A-Za-z0-9_\u002B-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)\u002B[A-Za-z]{2,}$",
+          "type": "string",
+          "x-client-original-format": "email"
+        }
+      },
+      "additionalProperties": false
+    },
+    "LinkedInSlugIdentifier": {
+      "required": [
+        "type",
+        "value"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/LinkedinType"
+        },
+        "value": {
+          "maxLength": 200,
+          "minLength": 1,
+          "pattern": "^[\\p{L}\\p{N}_%-]\u002B$",
+          "type": "string",
+          "description": "LinkedIn profile slug (vanityName) after /in/, such as alice-smith. Do not include the URL."
+        }
+      },
+      "additionalProperties": false
+    },
+    "NestedPath": {
+      "maxItems": 5,
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      }
+    },
+    "NextQueryModeCompanyResultsResponse": {
+      "required": [
+        "data",
+        "has_more",
+        "source_type"
+      ],
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/PublicApiCompanySearchResult"
+          }
+        },
+        "exhaustion_reason": {
+          "$ref": "#/components/schemas/NextQueryModeCompanyResultsResponseExhaustionReason"
+        },
+        "has_more": {
+          "type": "boolean"
+        },
+        "period_quota": {
+          "$ref": "#/components/schemas/NextQueryModeCompanyResultsResponsePeriodQuota"
+        },
+        "source_type": {
+          "$ref": "#/components/schemas/CompaniesSourceType"
+        }
+      },
+      "additionalProperties": false
+    },
+    "NextQueryModePeopleResultsResponse": {
+      "required": [
+        "data",
+        "has_more",
+        "source_type"
+      ],
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/PublicApiPersonSearchResult"
+          }
+        },
+        "exhaustion_reason": {
+          "$ref": "#/components/schemas/NextQueryModePeopleResultsResponseExhaustionReason"
+        },
+        "has_more": {
+          "type": "boolean"
+        },
+        "period_quota": {
+          "$ref": "#/components/schemas/NextQueryModePeopleResultsResponsePeriodQuota"
+        },
+        "source_type": {
+          "$ref": "#/components/schemas/PeopleSourceType"
+        }
+      },
+      "additionalProperties": false
+    },
+    "PhoneNumberIdentifier": {
+      "required": [
+        "type",
+        "value"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/PhoneType"
+        },
+        "value": {
+          "maxLength": 50,
+          "pattern": "^\\\u002B?(?:[().\\s-]*[0-9]){7,15}[().\\s-]*$",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "RunResultsComplete": {
+      "required": [
+        "routine_run_id",
+        "total",
+        "finished",
+        "status",
+        "data"
+      ],
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/RunResultItem"
+          }
+        },
+        "finished": {
+          "type": "number"
+        },
+        "routine_run_id": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/components/schemas/RunResultsCompleteStatus"
+        },
+        "total": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "RunResultsInProgress": {
+      "required": [
+        "routine_run_id",
+        "total",
+        "finished",
+        "status"
+      ],
+      "type": "object",
+      "properties": {
+        "finished": {
+          "type": "number"
+        },
+        "routine_run_id": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/components/schemas/RunResultsInProgressStatus"
+        },
+        "total": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "RunsQueryCountResponse": {
+      "required": [
+        "mode",
+        "count"
+      ],
+      "type": "object",
+      "properties": {
+        "count": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer",
+          "format": "int64"
+        },
+        "mode": {
+          "$ref": "#/components/schemas/CountMode"
+        }
+      },
+      "additionalProperties": false
+    },
+    "RunsQuerySelectResponse": {
+      "required": [
+        "mode",
+        "data"
+      ],
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/RunsQueryRow"
+          }
+        },
+        "mode": {
+          "$ref": "#/components/schemas/SelectMode"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CellSuccessFields": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "additionalProperties": {}
+    },
+    "CreateSearchRequestFilters": {
+      "type": "object",
+      "additionalProperties": {}
+    },
+    "NextSearchResultsResponseDataItem": {
+      "type": "object",
+      "additionalProperties": {}
+    },
+    "QueryResponseDataItem": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/CellResult"
+      }
+    },
+    "QueryResponseFields": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/FieldMeta"
+      }
+    },
+    "RunResultItemResult": {
+      "type": "object",
+      "additionalProperties": {}
+    },
+    "RunRoutineRequestItemsItemInputs": {
+      "type": "object",
+      "additionalProperties": {}
+    },
+    "SearchCreateExampleRequestFilters": {
+      "type": "object",
+      "additionalProperties": {}
+    },
+    "ExamplePayload": {
+      "type": "object",
+      "description": "Placeholder schema for path example refs"
+    }
+  }
 }

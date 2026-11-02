@@ -29,8 +29,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
         }
 
         /// <summary>The number of people confirmed complete. Remains 0 until the entire job completes, then equals total. This is not an estimate of partial progress.</summary>
-        public int? Finished { get => _explicitNullValueFinished; set { _explicitNullValueFinished = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("finished"); else _explicitNullProperties?.Remove("finished"); } }
-        private int? _explicitNullValueFinished = default!;
+        public long? Finished { get => _explicitNullValueFinished; set { _explicitNullValueFinished = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("finished"); else _explicitNullProperties?.Remove("finished"); } }
+        private long? _explicitNullValueFinished = default!;
         /// <summary>The deletion job ID returned when the request was queued.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -45,8 +45,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public global::Soenneker.Clay.OpenApiClient.Models.GetPrivacyDeleteStatus202ResponseStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
         private global::Soenneker.Clay.OpenApiClient.Models.GetPrivacyDeleteStatus202ResponseStatus? _explicitNullValueStatus = default!;
         /// <summary>The number of unique people selected for deletion.</summary>
-        public int? Total { get => _explicitNullValueTotal; set { _explicitNullValueTotal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("total"); else _explicitNullProperties?.Remove("total"); } }
-        private int? _explicitNullValueTotal = default!;
+        public long? Total { get => _explicitNullValueTotal; set { _explicitNullValueTotal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("total"); else _explicitNullProperties?.Remove("total"); } }
+        private long? _explicitNullValueTotal = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -65,10 +65,10 @@ namespace Soenneker.Clay.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "finished", n => { Finished = n.GetIntValue(); } },
+                { "finished", n => { Finished = n.GetLongValue(); } },
                 { "job_id", n => { JobId = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Clay.OpenApiClient.Models.GetPrivacyDeleteStatus202ResponseStatus>(); } },
-                { "total", n => { Total = n.GetIntValue(); } },
+                { "total", n => { Total = n.GetLongValue(); } },
             };
         }
         /// <summary>
@@ -78,10 +78,10 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteIntValue("finished", Finished);
+            writer.WriteLongValue("finished", Finished);
             writer.WriteStringValue("job_id", JobId);
             writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.GetPrivacyDeleteStatus202ResponseStatus>("status", Status);
-            writer.WriteIntValue("total", Total);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            writer.WriteLongValue("total", Total);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             
         }
     }
