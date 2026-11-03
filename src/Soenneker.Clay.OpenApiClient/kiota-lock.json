@@ -2,7 +2,7 @@
   "descriptionHash": "58BF9AFB8B042BA2D01A40FC5180A697DF20B8B73F2F38100BF23038B2C111A86B96C09D22FE54040629DEEF700A165D7FFB709F0A62378488830050DB310C09",
   "descriptionLocation": "../../openapi.fixed.json",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.37.0",
+  "kiotaVersion": "1.38.0",
   "clientClassName": "ClayOpenApiClient",
   "typeAccessModifier": "Public",
   "clientNamespaceName": "Soenneker.Clay.OpenApiClient",
