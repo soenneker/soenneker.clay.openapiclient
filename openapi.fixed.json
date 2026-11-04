@@ -220,7 +220,7 @@
           "credits"
         ],
         "summary": "Get workspace credit balances",
-        "description": "Returns the current credit balances for the workspace associated with the API key. Reading balances does not consume credits.",
+        "description": "Returns the current credit balances for the workspace associated with the API key, and the key owner\u0027s personal monthly credit limit. Reading balances does not consume credits.",
         "operationId": "GetCreditBalance",
         "responses": {
           "200": {
@@ -3132,6 +3132,9 @@
           "balance": {
             "type": "number",
             "description": "Total remaining spendable data credits, including rollover credits."
+          },
+          "user": {
+            "$ref": "#/components/schemas/GetCreditBalance200ResponseUser"
           }
         },
         "additionalProperties": false
@@ -3231,6 +3234,48 @@
       "SearchCreateExampleRequestFiltersProperty": {
         "type": "object",
         "additionalProperties": {}
+      },
+      "GetCreditBalance200ResponseUser": {
+        "required": [
+          "id",
+          "name",
+          "limit",
+          "balance"
+        ],
+        "type": "object",
+        "properties": {
+          "balance": {
+            "type": [
+              "null",
+              "number"
+            ],
+            "description": "Credits left this month. Null when no personal limit is set."
+          },
+          "email": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "id": {
+            "type": "string"
+          },
+          "limit": {
+            "type": [
+              "null",
+              "number"
+            ],
+            "description": "Credits allowed per month. Null when no personal limit is set."
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "description": "The API key owner, with their personal monthly credit limit."
       },
       "GetPublicApiMe200ResponseUser": {
         "required": [
@@ -4623,6 +4668,13 @@
             ],
             "type": "object",
             "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RunResultItem"
+                },
+                "description": "Items that have finished so far. Not paginated: \u0060cursor\u0060 is ignored until the run is complete, and \u0060limit\u0060 caps how many finished items are returned."
+              },
               "finished": {
                 "type": "number"
               },
@@ -5022,6 +5074,13 @@
       ],
       "type": "object",
       "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/RunResultItem"
+          },
+          "description": "Items that have finished so far. Not paginated: \u0060cursor\u0060 is ignored until the run is complete, and \u0060limit\u0060 caps how many finished items are returned."
+        },
         "finished": {
           "type": "number"
         },

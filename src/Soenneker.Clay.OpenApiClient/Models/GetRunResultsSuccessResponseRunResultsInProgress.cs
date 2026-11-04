@@ -18,6 +18,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public override void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
             base.CaptureExplicitNulls(parseNode);
+            if (parseNode.GetChildNode("data") is null) { _explicitNullValueData = default!; _explicitNullProperties?.Remove("data"); }
+            else if (parseNode.GetChildNode("data") is { } nullNodeData && nullNodeData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Data = null;
             if (parseNode.GetChildNode("finished") is null) { _explicitNullValueFinished = default!; _explicitNullProperties?.Remove("finished"); }
             else if (parseNode.GetChildNode("finished") is { } nullNodeFinished && nullNodeFinished.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Finished = null;
             if (parseNode.GetChildNode("routine_run_id") is null) { _explicitNullValueRoutineRunId = default!; _explicitNullProperties?.Remove("routine_run_id"); }
@@ -26,6 +28,16 @@ namespace Soenneker.Clay.OpenApiClient.Models
             else if (parseNode.GetChildNode("total") is { } nullNodeTotal && nullNodeTotal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Total = null;
         }
 
+        /// <summary>Items that have finished so far. Not paginated: `cursor` is ignored until the run is complete, and `limit` caps how many finished items are returned.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Clay.OpenApiClient.Models.RunResultItem>? Data { get => _explicitNullValueData; set { _explicitNullValueData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.RunResultItem>? _explicitNullValueData = default!;
+#nullable restore
+#else
+        public List<global::Soenneker.Clay.OpenApiClient.Models.RunResultItem> Data { get => _explicitNullValueData; set { _explicitNullValueData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        private List<global::Soenneker.Clay.OpenApiClient.Models.RunResultItem> _explicitNullValueData = default!;
+#endif
         /// <summary>The finished property</summary>
         public double? Finished { get => _explicitNullValueFinished; set { _explicitNullValueFinished = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("finished"); else _explicitNullProperties?.Remove("finished"); } }
         private double? _explicitNullValueFinished = default!;
@@ -60,6 +72,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
+                { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.RunResultItem>(global::Soenneker.Clay.OpenApiClient.Models.RunResultItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "finished", n => { Finished = n.GetDoubleValue(); } },
                 { "routine_run_id", n => { RoutineRunId = n.GetStringValue(); } },
                 { "total", n => { Total = n.GetDoubleValue(); } },
@@ -73,6 +86,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.RunResultItem>("data", Data);
             writer.WriteDoubleValue("finished", Finished);
             writer.WriteStringValue("routine_run_id", RoutineRunId);
             writer.WriteDoubleValue("total", Total);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);

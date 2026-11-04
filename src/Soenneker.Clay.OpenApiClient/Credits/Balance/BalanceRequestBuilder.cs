@@ -34,7 +34,7 @@ namespace Soenneker.Clay.OpenApiClient.Credits.Balance
         {
         }
         /// <summary>
-        /// Returns the current credit balances for the workspace associated with the API key. Reading balances does not consume credits.
+        /// Returns the current credit balances for the workspace associated with the API key, and the key owner&apos;s personal monthly credit limit. Reading balances does not consume credits.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Clay.OpenApiClient.Models.GetCreditBalance200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -63,7 +63,7 @@ namespace Soenneker.Clay.OpenApiClient.Credits.Balance
             return await RequestAdapter.SendAsync<global::Soenneker.Clay.OpenApiClient.Models.GetCreditBalance200Response>(requestInfo, global::Soenneker.Clay.OpenApiClient.Models.GetCreditBalance200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns the current credit balances for the workspace associated with the API key. Reading balances does not consume credits.
+        /// Returns the current credit balances for the workspace associated with the API key, and the key owner&apos;s personal monthly credit limit. Reading balances does not consume credits.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -1104,6 +1104,13 @@
       "RunResultsInProgress": {
         "additionalProperties": false,
         "properties": {
+          "data": {
+            "description": "Items that have finished so far. Not paginated: `cursor` is ignored until the run is complete, and `limit` caps how many finished items are returned.",
+            "items": {
+              "$ref": "#/components/schemas/RunResultItem"
+            },
+            "type": "array"
+          },
           "finished": {
             "type": "number"
           },
@@ -1859,7 +1866,7 @@
     },
     "/credits/balance": {
       "get": {
-        "description": "Returns the current credit balances for the workspace associated with the API key. Reading balances does not consume credits.",
+        "description": "Returns the current credit balances for the workspace associated with the API key, and the key owner's personal monthly credit limit. Reading balances does not consume credits.",
         "operationId": "getCreditBalance",
         "parameters": [],
         "responses": {
@@ -1876,6 +1883,59 @@
                     "balance": {
                       "description": "Total remaining spendable data credits, including rollover credits.",
                       "type": "number"
+                    },
+                    "user": {
+                      "additionalProperties": false,
+                      "description": "The API key owner, with their personal monthly credit limit.",
+                      "properties": {
+                        "balance": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Credits left this month. Null when no personal limit is set."
+                        },
+                        "email": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "id": {
+                          "type": "string"
+                        },
+                        "limit": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Credits allowed per month. Null when no personal limit is set."
+                        },
+                        "name": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "required": ["id", "name", "limit", "balance"],
+                      "type": "object"
                     }
                   },
                   "required": ["balance"],
