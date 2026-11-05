@@ -19,8 +19,12 @@ namespace Soenneker.Clay.OpenApiClient.Models
         {
             if (parseNode.GetChildNode("company") is null) { _explicitNullValueCompany = default!; _explicitNullProperties?.Remove("company"); }
             else if (parseNode.GetChildNode("company") is { } nullNodeCompany && nullNodeCompany.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Company = null;
+            if (parseNode.GetChildNode("company_domain") is null) { _explicitNullValueCompanyDomain = default!; _explicitNullProperties?.Remove("company_domain"); }
+            else if (parseNode.GetChildNode("company_domain") is { } nullNodeCompanyDomain && nullNodeCompanyDomain.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CompanyDomain = null;
             if (parseNode.GetChildNode("end_date") is null) { _explicitNullValueEndDate = default!; _explicitNullProperties?.Remove("end_date"); }
             else if (parseNode.GetChildNode("end_date") is { } nullNodeEndDate && nullNodeEndDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EndDate = null;
+            if (parseNode.GetChildNode("is_current") is null) { _explicitNullValueIsCurrent = default!; _explicitNullProperties?.Remove("is_current"); }
+            else if (parseNode.GetChildNode("is_current") is { } nullNodeIsCurrent && nullNodeIsCurrent.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsCurrent = null;
             if (parseNode.GetChildNode("location") is null) { _explicitNullValueLocation = default!; _explicitNullProperties?.Remove("location"); }
             else if (parseNode.GetChildNode("location") is { } nullNodeLocation && nullNodeLocation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Location = null;
             if (parseNode.GetChildNode("start_date") is null) { _explicitNullValueStartDate = default!; _explicitNullProperties?.Remove("start_date"); }
@@ -39,6 +43,16 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public string Company { get => _explicitNullValueCompany; set { _explicitNullValueCompany = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("company"); else _explicitNullProperties?.Remove("company"); } }
         private string _explicitNullValueCompany = default!;
 #endif
+        /// <summary>The company_domain property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CompanyDomain { get => _explicitNullValueCompanyDomain; set { _explicitNullValueCompanyDomain = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("company_domain"); else _explicitNullProperties?.Remove("company_domain"); } }
+        private string? _explicitNullValueCompanyDomain = default!;
+#nullable restore
+#else
+        public string CompanyDomain { get => _explicitNullValueCompanyDomain; set { _explicitNullValueCompanyDomain = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("company_domain"); else _explicitNullProperties?.Remove("company_domain"); } }
+        private string _explicitNullValueCompanyDomain = default!;
+#endif
         /// <summary>The end_date property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -49,6 +63,9 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public string EndDate { get => _explicitNullValueEndDate; set { _explicitNullValueEndDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("end_date"); else _explicitNullProperties?.Remove("end_date"); } }
         private string _explicitNullValueEndDate = default!;
 #endif
+        /// <summary>The is_current property</summary>
+        public bool? IsCurrent { get => _explicitNullValueIsCurrent; set { _explicitNullValueIsCurrent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("is_current"); else _explicitNullProperties?.Remove("is_current"); } }
+        private bool? _explicitNullValueIsCurrent = default!;
         /// <summary>The location property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -98,7 +115,9 @@ namespace Soenneker.Clay.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "company", n => { Company = n.GetStringValue(); } },
+                { "company_domain", n => { CompanyDomain = n.GetStringValue(); } },
                 { "end_date", n => { EndDate = n.GetStringValue(); } },
+                { "is_current", n => { IsCurrent = n.GetBoolValue(); } },
                 { "location", n => { Location = n.GetStringValue(); } },
                 { "start_date", n => { StartDate = n.GetStringValue(); } },
                 { "title", n => { Title = n.GetStringValue(); } },
@@ -112,7 +131,9 @@ namespace Soenneker.Clay.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("company", Company);
+            writer.WriteStringValue("company_domain", CompanyDomain);
             writer.WriteStringValue("end_date", EndDate);
+            writer.WriteBoolValue("is_current", IsCurrent);
             writer.WriteStringValue("location", Location);
             writer.WriteStringValue("start_date", StartDate);
             writer.WriteStringValue("title", Title);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);

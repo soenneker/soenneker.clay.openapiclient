@@ -44,6 +44,7 @@ namespace Soenneker.Clay.OpenApiClient.Routines.Item.RunBatch.Start
         /// <exception cref="global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse">When receiving a 401 status code</exception>
         /// <exception cref="global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse">When receiving a 403 status code</exception>
         /// <exception cref="global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse">When receiving a 409 status code</exception>
         /// <exception cref="global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse">When receiving a 429 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -62,6 +63,7 @@ namespace Soenneker.Clay.OpenApiClient.Routines.Item.RunBatch.Start
                 { "401", global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
+                { "409", global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },

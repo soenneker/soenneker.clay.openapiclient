@@ -701,6 +701,16 @@
               }
             }
           },
+          "409": {
+            "description": "409",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
           "429": {
             "description": "429",
             "content": {
@@ -2214,11 +2224,20 @@
               "string"
             ]
           },
+          "company_domain": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
           "end_date": {
             "type": [
               "null",
               "string"
             ]
+          },
+          "is_current": {
+            "type": "boolean"
           },
           "location": {
             "type": [
