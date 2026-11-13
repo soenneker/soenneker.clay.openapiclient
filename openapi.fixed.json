@@ -1196,8 +1196,18 @@
           "search"
         ],
         "summary": "Get the Clay search query reference",
-        "description": "Returns the Clay search query reference document (markdown), covering the queryable fields and the query grammar. Use it to author a Clay advanced search query before creating a query-mode search.",
+        "description": "Returns the Clay search query reference document (markdown), covering the queryable fields and the query grammar. Use it to author a Clay advanced search query before creating a query-mode search. Pass \u0060sections\u0060 to fetch only the parts a query needs; without it, every section is returned.",
         "operationId": "QueryModeReference",
+        "parameters": [
+          {
+            "name": "sections",
+            "in": "query",
+            "description": "Comma-separated list of reference sections to return. Valid sections: grammar (query grammar), rules (scopes, functions, and query policies), examples (example queries), people-fields (people and experience fields), company-fields (company fields), company-people-fields (people predicate fields used inside company queries), job-fields (job posting fields), workspace-resources (audience and table references; only returned for CLI credentials). Sections are returned in a fixed order regardless of request order. Omit to receive every section; request only the sections you need.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "200",

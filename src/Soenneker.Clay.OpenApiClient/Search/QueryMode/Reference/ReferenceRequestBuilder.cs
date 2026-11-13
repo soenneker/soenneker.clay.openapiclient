@@ -22,7 +22,7 @@ namespace Soenneker.Clay.OpenApiClient.Search.QueryMode.Reference
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ReferenceRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/search/query-mode/reference", pathParameters)
+        public ReferenceRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/search/query-mode/reference{?sections*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,11 +30,11 @@ namespace Soenneker.Clay.OpenApiClient.Search.QueryMode.Reference
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ReferenceRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/search/query-mode/reference", rawUrl)
+        public ReferenceRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/search/query-mode/reference{?sections*}", rawUrl)
         {
         }
         /// <summary>
-        /// Returns the Clay search query reference document (markdown), covering the queryable fields and the query grammar. Use it to author a Clay advanced search query before creating a query-mode search.
+        /// Returns the Clay search query reference document (markdown), covering the queryable fields and the query grammar. Use it to author a Clay advanced search query before creating a query-mode search. Pass `sections` to fetch only the parts a query needs; without it, every section is returned.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Clay.OpenApiClient.Models.QueryModeReference200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -45,11 +45,11 @@ namespace Soenneker.Clay.OpenApiClient.Search.QueryMode.Reference
         /// <exception cref="global::Soenneker.Clay.OpenApiClient.Models.ErrorResponse">When receiving a 429 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Clay.OpenApiClient.Models.QueryModeReference200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Clay.OpenApiClient.Models.QueryModeReference200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Clay.OpenApiClient.Search.QueryMode.Reference.ReferenceRequestBuilder.ReferenceRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Clay.OpenApiClient.Models.QueryModeReference200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Clay.OpenApiClient.Models.QueryModeReference200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Clay.OpenApiClient.Search.QueryMode.Reference.ReferenceRequestBuilder.ReferenceRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -65,17 +65,17 @@ namespace Soenneker.Clay.OpenApiClient.Search.QueryMode.Reference
             return await RequestAdapter.SendAsync<global::Soenneker.Clay.OpenApiClient.Models.QueryModeReference200Response>(requestInfo, global::Soenneker.Clay.OpenApiClient.Models.QueryModeReference200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns the Clay search query reference document (markdown), covering the queryable fields and the query grammar. Use it to author a Clay advanced search query before creating a query-mode search.
+        /// Returns the Clay search query reference document (markdown), covering the queryable fields and the query grammar. Use it to author a Clay advanced search query before creating a query-mode search. Pass `sections` to fetch only the parts a query needs; without it, every section is returned.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Clay.OpenApiClient.Search.QueryMode.Reference.ReferenceRequestBuilder.ReferenceRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Clay.OpenApiClient.Search.QueryMode.Reference.ReferenceRequestBuilder.ReferenceRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -91,6 +91,23 @@ namespace Soenneker.Clay.OpenApiClient.Search.QueryMode.Reference
         public global::Soenneker.Clay.OpenApiClient.Search.QueryMode.Reference.ReferenceRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Clay.OpenApiClient.Search.QueryMode.Reference.ReferenceRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Returns the Clay search query reference document (markdown), covering the queryable fields and the query grammar. Use it to author a Clay advanced search query before creating a query-mode search. Pass `sections` to fetch only the parts a query needs; without it, every section is returned.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class ReferenceRequestBuilderGetQueryParameters 
+        {
+            /// <summary>Comma-separated list of reference sections to return. Valid sections: grammar (query grammar), rules (scopes, functions, and query policies), examples (example queries), people-fields (people and experience fields), company-fields (company fields), company-people-fields (people predicate fields used inside company queries), job-fields (job posting fields), workspace-resources (audience and table references; only returned for CLI credentials). Sections are returned in a fixed order regardless of request order. Omit to receive every section; request only the sections you need.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("sections")]
+            public string? Sections { get; set; }
+#nullable restore
+#else
+            [QueryParameter("sections")]
+            public string Sections { get; set; }
+#endif
         }
     }
 }
