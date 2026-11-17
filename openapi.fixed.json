@@ -1285,7 +1285,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NextSearchResultsBody"
+                "$ref": "#/components/schemas/RunQueryModeRequest"
               }
             }
           }
@@ -2887,6 +2887,39 @@
         },
         "additionalProperties": false
       },
+      "NextQueryModeCompanyResultsResponseSearchQuota": {
+        "required": [
+          "limit",
+          "used",
+          "remaining"
+        ],
+        "type": "object",
+        "properties": {
+          "limit": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int64"
+          },
+          "remaining": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int64"
+          },
+          "upgrade_url": {
+            "maxLength": 2000,
+            "type": "string"
+          },
+          "used": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
       "NextQueryModePeopleResultsResponsePeriodQuota": {
         "required": [
           "limit",
@@ -2907,6 +2940,39 @@
           },
           "used": {
             "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NextQueryModePeopleResultsResponseSearchQuota": {
+        "required": [
+          "limit",
+          "used",
+          "remaining"
+        ],
+        "type": "object",
+        "properties": {
+          "limit": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int64"
+          },
+          "remaining": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int64"
+          },
+          "upgrade_url": {
+            "maxLength": 2000,
+            "type": "string"
+          },
+          "used": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int64"
           }
         },
         "additionalProperties": false
@@ -3221,6 +3287,22 @@
         "properties": {
           "reference": {
             "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RunQueryModeRequest": {
+        "type": "object",
+        "properties": {
+          "clamp_to_search_limit": {
+            "type": "boolean",
+            "description": "Return the remaining per-search allowance when it is smaller than the requested limit."
+          },
+          "limit": {
+            "maximum": 500,
+            "minimum": 1,
+            "type": "integer",
+            "default": 20
           }
         },
         "additionalProperties": false
@@ -4465,6 +4547,9 @@
               "period_quota": {
                 "$ref": "#/components/schemas/NextQueryModePeopleResultsResponsePeriodQuota"
               },
+              "search_quota": {
+                "$ref": "#/components/schemas/NextQueryModePeopleResultsResponseSearchQuota"
+              },
               "source_type": {
                 "$ref": "#/components/schemas/PeopleSourceType"
               }
@@ -4500,6 +4585,9 @@
               },
               "period_quota": {
                 "$ref": "#/components/schemas/NextQueryModeCompanyResultsResponsePeriodQuota"
+              },
+              "search_quota": {
+                "$ref": "#/components/schemas/NextQueryModeCompanyResultsResponseSearchQuota"
               },
               "source_type": {
                 "$ref": "#/components/schemas/CompaniesSourceType"
@@ -5007,6 +5095,9 @@
         "period_quota": {
           "$ref": "#/components/schemas/NextQueryModeCompanyResultsResponsePeriodQuota"
         },
+        "search_quota": {
+          "$ref": "#/components/schemas/NextQueryModeCompanyResultsResponseSearchQuota"
+        },
         "source_type": {
           "$ref": "#/components/schemas/CompaniesSourceType"
         }
@@ -5035,6 +5126,9 @@
         },
         "period_quota": {
           "$ref": "#/components/schemas/NextQueryModePeopleResultsResponsePeriodQuota"
+        },
+        "search_quota": {
+          "$ref": "#/components/schemas/NextQueryModePeopleResultsResponseSearchQuota"
         },
         "source_type": {
           "$ref": "#/components/schemas/PeopleSourceType"

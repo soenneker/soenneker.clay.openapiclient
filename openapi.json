@@ -607,6 +607,32 @@
             "required": ["limit", "used", "remaining", "resets_at"],
             "type": "object"
           },
+          "search_quota": {
+            "additionalProperties": false,
+            "properties": {
+              "limit": {
+                "maximum": 9007199254740991,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "remaining": {
+                "maximum": 9007199254740991,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "upgrade_url": {
+                "maxLength": 2000,
+                "type": "string"
+              },
+              "used": {
+                "maximum": 9007199254740991,
+                "minimum": 0,
+                "type": "integer"
+              }
+            },
+            "required": ["limit", "used", "remaining"],
+            "type": "object"
+          },
           "source_type": {
             "const": "companies",
             "type": "string"
@@ -648,6 +674,32 @@
               }
             },
             "required": ["limit", "used", "remaining", "resets_at"],
+            "type": "object"
+          },
+          "search_quota": {
+            "additionalProperties": false,
+            "properties": {
+              "limit": {
+                "maximum": 9007199254740991,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "remaining": {
+                "maximum": 9007199254740991,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "upgrade_url": {
+                "maxLength": 2000,
+                "type": "string"
+              },
+              "used": {
+                "maximum": 9007199254740991,
+                "minimum": 0,
+                "type": "integer"
+              }
+            },
+            "required": ["limit", "used", "remaining"],
             "type": "object"
           },
           "source_type": {
@@ -3038,7 +3090,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NextSearchResultsBody"
+                "additionalProperties": false,
+                "properties": {
+                  "clamp_to_search_limit": {
+                    "description": "Return the remaining per-search allowance when it is smaller than the requested limit.",
+                    "type": "boolean"
+                  },
+                  "limit": {
+                    "default": 20,
+                    "maximum": 500,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
               }
             }
           },

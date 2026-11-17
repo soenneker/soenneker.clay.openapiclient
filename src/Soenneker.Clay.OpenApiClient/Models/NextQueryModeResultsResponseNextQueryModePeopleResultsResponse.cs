@@ -26,6 +26,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
             else if (parseNode.GetChildNode("has_more") is { } nullNodeHasMore && nullNodeHasMore.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HasMore = null;
             if (parseNode.GetChildNode("period_quota") is null) { _explicitNullValuePeriodQuota = default!; _explicitNullProperties?.Remove("period_quota"); }
             else if (parseNode.GetChildNode("period_quota") is { } nullNodePeriodQuota && nullNodePeriodQuota.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PeriodQuota = null;
+            if (parseNode.GetChildNode("search_quota") is null) { _explicitNullValueSearchQuota = default!; _explicitNullProperties?.Remove("search_quota"); }
+            else if (parseNode.GetChildNode("search_quota") is { } nullNodeSearchQuota && nullNodeSearchQuota.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SearchQuota = null;
         }
 
         /// <summary>The data property</summary>
@@ -54,6 +56,16 @@ namespace Soenneker.Clay.OpenApiClient.Models
         public global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponsePeriodQuota PeriodQuota { get => _explicitNullValuePeriodQuota; set { _explicitNullValuePeriodQuota = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("period_quota"); else _explicitNullProperties?.Remove("period_quota"); } }
         private global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponsePeriodQuota _explicitNullValuePeriodQuota = default!;
 #endif
+        /// <summary>The search_quota property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponseSearchQuota? SearchQuota { get => _explicitNullValueSearchQuota; set { _explicitNullValueSearchQuota = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("search_quota"); else _explicitNullProperties?.Remove("search_quota"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponseSearchQuota? _explicitNullValueSearchQuota = default!;
+#nullable restore
+#else
+        public global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponseSearchQuota SearchQuota { get => _explicitNullValueSearchQuota; set { _explicitNullValueSearchQuota = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("search_quota"); else _explicitNullProperties?.Remove("search_quota"); } }
+        private global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponseSearchQuota _explicitNullValueSearchQuota = default!;
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -76,6 +88,7 @@ namespace Soenneker.Clay.OpenApiClient.Models
                 { "exhaustion_reason", n => { ExhaustionReason = n.GetEnumValue<global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponseExhaustionReason>(); } },
                 { "has_more", n => { HasMore = n.GetBoolValue(); } },
                 { "period_quota", n => { PeriodQuota = n.GetObjectValue<global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponsePeriodQuota>(global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponsePeriodQuota.CreateFromDiscriminatorValue); } },
+                { "search_quota", n => { SearchQuota = n.GetObjectValue<global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponseSearchQuota>(global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponseSearchQuota.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -89,7 +102,8 @@ namespace Soenneker.Clay.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Clay.OpenApiClient.Models.PublicApiPersonSearchResult>("data", Data);
             writer.WriteEnumValue<global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponseExhaustionReason>("exhaustion_reason", ExhaustionReason);
             writer.WriteBoolValue("has_more", HasMore);
-            writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponsePeriodQuota>("period_quota", PeriodQuota);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponsePeriodQuota>("period_quota", PeriodQuota);
+            writer.WriteObjectValue<global::Soenneker.Clay.OpenApiClient.Models.NextQueryModePeopleResultsResponseSearchQuota>("search_quota", SearchQuota);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             
         }
     }
