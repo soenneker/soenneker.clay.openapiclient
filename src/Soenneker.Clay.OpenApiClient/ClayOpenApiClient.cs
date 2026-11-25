@@ -7,6 +7,7 @@ using Microsoft.Kiota.Serialization.Json;
 using Microsoft.Kiota.Serialization.Multipart;
 using Microsoft.Kiota.Serialization.Text;
 using Soenneker.Clay.OpenApiClient.Audiences;
+using Soenneker.Clay.OpenApiClient.AuditLogs;
 using Soenneker.Clay.OpenApiClient.Credits;
 using Soenneker.Clay.OpenApiClient.Me;
 using Soenneker.Clay.OpenApiClient.Routines;
@@ -29,6 +30,11 @@ namespace Soenneker.Clay.OpenApiClient
         public global::Soenneker.Clay.OpenApiClient.Audiences.AudiencesRequestBuilder Audiences
         {
             get => new global::Soenneker.Clay.OpenApiClient.Audiences.AudiencesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The auditLogs property</summary>
+        public global::Soenneker.Clay.OpenApiClient.AuditLogs.AuditLogsRequestBuilder AuditLogs
+        {
+            get => new global::Soenneker.Clay.OpenApiClient.AuditLogs.AuditLogsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The credits property</summary>
         public global::Soenneker.Clay.OpenApiClient.Credits.CreditsRequestBuilder Credits
